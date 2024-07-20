@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { DM_Sans, Hanken_Grotesk } from "next/font/google";
+
+
+import { ThemeProvider } from "@/components/theme-provider"
+import { cn } from "@/lib/utils";
 import "./globals.css";
 
 const DMSans = DM_Sans({
@@ -26,7 +30,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${DMSans.variable} ${HankenGrotesk.variable}`}>
-      <body>{children}</body>
+      <body
+        suppressHydrationWarning
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased dark",
+        )}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
