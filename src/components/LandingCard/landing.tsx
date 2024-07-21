@@ -1,7 +1,9 @@
 import Image from 'next/image';
 
+import DotPattern from '@/components/magicui/dot-pattern';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 interface ProfileDetailProps {
     heading: string;
@@ -20,8 +22,20 @@ const AboutParagraph =
 
 export default function Landing() {
     return (
-        <Card className="h-2/4 w-full py-12">
-            <CardContent>
+        <Card className="relative h-2/4 w-full py-12">
+            {/* Position DotPattern absolutely to sit behind all content */}
+            <DotPattern
+                width={20}
+                height={20}
+                cx={1}
+                cy={1}
+                cr={1}
+                dotColor="#565656"
+                className={cn(
+                    'z-0 [mask-image:linear-gradient(to_top_left,red,transparent,transparent)]'
+                )}
+            />
+            <CardContent className="relative z-10">
                 <div className="grid grid-cols-3 gap-4">
                     {/* Column 1 */}
                     <div className="col-span-1 flex h-full items-center justify-center">
