@@ -81,14 +81,22 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 1px; /* Thickness of the line */
-  background-color: #1d1d1d; /* Color of the line */
+  width: 1px;
+  background-color: #1d1d1d;
 }
 
 .padding-line::before {
-  left: 6rem; /* Adjust based on your padding-left */
+  left: 6rem;
 }
 
 .padding-line::after {
-  right: 6rem; /* Adjust based on your padding-right */
+  right: 6rem;
+}
+
+.simple-p {
+  @apply text-sm font-HK text-foreground leading-loose tracking-wide;
+}
+
+.simple-p-heading {
+  @apply text-sm font-HK text-foreground tracking-widest text-[#565656];
 }
