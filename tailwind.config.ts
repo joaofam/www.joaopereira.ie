@@ -62,6 +62,9 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        'strong-inner': '0 4px 6px rgba(0, 0, 0, 0.3)', // Example of a stronger shadow
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -75,6 +78,9 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      letterSpacing: {
+        tighterxs: "-0.075em",
       },
     },
   },

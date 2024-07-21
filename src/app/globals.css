@@ -32,8 +32,8 @@
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 78%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
@@ -66,4 +66,29 @@
   body {
     @apply bg-background text-foreground;
   }
+  div h1 {
+    @apply text-7xl font-bold font-DMSans;
+  }
+}
+
+.padding-line {
+  position: relative;
+}
+
+.padding-line::before,
+.padding-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px; /* Thickness of the line */
+  background-color: #1d1d1d; /* Color of the line */
+}
+
+.padding-line::before {
+  left: 6rem; /* Adjust based on your padding-left */
+}
+
+.padding-line::after {
+  right: 6rem; /* Adjust based on your padding-right */
 }
