@@ -1,0 +1,30 @@
+# Dependency directories
+node_modules/
+.pnpm/
+
+# Production build files
+/dist
+/build
+/out
+
+# Various lockfiles
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
