@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import DotPattern from '@/components/magicui/dot-pattern';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import DotPattern from '@/app/components/magicui/dot-pattern';
+import { Button } from '@/app/components/ui/button';
+import { Card, CardContent } from '@/app/components/ui/card';
 import { cn } from '@/lib/utils';
 
 interface ProfileDetailProps {

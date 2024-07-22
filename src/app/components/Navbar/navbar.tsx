@@ -1,8 +1,8 @@
 
 import Link from "next/link"
 
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
+import { Button } from "@/app/components/ui/button"
+import { Sheet, SheetTrigger, SheetContent } from "@/app/components/ui/sheet"
 
 export default function Navbar() {
   return (
