@@ -5,6 +5,7 @@ import { CardGap } from "@/app/components/GapCard/gap";
 import Landing from "@/app/components/LandingCard/landing";
 import Navbar from "@/app/components/Navbar/navbar";
 import { Resume } from "@/app/components/ResumeCard/resume";
+import Skills from "@/app/components/SkillsCard/skills";
 
 export default function Home() {
   return (
@@ -29,6 +30,9 @@ export default function Home() {
         </div>
         <div className="w-full h-8">
           <CardGap />
+        </div>
+        <div className="w-full h-full">
+          <Skills />
         </div>
     </main>
   );

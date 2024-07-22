@@ -100,7 +100,11 @@
 }
 
 .simple-p {
-  @apply text-xs font-HK text-foreground leading-loose tracking-wide;
+  @apply text-sm font-HK text-foreground leading-loose tracking-wide;
+}
+
+.simple-p-heading {
+  @apply text-sm font-HK text-foreground tracking-widest text-[#565656];
 }
 
 .simple-p-heading {
