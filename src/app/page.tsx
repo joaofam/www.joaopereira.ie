@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 import About from "@/app/components/AboutCard/about";
-import { CardGap } from "@/app/components/CardGap/gap";
+import { CardGap } from "@/app/components/GapCard/gap";
 import Landing from "@/app/components/LandingCard/landing";
 import Navbar from "@/app/components/Navbar/navbar";
-
+import { Resume } from "@/app/components/ResumeCard/resume";
 
 export default function Home() {
   return (
@@ -21,7 +21,13 @@ export default function Home() {
         <div className="w-full h-full">
           <About />
         </div>
+        <div className="w-full h-8">
+          <CardGap />
+        </div>
         <div className="w-full h-32">
+          <Resume />
+        </div>
+        <div className="w-full h-8">
           <CardGap />
         </div>
     </main>
