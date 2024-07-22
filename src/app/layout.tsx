@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Hanken_Grotesk } from "next/font/google";
 
 
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/app/components/theme-provider"
 import { cn } from "@/lib/utils";
 import "./globals.css";
 

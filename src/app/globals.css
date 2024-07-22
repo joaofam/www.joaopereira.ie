@@ -67,7 +67,10 @@
     @apply bg-background text-foreground;
   }
   div h1 {
-    @apply text-7xl font-bold font-DMSans;
+    @apply text-7xl font-bold text-foreground font-DMSans tracking-tighterxs;
+  }
+  div h2 {
+    @apply text-6xl font-bold text-foreground font-DMSans tracking-tighterxs;
   }
 }
 
@@ -94,7 +97,7 @@
 }
 
 .simple-p {
-  @apply text-sm font-HK text-foreground leading-loose tracking-wide;
+  @apply text-xs font-HK text-foreground leading-loose tracking-wide;
 }
 
 .simple-p-heading {

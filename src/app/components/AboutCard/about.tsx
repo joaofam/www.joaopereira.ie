@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import { Button } from '@/app/components/ui/button';
 import { Card, CardContent } from '@/app/components/ui/card';
 
@@ -15,29 +13,32 @@ const ProfileDetail: React.FC<ProfileDetailProps> = ({ heading, content }) => (
     </div>
 );
 
-const LifeAdventurerParagraph = 
+const LifeAdventurerParagraph =
+    'Hi, hello, good afternoon, welcome to my portfolio where I showcase what I am worth within the tech world. I use this as a personal archive to demonstrate my progress and highlights';
+
+const TechGoerParagraph =
     'Hi, hello, good afternoon, welcome to my portfolio where I showcase what I am worth within the tech world. I use this as a personal archive to demonstrate my progress and highlights';
 
 export default function About() {
     return (
-        <Card className="relative h-4/5 w-full py-12 px-12">
-        {/* Position DotPattern absolutely to sit behind all content */}
+        <Card className="relative h-4/5 w-full px-12 py-48 flex items-center justify-center">
             <CardContent className="relative z-10">
-                <div className="grid grid-rows-2 grid-cols-2 gap-4">
-                    {/* Adjusted to start from row 2 */}
-                    <div className="col-span-1 flex h-full flex-col justify-between ">
-                        <p className="simple-p-heading text-right">title</p>
-                        <h1 className="mb-8">Life Adventurer</h1>
-                        <p className="simple-p w-2/3">{LifeAdventurerParagraph}</p>
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="flex h-full flex-col justify-center px-4">
+                        <h2 className="mb-8">Life Adventurer</h2>
+                        <p className="simple-p-heading text-left">Something Personal</p>
+                        <p className="simple-p indent-40">{LifeAdventurerParagraph}</p>
                     </div>
-                    {/* Adjusted to start from row 4, with mt-auto on the first element to push content down */}
-                    <div className="col-span-1 flex h-full flex-col col-start-2 mt-24">
-                        <p className="simple-p-heading text-left mt-auto">title</p>
-                        <h1 className="mb-8">Tech Goer</h1>
-                        <p className="simple-p w-2/3">{LifeAdventurerParagraph}</p>
+                    <div className="flex h-full flex-col justify-center px-4">
+                        <h2 className="mb-8">Tech Goer</h2>
+                        <p className="simple-p-heading text-left">Something Industrial</p>
+                        <p className="simple-p-heading text-left">{" "}</p>
+                        <p className="simple-p indent-40">{TechGoerParagraph}</p>
                     </div>
                 </div>
             </CardContent>
+            <div className="absolute left-1/3 top-0 h-full w-px bg-secondary"></div>
+            <div className="absolute left-2/3 top-0 h-full w-px bg-secondary"></div>
         </Card>
     );
 }
