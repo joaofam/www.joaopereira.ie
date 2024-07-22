@@ -114,31 +114,31 @@ export default function Skills() {
                 </CardContent>
             </Card>
             <Card className="relative flex h-full w-full items-center h-32">
-                <div className="w-full h-full grid grid-cols-12 grid-rows-2 border-2 border-backgrund">
-                    <div className="border-2 border-backgrund p-1">1</div>
-                    <div className="border-2 border-backgrund p-1">2</div>
-                    <div className="border-2 border-backgrund p-1">3</div>
-                    <div className="border-2 border-backgrund p-1">4</div>
-                    <div className="border-2 border-backgrund p-1">5</div>
-                    <div className="border-2 border-backgrund p-1">1</div>
-                    <div className="border-2 border-backgrund p-1">2</div>
-                    <div className="border-2 border-backgrund p-1">3</div>
-                    <div className="border-2 border-backgrund p-1">4</div>
-                    <div className="border-2 border-backgrund p-1">5</div>
-                    <div className="border-2 border-backgrund p-1">1</div>
-                    <div className="border-2 border-backgrund p-1">2</div>
-                    <div className="border-2 border-backgrund p-1">3</div>
-                    <div className="border-2 border-backgrund p-1">4</div>
-                    <div className="border-2 border-backgrund p-1">5</div>
-                    <div className="border-2 border-backgrund p-1">1</div>
-                    <div className="border-2 border-backgrund p-1">2</div>
-                    <div className="border-2 border-backgrund p-1">3</div>
-                    <div className="border-2 border-backgrund p-1">4</div>
-                    <div className="border-2 border-backgrund p-1">5</div>
-                    <div className="border-2 border-backgrund p-1">1</div>
-                    <div className="border-2 border-backgrund p-1">2</div>
-                    <div className="border-2 border-backgrund p-1">3</div>
-                    <div className="border-2 border-backgrund p-1">4</div>
+                <div className="w-full h-full grid grid-cols-12 grid-rows-2 border-backgrund">
+                    <div className="border-1 border-backgrund p-1">1</div>
+                    <div className="border-1 border-backgrund p-1">2</div>
+                    <div className="border-1 border-backgrund p-1">3</div>
+                    <div className="border-1 border-backgrund p-1">4</div>
+                    <div className="border-1 border-backgrund p-1">5</div>
+                    <div className="border-1 border-backgrund p-1">1</div>
+                    <div className="border-1 border-backgrund p-1">2</div>
+                    <div className="border-1 border-backgrund p-1">3</div>
+                    <div className="border-1 border-backgrund p-1">4</div>
+                    <div className="border-1 border-backgrund p-1">5</div>
+                    <div className="border-1 border-backgrund p-1">1</div>
+                    <div className="border-1 border-backgrund p-1">2</div>
+                    <div className="border-1 border-backgrund p-1">3</div>
+                    <div className="border-1 border-backgrund p-1">4</div>
+                    <div className="border-1 border-backgrund p-1">5</div>
+                    <div className="border-1 border-backgrund p-1">1</div>
+                    <div className="border-1 border-backgrund p-1">2</div>
+                    <div className="border-1 border-backgrund p-1">3</div>
+                    <div className="border-1 border-backgrund p-1">4</div>
+                    <div className="border-1 border-backgrund p-1">5</div>
+                    <div className="border-1 border-backgrund p-1">1</div>
+                    <div className="border-1 border-backgrund p-1">2</div>
+                    <div className="border-1 border-backgrund p-1">3</div>
+                    <div className="border-1 border-backgrund p-1">4</div>
                 </div>
             </Card>
         </div>

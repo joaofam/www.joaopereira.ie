@@ -82,6 +82,10 @@ const config = {
       letterSpacing: {
         tighterxs: "-0.075em",
       },
+      // border width
+      borderWidth: {
+        1: "1px",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
