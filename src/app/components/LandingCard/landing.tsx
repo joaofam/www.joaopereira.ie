@@ -22,9 +22,8 @@ const AboutParagraph =
 
 export default function Landing() {
     return (
-        <Card className="relative h-2/4 w-full py-12">
-            {/* Position DotPattern absolutely to sit behind all content */}
-            <DotPattern
+        <Card className="relative w-full ">
+            {/* <DotPattern
                 width={20}
                 height={20}
                 cx={1}
@@ -34,11 +33,12 @@ export default function Landing() {
                 className={cn(
                     'z-0 [mask-image:linear-gradient(to_top_left,red,transparent,transparent)]'
                 )}
-            />
+            /> */}
+            
             <CardContent className="relative z-10">
                 <div className="grid grid-cols-3 gap-4">
                     {/* Column 1 */}
-                    <div className="col-span-1 flex h-full items-center justify-center">
+                    <div className="grayscale col-span-1 flex h-full items-center justify-center border-r-1 py-12">
                         <Image
                             src="/profile.svg"
                             alt="Picture of me"
@@ -47,14 +47,14 @@ export default function Landing() {
                         />
                     </div>
                     {/* Column 2 */}
-                    <div className="col-span-1 flex h-full flex-col justify-between">
+                    <div className="col-span-1 flex h-full flex-col justify-between border-r-1 py-8 px-4">
                         <p className="simple-p">{AboutParagraph}</p>
                         <div className="mt-auto">
                             <Button variant="outline">My Work</Button>
                         </div>
                     </div>
                     {/* Column 3 */}
-                    <div className="col-span-1 flex h-full flex-col">
+                    <div className="col-span-1 flex h-full flex-col py-8 px-4">
                         <ProfileDetail
                             heading="Name"
                             content="Joao Maria Baeta Pereira"
@@ -75,6 +75,7 @@ export default function Landing() {
                     </div>
                 </div>
             </CardContent>
+            {/* <div className="absolute top-1/2 left-1/3 h-px w-2/3 bg-secondary"></div> */}
         </Card>
     );
 }
