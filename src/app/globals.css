@@ -42,6 +42,7 @@
     --primary-foreground: 240 5.9% 10%;
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
+    --tertiary: 110 100% 79.6%;
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
     --accent: 240 3.7% 15.9%;
@@ -101,6 +102,10 @@
 
 .simple-p {
   @apply text-sm font-HK text-foreground leading-loose tracking-wide;
+}
+
+.simple-p-projects {
+  @apply text-sm font-HK leading-loose tracking-wide;
 }
 
 .simple-p-heading {

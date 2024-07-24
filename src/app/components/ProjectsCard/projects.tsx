@@ -12,6 +12,16 @@ interface ProjectListItemProps {
     date: string;
 }
 
+const projects = [
+    {
+        name: 'Fileflo',
+        area: 'Blockchain, Cryptography, Web Dev',
+        date: '2024',
+    },
+    { name: 'Venato', area: 'IOT, Mobile Development', date: '2023' },
+    { name: 'joaopereira.ie', area: 'Web Design', date: '2024' },
+];
+
 const ProjectListItem: React.FC<ProjectListItemProps> = ({
     name,
     area,
@@ -21,12 +31,12 @@ const ProjectListItem: React.FC<ProjectListItemProps> = ({
 
     return (
         <div
-            className="grid cursor-pointer grid-cols-[2fr_3fr_1fr_1fr] grid-rows-1 justify-center gap-4 border-b py-8 hover:font-bold hover:italic"
+            className="grid cursor-pointer grid-cols-[2fr_3fr_1fr_1fr] grid-rows-1 justify-center gap-4 border-b py-8 hover:font-bold hover:text-tertiary hover:italic"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <div className="simple-p">{name}</div>
-            <div className="simple-p">{area}</div>
+            <div className="simple-p-projects">{name}</div>
+            <div className="simple-p-projects">{area}</div>
             <div className="flex justify-end pr-4">
                 <div className="simple-p-heading">{date}</div>
             </div>
@@ -44,16 +54,6 @@ const ProjectListItem: React.FC<ProjectListItemProps> = ({
 };
 
 export default function Projects() {
-    const projects = [
-        {
-            name: 'Fileflo',
-            area: 'Blockchain, Cryptography, Web Dev',
-            date: '2024',
-        },
-        { name: 'Venato', area: 'IOT, Mobile Development', date: '2023' },
-        { name: 'joaopereira.ie', area: 'Web Design', date: '2024' },
-    ];
-
     return (
         <div>
             <Card className="relative flex h-4/5 w-full items-center justify-center px-32 py-16 pb-28">

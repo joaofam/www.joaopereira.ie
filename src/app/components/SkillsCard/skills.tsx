@@ -112,7 +112,7 @@ const logos = [
 
 export default function Skills() {
     const columns = 12; // Number of columns
-    const rows = Math.ceil(logos.length / columns); // Calculate the number of rows based on the logos
+    const rows = Math.ceil(logos.length / columns);
 
     return (
         <div>

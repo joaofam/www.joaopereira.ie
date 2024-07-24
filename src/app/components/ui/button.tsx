@@ -58,7 +58,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           ref={ref}
           {...props}
         />
-        <div className={`w-10 h-10 rounded-full flex justify-center items-center bg-background border-1 border-secondary ${isHovered ? 'bg-foreground text-background' : ''}`}>
+        <div className={`w-10 h-10 rounded-full flex justify-center items-center bg-background border-1 border-secondary ${isHovered ? 'transition-colors bg-foreground' : ''}`}>
           {icon}
         </div>
       </div>

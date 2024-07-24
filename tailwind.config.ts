@@ -23,6 +23,7 @@ const config = {
         HK: ['var(--font-Hanken-Grotesk)'],
       },
       colors: {
+        tertiary: "#A8FF97",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -63,7 +64,7 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        'strong-inner': '0 4px 6px rgba(0, 0, 0, 0.3)', // Example of a stronger shadow
+        'strong-inner': '0 4px 6px rgba(0, 0, 0, 0.3)',
       },
       keyframes: {
         "accordion-down": {

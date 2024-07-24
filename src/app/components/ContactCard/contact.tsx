@@ -40,7 +40,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
 
     return (
         <div
-            className={`bg-1/2 relative col-span-1 flex h-full cursor-pointer flex-col space-y-4 border-r-1 px-8 py-12 hover:${brand}`}
+            className={`bg-1/2 relative col-span-1 flex h-full cursor-pointer flex-col space-y-4 border-r-1 px-8 py-12 hover:opacity-100 transition duration-500  h-full w-full ${brand}`}
             onMouseEnter={() => setIsHovered(true)} 
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -75,7 +75,7 @@ const contactSections = [
         linkText: 'Calendly',
         href: '/',
         color: '#006BFF',
-        brand: 'bg-calendly',
+        brand: 'hover:bg-calendly',
     },
     {
         icon: '/logos/Contact/Github.svg',
@@ -86,7 +86,7 @@ const contactSections = [
         linkText: 'Github',
         href: '/',
         color: '#c7c7c7',
-        brand: 'bg-github',
+        brand: 'hover:bg-github',
     },
     {
         icon: '/logos/Contact/Resend.svg',
@@ -97,7 +97,7 @@ const contactSections = [
         linkText: 'Email',
         href: '/',
         color: '#c7c7c7',
-        brand: 'bg-resend',
+        brand: 'hover:bg-resend',
     },
 ];
 
