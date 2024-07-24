@@ -82,9 +82,13 @@ const config = {
       letterSpacing: {
         tighterxs: "-0.075em",
       },
-      // border width
       borderWidth: {
         1: "1px",
+      },
+      backgroundImage: {
+        calendly: "linear-gradient(to top right, #006BFF, #0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A)",
+        github: "linear-gradient(to top right, #24292E, #0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A)",
+        resend: "linear-gradient(to top right, #24292E, #0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A)",
       },
     },
   },
