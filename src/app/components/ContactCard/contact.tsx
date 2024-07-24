@@ -1,68 +1,103 @@
+'use client';
+
+import React, { useState } from 'react';
+
 import Image from 'next/image';
 
 import { CustomLink } from '@/app/components/Link/link';
 import { Card, CardContent } from '@/app/components/ui/card';
 
-interface ProfileDetailProps {
-    heading: string;
-    content: string;
-}
-
 interface ContactSectionProps {
     icon: string;
+    width: number;
     title: string;
     content: string;
     linkText: string;
     href: string;
+    color: string;
+    brand: string;
 }
+
+const brandBackgrounds = {
+    'bg-calendly': 'linear-gradient(to top right, #006BFF, #0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A)',
+    'bg-github': 'linear-gradient(to top right, #24292E, #0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A)',
+    'bg-resend': 'linear-gradient(to top right, #FFD700, #0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A)',
+};
+
 
 const ContactSection: React.FC<ContactSectionProps> = ({
     icon,
+    width,
     title,
     content,
     linkText,
     href,
-}) => (
-    <div className="col-span-1 flex h-full flex-col space-y-4 border-r-1 px-8 py-12">
-        <div className="flex w-full flex-col items-start space-y-4">
-            <h3>{title}</h3>
-            <p className="simple-p">{content}</p>
-        </div>
-        <div className="flex w-full items-center justify-between">
-            <Image src={icon} alt="" width={24} height={24} />
-            <div className="flex items-center">
-                <CustomLink href={href} iconSrc="/icons/arrow-right.svg">
-                    {linkText}
-                </CustomLink>
+    color,
+    brand,
+}) => {
+    // State to manage hover
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <div
+            className={`bg-1/2 relative col-span-1 flex h-full cursor-pointer flex-col space-y-4 border-r-1 px-8 py-12 hover:${brand}`}
+            onMouseEnter={() => setIsHovered(true)} 
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <div className="flex w-full flex-col items-start space-y-4">
+                <h3>{title}</h3>
+                <p className="simple-p">{content}</p>
+            </div>
+            <div className="flex w-full items-center justify-between">
+                <div
+                    className={`absolute bottom-8 transition-opacity duration-500 ease-in-out ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+                >
+                    <Image src={icon} alt="" width={width} height={0} />
+                </div>
+                <div className="flex-grow"></div>
+                <div className="flex items-center justify-end">
+                    <CustomLink isParentHovered={isHovered} href={href} iconSrc="/icons/arrow-right.svg">
+                        {linkText}
+                    </CustomLink>
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
+};
 
 const contactSections = [
     {
         icon: '/logos/Contact/Calendly.svg',
+        width: 125,
         title: 'Schedule a Meeting',
         content:
             'Click the link below to schedule a quick talk on whatever you require',
         linkText: 'Calendly',
         href: '/',
+        color: '#006BFF',
+        brand: 'bg-calendly',
     },
     {
         icon: '/logos/Contact/Github.svg',
+        width: 32,
         title: 'Check my work',
         content:
             'Click the link below to schedule a quick talk on whatever you require',
         linkText: 'Github',
         href: '/',
+        color: '#c7c7c7',
+        brand: 'bg-github',
     },
     {
         icon: '/logos/Contact/Resend.svg',
+        width: 90,
         title: 'Contact me here',
         content:
             'Click the link below to schedule a quick talk on whatever you require',
         linkText: 'Email',
         href: '/',
+        color: '#c7c7c7',
+        brand: 'bg-resend',
     },
 ];
 

@@ -1,9 +1,9 @@
-import Image from "next/image";
 
 import About from "@/app/components/AboutCard/about";
 import Contact from "@/app/components/ContactCard/contact";
 import { CardGap } from "@/app/components/GapCard/gap";
 import Landing from "@/app/components/LandingCard/landing";
+import LandingPrism from "@/app/components/LandingPrism/prism";
 import Navbar from "@/app/components/Navbar/navbar";
 import Projects from "@/app/components/ProjectsCard/projects";
 import { Resume } from "@/app/components/ResumeCard/resume";
@@ -15,7 +15,7 @@ export default function Home() {
       <Navbar />
         <div className="h- flex flex-col items-center justify-center pt-32">
           <h1 className="font-bold text-center">Personal Portfolio of a Developer</h1>
-          <Image src="/rainbow-landing.svg" alt="Picture of me" width={1250} height={200} />
+          <LandingPrism />
           <Landing />
         </div>
         <div className="w-full h-32">

@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 
 import { Slot } from "@radix-ui/react-slot"
@@ -14,7 +16,7 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-secondary bg-background hover:bg-foreground hover:text-background",
+          "border border-secondary bg-background w-40 rounded-full hover:bg-foreground hover:text-background",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -38,20 +40,31 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
+  icon?: React.ReactNode
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
+  ({ className, variant, size, asChild = false, icon, ...props }, ref) => {
+    const [isHovered, setIsHovered] = React.useState(false);
+    const Comp = asChild ? Slot : "button";
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    )
+      <div 
+        className="flex items-center"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      > 
+        <Comp
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
+        />
+        <div className={`w-10 h-10 rounded-full flex justify-center items-center bg-background border-1 border-secondary ${isHovered ? 'bg-foreground text-background' : ''}`}>
+          {icon}
+        </div>
+      </div>
+    );
   }
-)
-Button.displayName = "Button"
+);
+Button.displayName = "Button";
 
 export { Button, buttonVariants }
