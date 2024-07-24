@@ -1,3 +1,7 @@
+'use client';
+
+import React, { useState } from 'react';
+
 import Image from 'next/image';
 
 import { Card, CardContent } from '@/app/components/ui/card';
@@ -5,30 +9,39 @@ import { Card, CardContent } from '@/app/components/ui/card';
 interface ProjectListItemProps {
     name: string;
     area: string;
-    date: string; // or Date if you're passing a Date object
+    date: string;
 }
 
 const ProjectListItem: React.FC<ProjectListItemProps> = ({
     name,
     area,
     date,
-}) => (
-    <div className="grid grid-cols-[2fr_3fr_1fr_1fr] grid-rows-1 justify-center gap-4 border-b py-8 hover:italic hover:text-green hover:cursor-pointer">
-        <div className="simple-p">{name}</div>
-        <div className="simple-p">{area}</div>
-        <div className="flex justify-end pr-4">
-            <div className="simple-p-heading">{date}</div>
+}) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <div
+            className="grid cursor-pointer grid-cols-[2fr_3fr_1fr_1fr] grid-rows-1 justify-center gap-4 border-b py-8 hover:font-bold hover:italic"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <div className="simple-p">{name}</div>
+            <div className="simple-p">{area}</div>
+            <div className="flex justify-end pr-4">
+                <div className="simple-p-heading">{date}</div>
+            </div>
+            <div className="flex justify-end pr-12">
+                <Image
+                    src="/icons/arrow-right.svg"
+                    width={24}
+                    height={24}
+                    alt="expand"
+                    className={`transform transition-transform duration-300 ease-in-out ${isHovered ? 'rotate-[-45deg]' : ''}`}
+                />
+            </div>
         </div>
-        <div className="flex justify-end pr-12">
-            <Image
-                src="/icons/arrow-right.svg"
-                width={24}
-                height={24}
-                alt="expand"
-            />
-        </div>
-    </div>
-);
+    );
+};
 
 export default function Projects() {
     const projects = [
