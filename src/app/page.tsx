@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import About from "@/app/components/AboutCard/about";
+import Contact from "@/app/components/ContactCard/contact";
 import { CardGap } from "@/app/components/GapCard/gap";
 import Landing from "@/app/components/LandingCard/landing";
 import Navbar from "@/app/components/Navbar/navbar";
@@ -40,6 +41,12 @@ export default function Home() {
         </div>
         <div className="w-full h-full">
           <Projects />
+        </div>
+        <div className="w-full h-8">
+          <CardGap />
+        </div>
+        <div className="w-full h-full">
+          <Contact />
         </div>
         <div className="w-full h-8">
           <CardGap />
