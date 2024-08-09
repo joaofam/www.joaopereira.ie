@@ -9,7 +9,7 @@ export default function LandingPrism() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.75, ease: "easeInOut" }}
-            className="w-full h-auto"
+            className="h-auto"
         >
             <Image src="/rainbow-landing.svg" alt="Picture of me" width={1250} height={200} />
         </motion.div>

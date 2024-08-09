@@ -16,7 +16,7 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-secondary bg-background w-40 rounded-full hover:bg-foreground hover:text-background",
+          "bg-background w-32 rounded-0 hover:bg-background hover:text-tertiary",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -36,6 +36,7 @@ const buttonVariants = cva(
   }
 )
 
+
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
@@ -44,27 +45,31 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, icon, ...props }, ref) => {
-    const [isHovered, setIsHovered] = React.useState(false);
+  ({ className, variant, size, asChild = false, icon, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
+
     return (
-      <div 
-        className="flex items-center"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      > 
+      <div className="relative inline-flex items-center group">
+        {/* Circle Container */}
+        <div className={`absolute left-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center transition-all duration-500 ease-in-out ${className}`}>
+          <div className="w-10 h-10 rounded-full bg-white border-1 border-secondary overflow-hidden">
+            {icon}
+          </div>
+        </div>
+
+        {/* Button Content */}
         <Comp
-          className={cn(buttonVariants({ variant, size, className }))}
+          className={cn(buttonVariants({ variant, size, className }), "relative z-0")}
           ref={ref}
           {...props}
-        />
-        <div className={`w-10 h-10 rounded-full flex justify-center items-center bg-background border-1 border-secondary ${isHovered ? 'transition-colors bg-foreground' : ''}`}>
-          {icon}
-        </div>
+        >
+          {children}
+        </Comp>
       </div>
     );
   }
 );
+
 Button.displayName = "Button";
 
 export { Button, buttonVariants }

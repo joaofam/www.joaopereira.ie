@@ -1,6 +1,7 @@
 'use client';
 
 import GridPattern from '@/app/components/magicui/grid-pattern';
+import Scramble from '@/app/components/Scramble/scramble';
 import { Button } from '@/app/components/ui/button';
 import { Card, CardContent } from '@/app/components/ui/card';
 import { cn } from '@/lib/utils';
@@ -12,7 +13,7 @@ export const Resume = () => {
                 <div className="flex grid h-full grid-cols-3 items-center justify-center">
                     <div className="col-span-2 mr-12 flex justify-center">
                         <h3 className="text-center">
-                            While you are here check out my resume
+                            <Scramble>While you are here check out my resume</Scramble>
                         </h3>
                     </div>
                     <div className="flex h-full items-center justify-center border-l-1 border-secondary">

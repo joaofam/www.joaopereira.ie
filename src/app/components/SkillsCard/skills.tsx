@@ -1,5 +1,10 @@
+'use client';
+
+import React, { useState } from 'react';
+
 import Image from 'next/image';
 
+import Scramble from '@/app/components/Scramble/scramble';
 import { Card, CardContent } from '@/app/components/ui/card';
 
 const areasOfInterest = [
@@ -111,8 +116,10 @@ const logos = [
 ];
 
 export default function Skills() {
-    const columns = 12; // Number of columns
+    const columns = 12;
     const rows = Math.ceil(logos.length / columns);
+
+    const [hoveredSkill, setHoveredSkill] = useState(null);
 
     return (
         <div>
@@ -141,8 +148,15 @@ export default function Skills() {
                                 Front End
                             </p>
                             {frontendStack.map((frontendItem, index) => (
-                                <p key={index} className="simple-p text">
-                                    {frontendItem}
+                                <p
+                                    key={index}
+                                    className="simple-p hover:italic hover:text-tertiary"
+                                    onMouseEnter={() =>
+                                        setHoveredSkill(frontendItem)
+                                    }
+                                    onMouseLeave={() => setHoveredSkill(null)}
+                                >
+                                    <Scramble>{frontendItem}</Scramble>
                                 </p>
                             ))}
                         </div>
@@ -151,16 +165,22 @@ export default function Skills() {
                                 Back End
                             </p>
                             {backendStack.map((backendItem, index) => (
-                                <p key={index} className="simple-p text">
-                                    {backendItem}
+                                <p
+                                    key={index}
+                                    className="simple-p hover:italic hover:text-tertiary"
+                                >
+                                    <Scramble>{backendItem}</Scramble>
                                 </p>
                             ))}
                         </div>
                         <div className="flex h-full flex-col px-4">
                             <p className="simple-p-heading text-left">Tools</p>
                             {toolsStack.map((toolsItem, index) => (
-                                <p key={index} className="simple-p text">
-                                    {toolsItem}
+                                <p
+                                    key={index}
+                                    className="simple-p hover:italic hover:text-tertiary"
+                                >
+                                    <Scramble>{toolsItem}</Scramble>
                                 </p>
                             ))}
                         </div>
@@ -169,8 +189,11 @@ export default function Skills() {
                                 Certifications
                             </p>
                             {certifications.map((certification, index) => (
-                                <p key={index} className="simple-p text">
-                                    {certification}
+                                <p
+                                    key={index}
+                                    className="simple-p hover:italic hover:text-tertiary"
+                                >
+                                    <Scramble>{certification}</Scramble>
                                 </p>
                             ))}
                         </div>
@@ -182,29 +205,39 @@ export default function Skills() {
                     {logos.map((logo, index) => (
                         <div
                             key={index}
-                            className={`border-backgrund flex items-center justify-center p-1 ${
+                            className={`border-backgrund relative flex items-center justify-center p-1 ${
                                 (index + 1) % columns !== 0
                                     ? 'border-r-backgrund border-r'
-                                    : '' // Right border except for the last column
+                                    : ''
                             } ${
                                 index < columns * (rows - 1)
                                     ? 'border-b-backgrund border-b'
-                                    : '' // Bottom border except for the last row
+                                    : ''
                             } ${
                                 index % columns === 0
                                     ? 'border-l-backgrund border-l'
-                                    : '' // Left border for the first column
+                                    : ''
                             } ${
                                 index < columns
                                     ? 'border-t-backgrund border-t'
-                                    : '' // Top border for the first row
+                                    : ''
                             }`}
                         >
+                            {/* Default Logo */}
                             <Image
                                 src={logo.src}
-                                alt={logo.alt}
+                                alt={`${logo.alt} default`}
                                 width={logo.width}
                                 height={logo.height}
+                                className={`absolute inset-0 m-auto transition-opacity duration-300 ease-in-out ${hoveredSkill && hoveredSkill.toLowerCase() === logo.alt ? 'opacity-0' : 'opacity-100'}`}
+                            />
+                            {/* Colored Logo */}
+                            <Image
+                                src={logo.src.replace('.svg', '-color.svg')}
+                                alt={`${logo.alt} colored`}
+                                width={logo.width}
+                                height={logo.height}
+                                className={`absolute inset-0 m-auto transition-opacity duration-300 ease-in-out ${hoveredSkill && hoveredSkill.toLowerCase() === logo.alt ? 'opacity-100' : 'opacity-0'}`}
                             />
                         </div>
                     ))}

@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 import { CustomLink } from '@/app/components/Link/link';
+import Scramble from '@/app/components/Scramble/scramble';
 import { Card, CardContent } from '@/app/components/ui/card';
 
 interface ContactSectionProps {
@@ -14,16 +15,18 @@ interface ContactSectionProps {
     content: string;
     linkText: string;
     href: string;
-    color: string;
+    colorChange: string;
     brand: string;
 }
 
 const brandBackgrounds = {
-    'bg-calendly': 'linear-gradient(to top right, #006BFF, #0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A)',
-    'bg-github': 'linear-gradient(to top right, #24292E, #0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A)',
-    'bg-resend': 'linear-gradient(to top right, #FFD700, #0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A)',
+    'bg-calendly':
+        'linear-gradient(to top right, #006BFF, #0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A)',
+    'bg-github':
+        'linear-gradient(to top right, #24292E, #0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A)',
+    'bg-resend':
+        'linear-gradient(to top right, #FFD700, #0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A)',
 };
-
 
 const ContactSection: React.FC<ContactSectionProps> = ({
     icon,
@@ -32,20 +35,21 @@ const ContactSection: React.FC<ContactSectionProps> = ({
     content,
     linkText,
     href,
-    color,
+    colorChange,
     brand,
 }) => {
-    // State to manage hover
     const [isHovered, setIsHovered] = useState(false);
 
     return (
         <div
-            className={`bg-1/2 relative col-span-1 flex h-full cursor-pointer flex-col space-y-4 border-r-1 px-8 py-12 hover:opacity-100 transition duration-500  h-full w-full ${brand}`}
-            onMouseEnter={() => setIsHovered(true)} 
+            className={`bg-1/2 relative col-span-1 flex h-full w-full cursor-pointer flex-col space-y-4 border-r-1 px-8 py-12 transition duration-500 hover:opacity-100 ${brand}`}
+            onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
             <div className="flex w-full flex-col items-start space-y-4">
-                <h3>{title}</h3>
+                <h3>
+                    <Scramble shouldScramble={isHovered}>{title}</Scramble>
+                </h3>
                 <p className="simple-p">{content}</p>
             </div>
             <div className="flex w-full items-center justify-between">
@@ -56,7 +60,12 @@ const ContactSection: React.FC<ContactSectionProps> = ({
                 </div>
                 <div className="flex-grow"></div>
                 <div className="flex items-center justify-end">
-                    <CustomLink isParentHovered={isHovered} href={href} iconSrc="/icons/arrow-right.svg">
+                    <CustomLink
+                        isParentHovered={isHovered}
+                        colorChange={colorChange}
+                        href={href}
+                        iconSrc="/icons/arrow-right.svg"
+                    >
                         {linkText}
                     </CustomLink>
                 </div>
@@ -69,13 +78,14 @@ const contactSections = [
     {
         icon: '/logos/Contact/Calendly.svg',
         width: 125,
-        title: 'Schedule a Meeting',
+        title: 'Schedule Meeting',
         content:
             'Click the link below to schedule a quick talk on whatever you require',
         linkText: 'Calendly',
         href: '/',
         color: '#006BFF',
         brand: 'hover:bg-calendly',
+        colorChange: "text-blueColor",
     },
     {
         icon: '/logos/Contact/Github.svg',
@@ -87,6 +97,7 @@ const contactSections = [
         href: '/',
         color: '#c7c7c7',
         brand: 'hover:bg-github',
+        colorChange: 'text-[#c7c7c7]',
     },
     {
         icon: '/logos/Contact/Resend.svg',
@@ -98,6 +109,7 @@ const contactSections = [
         href: '/',
         color: '#c7c7c7',
         brand: 'hover:bg-resend',
+        colorChange: 'text-[#c7c7c7]',
     },
 ];
 
