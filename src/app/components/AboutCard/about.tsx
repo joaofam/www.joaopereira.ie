@@ -1,44 +1,75 @@
-import { Button } from '@/app/components/ui/button';
-import { Card, CardContent } from '@/app/components/ui/card';
+'use client';
 
-interface ProfileDetailProps {
-    heading: string;
-    content: string;
-}
+import Image from 'next/image';
 
-const ProfileDetail: React.FC<ProfileDetailProps> = ({ heading, content }) => (
-    <div className="flex items-center space-x-2">
-        <p className="simple-p-heading">{heading}</p>
-        <p className="simple-p">{content}</p>
-    </div>
-);
+import { Experience } from '@/app/components/Experience/experience';
+import { CustomLink } from '@/app/components/Link/link';
+import Scramble from '@/app/components/Scramble/scramble';
 
-const LifeAdventurerParagraph =
-    'Hi, hello, good afternoon, welcome to my portfolio where I showcase what I am worth within the tech world. I use this as a personal archive to demonstrate my progress and highlights';
-
-const TechGoerParagraph =
-    'Hi, hello, good afternoon, welcome to my portfolio where I showcase what I am worth within the tech world. I use this as a personal archive to demonstrate my progress and highlights';
+const Details = [
+    {
+        title: 'Name',
+        content: 'Joao Pereira',
+    },
+    {
+        title: 'Location',
+        content: 'Dublin, Ireland',
+    },
+    {
+        title: 'Nationality',
+        content: 'Portugal',
+    },
+    {
+        title: 'About Me',
+        content:
+            'Hi, I am Joao. I like to consider myself full (if not too, too full of) of enthusiasm within the world I live in. I am quite passionate for many things and hobbies including music, gym, hiking/camping (scary stuff...), football as well as cycling a fixie and above all 35/125mm film photography. Other than that I like to think I am a pretty cool sociable guy who likes to take life on the chill side and eat food.',
+    },
+];
 
 export default function About() {
     return (
-        <Card className="relative h-4/5 w-full px-12 py-48 flex items-center justify-center">
-            <CardContent className="relative z-10">
-                <div className="grid grid-cols-2 gap-4">
-                    <div className="flex h-full flex-col justify-center px-4">
-                        <h2 className="mb-8">Life Adventurer</h2>
-                        <p className="simple-p-heading text-left">Something Personal</p>
-                        <p className="simple-p indent-40">{LifeAdventurerParagraph}</p>
-                    </div>
-                    <div className="flex h-full flex-col justify-center px-4">
-                        <h2 className="mb-8">Tech Goer</h2>
-                        <p className="simple-p-heading text-left">Something Industrial</p>
-                        <p className="simple-p-heading text-left">{" "}</p>
-                        <p className="simple-p indent-40">{TechGoerParagraph}</p>
-                    </div>
+        <div className="flex h-screen w-full flex-col items-center justify-center px-0 font-HK text-sm tracking-widest text-foreground">
+            <h1 className="self-start pb-4 font-Nohemi text-5xl font-bold leading-none">
+                Personal Ditt
+                <span className="absolute z-10 mb-1 font-SwompSloppy tracking-tighter text-foreground">
+                    O
+                </span>
+            </h1>
+            <div className="grid w-full grid-cols-3 grid-rows-1 items-center gap-1">
+                <div className="col-span-2 space-y-8">
+                    {Details.map((detail, index) => (
+                        <div key={index} className="grid grid-cols-5 gap-4">
+                            <span className="col-span-1 w-20">
+                                {detail.title}:
+                            </span>
+                            <span className="col-span-4">{detail.content}</span>
+                        </div>
+                    ))}
                 </div>
-            </CardContent>
-            <div className="absolute left-1/3 top-0 h-full w-px bg-secondary"></div>
-            <div className="absolute left-2/3 top-0 h-full w-px bg-secondary"></div>
-        </Card>
+                <div className="flex items-center justify-center">
+                    <Image
+                        width={300}
+                        height={300}
+                        src="/profile.svg"
+                        alt="Profile Picture"
+                    />
+                </div>
+            </div>
+            <div className="w-full pt-12">
+                <p className="pl-2 font-hk text-xs tracking-widest text-[#b0b0b0]">Experience</p>
+                <Experience
+                    companyName="Concurrent Engineering"
+                    period="10/23 - Present"
+                    role="Associate Applications Developer"
+                    technologies="Java, JS, NextJS, SQL, PTC"
+                />
+                <Experience
+                    companyName="Klas Telecom"
+                    period="03/23 - 08/23"
+                    role="Software Developer Intern"
+                    technologies="Python, React, Ansible, SQL"
+                />
+            </div>
+        </div>
     );
 }

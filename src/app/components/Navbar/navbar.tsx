@@ -17,7 +17,7 @@ export default function Navbar() {
                     <Scramble>Joao Pereira</Scramble>
                 </h4>
             </Link>
-            <nav className="ml-auto lg:flex text-sm">
+            <nav className="ml-auto lg:flex text-sm font-Nohemi font-light tracking-wider">
                 <CustomLink
                     href="/"
                     linearColor="linear-gradient(#A8FF97,#A8FF97)"

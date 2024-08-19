@@ -2,6 +2,7 @@ import About from '@/app/components/AboutCard/about';
 import Contact from '@/app/components/ContactCard/contact';
 import { Footer } from '@/app/components/Footer/footer';
 import { CardGap } from '@/app/components/GapCard/gap';
+import Intro from '@/app/components/Intro/intro';
 import Landing from '@/app/components/LandingCard/landing';
 import LandingPrism from '@/app/components/LandingPrism/prism';
 import Title from '@/app/components/LandingTitle/title';
@@ -22,6 +23,12 @@ export default function Home() {
                 <main className="flex min-h-screen w-full flex-col items-center justify-between border-l border-r border-gray-300 px-4 sm:px-24 md:px-16 lg:px-52 xl:px-32">
                     <div className="flex h-full w-full items-center justify-center">
                         <Title />
+                    </div>
+                    <div className="flex h-full w-full items-center justify-center">
+                        <Intro />
+                    </div>
+                    <div className="flex h-full w-full items-center justify-center">
+                        <About />
                     </div>
                     {/* <div className="h-32 w-full">
                     <CardGap />
@@ -61,9 +68,9 @@ export default function Home() {
                 </div> */}
                 </main>
             </div>
-            {/* <div className="h-1/2 w-full">
+            <div className="h-1/2 w-full">
                 <Footer />
-            </div> */}
+            </div>
         </div>
     );
 }
