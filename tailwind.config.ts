@@ -47,6 +47,7 @@ const config = {
                 SwompRegular: ['var(--font-swomp-regular)'],
                 ladi: ['var(--font-ladi-gross)'],
                 giga: ['var(--font-giga)'],
+                magik: ['var(--font-magik-marker)'],
             },
             fontWeight: {
                 light: '300',

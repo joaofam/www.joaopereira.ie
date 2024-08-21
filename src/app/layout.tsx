@@ -96,6 +96,12 @@ const Giga = localFont({
   variable: "--font-giga",
 });
 
+// local font MagikMarker
+const MagikMarker = localFont({
+  src: './fonts/magikmarker.otf',
+  variable: "--font-magik-marker",
+});
+
 
 export const metadata: Metadata = {
   title: "Joao Pereira",
@@ -116,6 +122,7 @@ export default function RootLayout({
       ${SwompRegular.variable} font-sans
       ${LadiGross.variable} font-sans
       ${Giga.variable} font-sans
+      ${MagikMarker.variable} font-sans
     `}>
       <body
         suppressHydrationWarning
