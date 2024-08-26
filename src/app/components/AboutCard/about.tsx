@@ -1,62 +1,100 @@
 'use client';
 
+import React, { useState } from 'react';
+
 import Image from 'next/image';
 
 import { Experience } from '@/app/components/Experience/experience';
-import { CustomLink } from '@/app/components/Link/link';
 import Scramble from '@/app/components/Scramble/scramble';
 
-const Details = [
+interface DetailProps {
+    title: string;
+    content: string;
+    hoveredTitle?: string;
+    hoveredContent?: string;
+}
+
+const Details: DetailProps[] = [
     {
         title: 'Name',
         content: 'Joao Pereira',
+        hoveredTitle: 'Pronounciation',
+        hoveredContent: 'Jo-ow Pe-ray-ra',
     },
     {
         title: 'Location',
         content: 'Dublin, Ireland',
-    },
-    {
-        title: 'Nationality',
-        content: 'Portugal',
+        hoveredTitle: 'Origin',
+        hoveredContent: 'Portugal',
     },
     {
         title: 'About Me',
         content:
-            'Hi, I am Joao. I like to consider myself full (if not too, too full of) of enthusiasm within the world I live in. I am quite passionate for many things and hobbies including music, gym, hiking/camping (scary stuff...), football as well as cycling a fixie and above all 35/125mm film photography. Other than that I like to think I am a pretty cool sociable guy who likes to take life on the chill side and eat food.',
+            'I like to consider myself full (if not too, too full of) of enthusiasm within the world I live in.\n\nI am quite passionate for many things and hobbies including music, gym, hiking/camping (scary stuff...), football as well as cycling a fixie and above all 35/125mm film photography.\n\nOther than that I like to think I am a pretty cool sociable guy who likes to take life on the chill side and eat food.',
+        hoveredTitle: 'Insert Title',
+        hoveredContent:
+            'Hi',
     },
 ];
 
 export default function About() {
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+    const handleMouseEnter = (index: number) => {
+        setHoveredIndex(index);
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredIndex(null);
+    };
+
     return (
         <div className="flex h-screen w-full flex-col items-center justify-center px-0 font-HK text-sm tracking-widest text-foreground">
-            <h1 className="self-start pb-4 font-Nohemi text-5xl font-bold leading-none">
-                Personal Ditt
-                <span className="absolute z-10 mb-1 font-SwompSloppy tracking-tighter text-foreground">
-                    O
-                </span>
+            <h1 className="self-start font-rapscript text-4xl sm:text-5xl font-bold leading-none">
+                <Scramble>{"About Me<-"}</Scramble>
             </h1>
-            <div className="grid w-full grid-cols-3 grid-rows-1 items-center gap-1">
-                <div className="col-span-2 space-y-8">
-                    {Details.map((detail, index) => (
-                        <div key={index} className="grid grid-cols-5 gap-4">
-                            <span className="col-span-1 w-20">
-                                {detail.title}:
-                            </span>
-                            <span className="col-span-4">{detail.content}</span>
-                        </div>
-                    ))}
-                </div>
-                <div className="flex items-center justify-center">
-                    <Image
-                        width={300}
-                        height={300}
-                        src="/profile.svg"
-                        alt="Profile Picture"
-                    />
-                </div>
+            <div className="grid w-full grid-cols-1 sm:grid-cols-5 grid-rows-2 sm:grid-rows-1 items-center gap-1">
+    <div className="row-span-1 sm:col-span-3 space-y-8">
+        {Details.map((detail, index) => (
+            <div
+                key={index}
+                className="grid grid-cols-5 gap-4"
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
+            >
+                <span className="col-span-1 w-20">
+                    <Scramble>
+                        {hoveredIndex === index
+                            ? detail.hoveredTitle || detail.title
+                            : detail.title}
+                    </Scramble>
+                </span>
+                <span
+                    className="col-span-4 whitespace-pre-wrap"
+                    style={{ lineHeight: '1.5' }}
+                >
+                    <Scramble shouldScramble={false}>
+                        {hoveredIndex === index
+                            ? detail.hoveredContent || detail.content
+                            : detail.content}
+                    </Scramble>
+                </span>
             </div>
-            <div className="w-full pt-12">
-                <p className="pl-2 font-hk text-xs tracking-widest text-[#b0b0b0]">Experience</p>
+        ))}
+    </div>
+    <div className="row-span-1 sm:col-span-2 flex items-center justify-center">
+        <Image
+            width={500}
+            height={500}
+            src="/CD-case.png"
+            alt="Profile Picture"
+        />
+    </div>
+</div>
+            <div className="w-full pt-4">
+                <p className="font-hk pl-2 text-xs tracking-widest text-[#b0b0b0]">
+                    Experience
+                </p>
                 <Experience
                     companyName="Concurrent Engineering"
                     period="10/23 - Present"

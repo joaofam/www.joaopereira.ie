@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 
-import { motion, useMotionValue, useSpring } from 'framer-motion';
 import Image from 'next/image';
 
 import Scramble from '@/app/components/Scramble/scramble';
@@ -33,97 +32,67 @@ const ProjectListItem: React.FC<ProjectListItemProps> = ({
     imageSrc,
 }) => {
     const [isHovered, setIsHovered] = useState(false);
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const springConfig = { damping: 25, stiffness: 700 };
-    const imageX = useSpring(mouseX, springConfig);
-    const imageY = useSpring(mouseY, springConfig);
-
-    const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-        const rect = event.currentTarget.getBoundingClientRect();
-        const imageSize = 200;
-        mouseX.set(event.clientX - rect.left - imageSize / 2);
-        mouseY.set(event.clientY - rect.top - imageSize / 2);
-    };
-
-    const iconSrc = isHovered
-        ? `/icons/arrows/arrow-right-tertiary.svg`
-        : '/icons/arrows/arrow-right.svg';
 
     return (
-        <motion.div
-            className="grid cursor-pointer grid-cols-[2fr_3fr_1fr_1fr] grid-rows-1 justify-center gap-4 border-b py-8 hover:border-b-tertiary hover:font-bold hover:italic hover:text-tertiary transition-all duration-500"
+        <div
+            className="font-HK text-xs sm:text-sm md:text-sm tracking-widest grid cursor-pointer grid-cols-[2fr_3fr_1fr_1fr] grid-rows-1 justify-center gap-2 border-b px-2 py-4 transition-all duration-500 hover:bg-foreground hover:text-white"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            onMouseMove={handleMouseMove}
         >
             {isHovered && imageSrc && (
-                <motion.div
-                    className="pointer-events-none absolute z-10"
-                    style={{
-                        x: imageX,
-                        y: imageY,
-                    }}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.2 }}
-                >
-                    <Image
-                        src={imageSrc}
-                        width={200}
-                        height={200}
-                        alt={name}
-                        className="rounded-md object-cover"
-                    />
-                </motion.div>
+                <div className="pointer-events-none absolute z-10"></div>
             )}
-            <div className="simple-p-projects">
+            <div className="flex items-center">
                 <Scramble shouldScramble={isHovered}>{name}</Scramble>
             </div>
-            <div className="simple-p-projects">
+            <div className="flex items-center">
                 <Scramble shouldScramble={isHovered}>{area}</Scramble>
             </div>
-            <div className="flex justify-end pr-4">
-                <div className="simple-p-heading">
+            <div className="flex items-center justify-end pr-4">
+                <div>
                     <Scramble shouldScramble={isHovered}>{date}</Scramble>
                 </div>
             </div>
-            <div className="flex justify-end pr-12">
+            <div className="flex items-center justify-end pr-12">
                 <Image
-                    src={iconSrc}
+                    src={isHovered ? '/icons/arrow-right-white.svg' : '/icons/arrow-right.svg'}
                     width={24}
                     height={24}
                     alt="expand"
                     className={`transform transition-transform duration-300 ease-in-out ${isHovered ? 'rotate-[-45deg]' : ''}`}
                 />
             </div>
-        </motion.div>
+        </div>
     );
 };
 
 export default function Projects() {
     return (
         <div>
-            <Card className="relative flex h-4/5 w-full items-center justify-center px-32 py-16 pb-28">
+            <Card className="relative flex h-screen w-full items-center justify-center">
                 <CardContent className="relative z-10 flex w-full flex-col items-center justify-center space-y-8">
-                    <h1 className="transition duration-500 hover:text-tertiary">
-                        <Scramble>Project Showcase</Scramble>
+                    <h1 className="flex justify-start self-start font-scrawler text-6xl font-bold text-foreground">
+                        <span className="text-3xl mr-6">*</span><Scramble>PrOject$"</Scramble>
                     </h1>
                     <div className="grid w-full grid-cols-1 grid-rows-4">
-                        {/* Header */}
-                        <div className="grid w-full grid-cols-[2fr_3fr_1fr_1fr] grid-rows-1 items-end gap-4 border-b pb-2">
-                            <div className="simple-p-heading">Name</div>
-                            <div className="simple-p-heading">Area</div>
-                            <div className="flex justify-end pr-4">
-                                <div className="simple-p-heading">Date</div>
+                        <div className="grid grid-cols-[2fr_3fr_1fr_1fr] grid-rows-1 justify-center gap-2 border-b px-2 py-4">
+                            <div className="font-HK text-xs tracking-widest text-[#b0b0b0] pt-4">
+                                TITLE
+                            </div>
+                            <div className="font-HK text-xs tracking-widest text-[#b0b0b0] pt-4">
+                                AREA
                             </div>
                             <div className="flex justify-end pr-4">
-                                <div className="simple-p-heading">Expand</div>
+                                <div className="font-HK text-xs tracking-widest text-[#b0b0b0] pt-4">
+                                    DATE
+                                </div>
+                            </div>
+                            <div className="flex justify-end pr-12">
+                                <div className="font-HK text-xs tracking-widest text-[#b0b0b0] pt-4">
+                                    ICON
+                                </div>
                             </div>
                         </div>
-                        {/* Project List Items */}
                         {projects.map(project => (
                             <ProjectListItem key={project.name} {...project} />
                         ))}

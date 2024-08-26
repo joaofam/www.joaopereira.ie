@@ -5,8 +5,8 @@ export function FlickeringGridRounded() {
         <div className="absolute h-full w-full overflow-hidden rounded-lg bg-background">
             <FlickeringGrid
                 squareSize={4}
-                gridGap={6}
-                color="#e7e7e7"
+                gridGap={12}
+                color="#A8FF97"
                 maxOpacity={0.5}
                 flickerChance={0.1}
                 height={800}

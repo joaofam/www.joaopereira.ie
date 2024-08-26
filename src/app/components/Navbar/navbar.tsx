@@ -7,22 +7,19 @@ import Scramble from '@/app/components/Scramble/scramble';
 
 export default function Navbar() {
     return (
-        <header className="flex h-20 w-full shrink-0 items-center px-8 md:px-20 lg:px-44">
+        <header className="text-foreground flex h-20 w-full shrink-0 pt-8 items-center px-8 md:px-20 lg:px-44">
             <Link
                 href="#"
-                className="mr-6 font-Nohemi font-semibold text-lg text-foreground lg:flex"
+                className="mr-6 font-Nohemi font-semibold text-xl tracking-wide text-foreground lg:flex"
                 prefetch={false}
             >
-                <h4>
+                <span>
                     <Scramble>Joao Pereira</Scramble>
-                </h4>
+                </span>
             </Link>
             <nav className="ml-auto lg:flex text-sm font-Nohemi font-light tracking-wider">
                 <CustomLink
                     href="/"
-                    linearColor="linear-gradient(#A8FF97,#A8FF97)"
-                    color="tertiary"
-                    colorChange="text-tertiary"
                 >
                     GitHub
                 </CustomLink>

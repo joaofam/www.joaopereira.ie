@@ -13,6 +13,7 @@ const Scramble: React.FC<ScrambleProps> = ({ children, shouldScramble }) => {
     const { ref, replay } = useScramble({
         text: text,
         playOnMount: false,
+        speed: 1,
     });
 
     useEffect(() => {

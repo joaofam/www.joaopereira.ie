@@ -17,10 +17,10 @@ export default function Home() {
         <div className="relative">
             <Navbar />
             <div className="w-full px-4 sm:px-6 lg:px-32 xl:px-32">
-                <div className="absolute bottom-0 left-4 top-0 w-px bg-gray-300 sm:left-6 lg:left-32 xl:left-32"></div>
-                <div className="absolute bottom-0 right-4 top-0 w-px bg-gray-300 sm:right-6 lg:right-32 xl:right-32"></div>
-                
-                <main className="flex min-h-screen w-full flex-col items-center justify-between border-l border-r border-gray-300 px-4 sm:px-24 md:px-16 lg:px-52 xl:px-32">
+                {/* <div className="absolute bottom-0 left-4 top-0 w-px bg-gray-300 sm:left-6 lg:left-32 xl:left-32"></div> */}
+                {/* <div className="absolute bottom-0 right-4 top-0 w-px bg-gray-300 sm:right-6 lg:right-32 xl:right-32"></div> */}
+
+                <main className="flex min-h-screen w-full flex-col items-center justify-between border-l-0 border-r-0 border-gray-300 px-4 sm:px-24 md:px-16 lg:px-52 xl:px-12">
                     <div className="flex h-full w-full items-center justify-center">
                         <Title />
                     </div>
@@ -29,6 +29,9 @@ export default function Home() {
                     </div>
                     <div className="flex h-full w-full items-center justify-center">
                         <About />
+                    </div>
+                    <div className="h-full w-full">
+                        <Projects />
                     </div>
                     {/* <div className="h-32 w-full">
                     <CardGap />
@@ -53,9 +56,6 @@ export default function Home() {
                 </div>
                 <div className="h-32 w-full">
                     <CardGap />
-                </div>
-                <div className="h-full w-full">
-                    <Projects />
                 </div>
                 <div className="h-32 w-full">
                     <CardGap /> 

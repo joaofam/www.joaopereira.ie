@@ -11,29 +11,21 @@ interface LinkProps {
     href: string;
     className?: string;
     children: React.ReactNode;
-    isParentHovered?: boolean;
-    colorChange?: string;
-    linearColor?: string;
-    color?: string; // New color prop
+    white?: boolean;
 }
 
 export const CustomLink: React.FC<LinkProps> = ({
     href,
     className,
     children,
-    isParentHovered,
-    colorChange,
-    linearColor,
-    color, // Destructure the new color prop
+    white = false,
 }) => {
     const [isHovered, setIsHovered] = useState(false);
-
-    const effectiveIsHovered = isParentHovered ?? isHovered;
 
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);
 
-    const iconSrc = effectiveIsHovered && color ? `/icons/arrows/arrow-right-${color}.svg` : '/icons/arrows/arrow-right.svg';
+    const iconSrc = white ? "/icons/arrow-right-white.svg" : "/icons/arrow-right.svg";
 
     return (
         <Link
@@ -44,10 +36,10 @@ export const CustomLink: React.FC<LinkProps> = ({
         >
             <span
                 className={`
-                    relative bg-[linear-gradient(transparent,transparent),${linearColor}] bg-[length:100%_2px,0_2px] bg-[position:100%_100%,0_100%] bg-no-repeat text-md text-foreground transition-[background-size,color] duration-500 hover:bg-[0_2px,100%_2px] ${effectiveIsHovered ? colorChange : ''}
+                    relative bg-[linear-gradient(transparent,transparent),bg-[linear-gradient(#383838,#383838) bg-[length:100%_2px,0_2px] bg-[position:100%_100%,0_100%] bg-no-repeat text-md transition-[background-size,color] duration-500 hover:bg-[0_2px,100%_2px]
                 `}
             >
-                <Scramble shouldScramble={effectiveIsHovered}>{children}</Scramble>
+                <Scramble>{children}</Scramble>
             </span>
             <Image
                 src={iconSrc}
@@ -55,7 +47,7 @@ export const CustomLink: React.FC<LinkProps> = ({
                 width={18}
                 height={18}
                 className={`mt-0 transition-transform duration-300 
-                    ${effectiveIsHovered ? 'rotate-[-45deg] fill-cyan-500' : ''}
+                    ${isHovered ? 'rotate-[-45deg] fill-cyan-500' : ''}
                 `}
             />
         </Link>
