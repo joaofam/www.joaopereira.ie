@@ -41,6 +41,7 @@ const config = {
         extend: {
             fontFamily: {
                 HK: ['var(--font-hanken-grotesk)'],
+                SpaceMono: ['var(--font-space-mono)'],
                 Nohemi: ['var(--font-nohemi)'],
                 SwompGapy: ['var(--font-swomp-gapy)'],
                 SwompSloppy: ['var(--font-swomp-sloppy)'],
@@ -48,6 +49,9 @@ const config = {
                 ladi: ['var(--font-ladi-gross)'],
                 giga: ['var(--font-giga)'],
                 magik: ['var(--font-magik-marker)'],
+                throwup: ['var(--font-throwup)'],
+                rapscript: ['var(--font-rapscript)'],
+                scrawler: ['var(--font-scrawler)'],
             },
             fontWeight: {
                 light: '300',
@@ -121,6 +125,9 @@ const config = {
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',
                 'accordion-up': 'accordion-up 0.2s ease-out',
+            },
+            animate: {
+                'spin-slower': 'spin 3s linear infinite',
             },
             letterSpacing: {
                 tighterxs: '-0.075em',

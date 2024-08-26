@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
-import { Hanken_Grotesk } from "next/font/google";
+import { Hanken_Grotesk, Space_Mono } from "next/font/google";
 
 import { ThemeProvider } from "@/app/components/theme-provider"
 import { cn } from "@/lib/utils";
@@ -13,6 +13,13 @@ const HankenGrotesk = Hanken_Grotesk({
   variable: "--font-hanken-grotesk",
 });
 
+// Google font Space Mono
+const SpaceMono = Space_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: "--font-space-mono",
+  weight: '400',
+});
 
 // local font Nohemi
 const Nohemi = localFont({
@@ -102,6 +109,24 @@ const MagikMarker = localFont({
   variable: "--font-magik-marker",
 });
 
+// local font throwup
+const ThrowUp = localFont({
+  src: './fonts/throwup.otf',
+  variable: "--font-throwup",
+});
+
+// local font rapscript
+const RapScript = localFont({
+  src: './fonts/rapscript.otf',
+  variable: "--font-rapscript",
+});
+
+// local font scrawler
+const Scrawler = localFont({
+  src: './fonts/scrawler.otf',
+  variable: "--font-scrawler",
+});
+
 
 export const metadata: Metadata = {
   title: "Joao Pereira",
@@ -116,6 +141,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`
       ${HankenGrotesk.variable}
+      ${SpaceMono.variable}
       ${Nohemi.variable} font-sans
       ${SwompSloppy.variable} font-sans
       ${SwompGapy.variable} font-sans
@@ -123,6 +149,9 @@ export default function RootLayout({
       ${LadiGross.variable} font-sans
       ${Giga.variable} font-sans
       ${MagikMarker.variable} font-sans
+      ${ThrowUp.variable} font-sans
+      ${RapScript.variable} font-sans
+      ${Scrawler.variable} font-sans
     `}>
       <body
         suppressHydrationWarning
