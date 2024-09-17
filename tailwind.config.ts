@@ -11,6 +11,8 @@ const config = {
     prefix: '',
     theme: {
         fontSize: {
+            '3xs': '0.5rem',
+            '2xs': '0.625rem',
             xs: '0.75rem',
             sm: '0.875rem',
             base: '1rem',
@@ -40,7 +42,17 @@ const config = {
         },
         extend: {
             fontFamily: {
+                GlitchyLight: ['var(--font-glitchy-light)'],
+                GlitchyLightChaos: ['var(--font-glitchy-light-chaos)'],
+                GlitchyLightCrushed: ['var(--font-glitchy-light-crushed)'],
+                Glitchy: ['var(--font-glitchy)'],
+                GlitchyChaos: ['var(--font-glitchy-chaos)'],
+                GlitchyCrushed: ['var(--font-glitchy-crushed)'],
+                GlitchyBold: ['var(--font-glitchy-bold)'],
+                GlitchyBoldChaos: ['var(--font-glitchy-bold-chaos)'],
+                GlitchyBoldCrushed: ['var(--font-glitchy-bold-crushed)'],
                 HK: ['var(--font-hanken-grotesk)'],
+                UM: ['var(--font-unifraktur-maguntia)'],
                 SpaceMono: ['var(--font-space-mono)'],
                 Nohemi: ['var(--font-nohemi)'],
                 SwompGapy: ['var(--font-swomp-gapy)'],
@@ -49,9 +61,15 @@ const config = {
                 ladi: ['var(--font-ladi-gross)'],
                 giga: ['var(--font-giga)'],
                 magik: ['var(--font-magik-marker)'],
-                throwup: ['var(--font-throwup)'],
+                ThrowUp: ['var(--font-throwup)'],
+                ThrowUpColor: ['var(--font-throwup-color)'],
+                ThrowUpFill: ['var(--font-throwup-fill)'],
+                ThrowUpStroke: ['var(--font-throwup-stroke)'],
+                ThrowUpHighlight: ['var(--font-throwup-highlight)'],
+                ThrowUpShadow: ['var(--font-throwup-shadow)'],
                 rapscript: ['var(--font-rapscript)'],
                 scrawler: ['var(--font-scrawler)'],
+                ueban: ['var(--font-streetueban)'],
             },
             fontWeight: {
                 light: '300',
@@ -121,13 +139,39 @@ const config = {
                     from: { height: 'var(--radix-accordion-content-height)' },
                     to: { height: '0' },
                 },
+                glitchyHover: {
+                    '0%': { fontFamily: 'var(--font-glitchy-light)' },
+                    '33%': { fontFamily: 'var(--font-glitchy-light-chaos)' },
+                    '66%': {
+                        fontFamily: 'var(--font-glitchy-light-crushed)',
+                        color: '#006BFF',
+                    },
+                    '100%': {
+                        fontFamily: 'var(--font-glitchy-light-chaos)',
+                        color: '#006BFF',
+                    },
+                },
+                glitchyLeave: {
+                    '0%': {
+                        fontFamily: 'var(--font-glitchy-light-crushed)',
+                        color: '#006BFF',
+                    },
+                    '33%': {
+                        fontFamily: 'var(--font-glitchy-light-chaos)',
+                        color: 'inherit',
+                    },
+                    '66%': { fontFamily: 'var(--font-glitchy-light)' },
+                    '100%': {
+                        fontFamily: 'var(--font-space-mono)',
+                        color: 'inherit',
+                    },
+                },
             },
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',
                 'accordion-up': 'accordion-up 0.2s ease-out',
-            },
-            animate: {
-                'spin-slower': 'spin 3s linear infinite',
+                glitchyHover: 'glitchyHover 0.3s forwards',
+                glitchyLeave: 'glitchyLeave 0.3s forwards',
             },
             letterSpacing: {
                 tighterxs: '-0.075em',
@@ -146,7 +190,15 @@ const config = {
             },
         },
     },
-    plugins: [require('tailwindcss-animate')],
+    variants: {
+        extend: {
+            animation: ['hover', 'group-hover'],
+        },
+    },
+    plugins: [
+        require('tailwindcss-animate'),
+        require('@designbycode/tailwindcss-text-stroke'),
+    ],
 } satisfies Config;
 
 export default config;
