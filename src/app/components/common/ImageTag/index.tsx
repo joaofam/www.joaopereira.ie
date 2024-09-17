@@ -36,7 +36,7 @@ export const Tag: React.FC<ITagProps> = ({
                     <span>
                         <Scramble
                             textHovered={isHovered}
-                            className={`no-wrap transition-colors duration-300 ${isHovered ? 'text-[#3461D6]' : ''}`}
+                            className={`no-wrap transition-colors duration-300 ${isHovered ? 'text-primary' : ''}`}
                         >
                             {isHovered ? hoverTag : tag}
                         </Scramble>

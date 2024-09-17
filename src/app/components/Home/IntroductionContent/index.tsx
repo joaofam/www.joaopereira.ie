@@ -47,7 +47,7 @@ export default function Intro() {
         setHoveredIndex(null);
     };
 
-    const scrambleClass = `no-wrap transition-colors duration-300 ${textHovered ? 'text-[#3461D6]' : ''}`;
+    const scrambleClass = `no-wrap transition-colors duration-300 ${textHovered ? 'text-primary' : ''}`;
 
     return (
         <div className="relative flex h-screen w-full flex-col items-center justify-center font-SpaceMono text-2xs tracking-wide text-foreground sm:text-xs">
@@ -151,7 +151,7 @@ export default function Intro() {
                         </div>
                         <div className="relative w-full pt-4">
                             <div className="relative w-full border p-8">
-                                <span className="absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 text-2xs font-bold uppercase text-[#3461D6]">
+                                <span className="absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 text-2xs font-bold uppercase text-primary">
                                     Tech Stack
                                 </span>
                                 {Details.slice(0, 3).map((detail, index) => (
@@ -166,7 +166,7 @@ export default function Intro() {
                                         <span
                                             className={`absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 text-2xs font-bold ${
                                                 hoveredIndex === index
-                                                    ? 'uppercase text-[#3461D6]'
+                                                    ? 'uppercase text-primary'
                                                     : 'lowercase tracking-wider'
                                             }`}
                                         >

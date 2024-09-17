@@ -120,7 +120,7 @@ const Button: React.FC<ButtonProps> = ({ text, href, blank }) => {
 
     return (
         <button
-            className="relative cursor-pointer overflow-hidden border-none bg-blue-600 px-4 py-2 font-SpaceMono text-xs uppercase text-white transition-colors duration-300 ease-in-out hover:text-[#3461D6] sm:text-sm"
+            className="relative cursor-pointer overflow-hidden border-none bg-blue-600 px-4 py-2 font-SpaceMono text-xs uppercase text-white transition-colors duration-300 ease-in-out hover:text-primary sm:text-sm"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}

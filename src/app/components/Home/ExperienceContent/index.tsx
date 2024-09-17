@@ -11,7 +11,7 @@ export const Experience = () => {
                     Experience
                 </h1>
                 <div className="relative w-full border p-8">
-                    <span className="absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 font-SpaceMono text-xs uppercase tracking-wide text-[#DC33B7]">
+                    <span className="absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 font-SpaceMono text-xs uppercase tracking-wide text-secondary">
                         #######
                     </span>
                     <ShutterRow

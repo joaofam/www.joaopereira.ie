@@ -11,10 +11,10 @@ export default function Projects() {
         <div className="relative flex h-[100vh] w-full items-center justify-center font-SpaceMono tracking-tight text-foreground">
             <div className="relative w-full">
                 <h1 className="py-8 font-scrawler text-6xl font-medium 2xl:text-7xl">
-                    <Scramble className="text-[#D33B7]">Projects</Scramble>
+                    <Scramble>Projects</Scramble>
                 </h1>
                 <div className="relative w-full border p-8">
-                    <span className="absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 text-xs uppercase tracking-wide text-[#DC33B7]">
+                    <span className="absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 text-xs uppercase tracking-wide text-secondary">
                         #######
                     </span>
                     <ShutterRow
