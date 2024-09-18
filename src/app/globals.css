@@ -59,16 +59,6 @@
     }
 }
 
-::-moz-selection {
-    background: #151515;
-}
-::-webkit-selection {
-    background: #151515;
-}
-::selection {
-    background: #151515;
-}
-
 .nowrap {
     white-space: nowrap;
 }
@@ -93,13 +83,4 @@
 
 .padding-line::after {
     right: 6rem;
-}
-
-.link {
-    /* On hover change underline to green */
-    @apply text-foreground underline;
-}
-
-.title-drop-shadow {
-    text-shadow: -8px 8px 0 #151515;
 }

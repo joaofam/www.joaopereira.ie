@@ -78,7 +78,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
             <div
                 ref={firstLayer}
-                className="fixed inset-0 z-50 translate-y-full bg-primary"
+                className="fixed inset-0 z-50 translate-y-full bg-accent"
             />
             <div
                 ref={secondLayer}

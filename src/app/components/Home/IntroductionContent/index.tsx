@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
 import Button from '@/app/components/common/Button/index';

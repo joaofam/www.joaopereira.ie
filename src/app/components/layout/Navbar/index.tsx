@@ -13,11 +13,11 @@ export default function Navbar() {
         <header className="flex h-24 w-full shrink-0 items-center px-4 pt-6 text-foreground sm:px-6 lg:px-32 xl:px-24">
             <Link
                 href="/"
-                className="mr-6 font-Nohemi text-xl font-semibold tracking-wide text-foreground transition-colors duration-300 hover:text-primary lg:flex"
+                className="mr-6 font-Nohemi text-xl font-semibold tracking-wide uppercase text-foreground transition-colors duration-300 hover:text-primary lg:flex"
                 prefetch={false}
             >
                 <span>
-                    <Scramble>JoaoPereira.ie</Scramble>
+                    <Scramble>joao*pereira</Scramble>
                 </span>
             </Link>
             <nav className="ml-auto space-x-8 text-sm lg:flex">

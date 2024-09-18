@@ -22,15 +22,15 @@ export const Footer = () => {
                             {/* Contact Information */}
                             <div className="flex flex-col items-start justify-center font-SpaceMono text-xs mr-48">
                                 <div className="flex flex-col items-start space-y-1">
-                                    {renderContactLink('joaopereira.ie')}
-                                    {renderContactLink('github')}
-                                    {renderContactLink('linkedin')}
-                                    {renderContactLink('X')}
+                                    {renderContactLink('mailto:joaopereira2213@gmail.com', 'Email')}
+                                    {renderContactLink('https://github.com/joaofam', 'GitHub')}
+                                    {renderContactLink('https://linkedin.com/in/joao-joao', 'LinkedIn')}
+                                    {renderContactLink('https://twitter.com/joaopereira', 'Twitter')}
                                 </div>
                             </div>
                         </div>
                         {/* Footer bottom section */}
-                        <div className="grid w-full grid-cols-1 gap-4 font-SpaceMono text-xs tracking-tight text-foreground sm:grid-cols-3">
+                        <div className="grid w-full grid-cols-1 gap-4 font-SpaceMono text-sm tracking-tight text-foreground sm:grid-cols-3">
                             <p className="self-left col-span-1 w-full">
                                 <Scramble>
                                     © Developed and design by me [Joao Pereira]
@@ -38,10 +38,10 @@ export const Footer = () => {
                                 </Scramble>
                             </p>
                             <div className="col-span-1 flex w-full justify-end">
-                                <CustomLink href="/">Source Code</CustomLink>
+                                <CustomLink href="https://github.com/joaopereira2.0" white>Source Code</CustomLink>
                             </div>
                             <div className="col-span-1 flex w-full justify-end">
-                                <CustomLink href="/">Back to Top</CustomLink>
+                                <CustomLink href="#top" white>Back to Top</CustomLink>
                             </div>
                         </div>
                     </div>
@@ -52,8 +52,8 @@ export const Footer = () => {
 };
 
 // Helper function for rendering contact links
-const renderContactLink = (link: string) => (
-    <CustomLink href={link} className="">
-        {link}
+const renderContactLink = (href: string, title: string) => (
+    <CustomLink href={href} white>
+        {title}
     </CustomLink>
 );

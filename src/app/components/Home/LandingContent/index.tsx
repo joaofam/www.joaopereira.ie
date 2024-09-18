@@ -47,7 +47,7 @@ export default function Title() {
                 {/* Landing Info */}
                 <div className="mb-16 grid w-full grid-cols-3 gap-0 uppercase tracking-tight">
                     <div
-                        className="flex items-start justify-start"
+                        className="flex items-start justify-start transition-colors duration-300 hover:text-primary"
                         onMouseEnter={handlePortfolioMouseEnter}
                         onMouseLeave={handlePortfolioMouseLeave}
                     >
