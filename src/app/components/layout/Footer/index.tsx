@@ -8,16 +8,16 @@ import Scramble from '@/app/components/common/Scramble/index';
 export const Footer = () => {
     return (
         <div
-            className="relative h-72 bg-[#8e8e8e]"
+            className="relative h-72 bg-accent"
             style={{ clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)' }}
         >
-            <div className="fixed bottom-1 w-full bg-[#8e8e8e] py-4">
-                <div className="relative z-50 w-full bg-[#8e8e8e] pt-2">
+            <div className="fixed bottom-1 w-full bg-accent py-4">
+                <div className="relative z-50 w-full bg-accent pt-2">
                     <div className="relative z-10 flex flex-col px-12 text-foreground">
                         <div className="w-full flex items-center justify-between pt-12">
                             {/* Title */}
                             <h1 className="font-Nohemi text-3xl text-foreground transition font-black tracking-base mt-4 sm:text-[8.5rem]">
-                                JOAO PEREiRA
+                                JOAO PEREIRA
                             </h1>
                             {/* Contact Information */}
                             <div className="flex flex-col items-start justify-center font-SpaceMono text-xs mr-48">

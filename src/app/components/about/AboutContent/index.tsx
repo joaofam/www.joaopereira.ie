@@ -188,9 +188,9 @@ export default function AboutContent() {
                 {/* About Image */}
                 <div className="row-span-1 flex items-start justify-end sm:col-span-2">
                     <div className="relative flex flex-col items-center">
-                        <div className="relative h-[26rem] w-[26rem] border-1 border-b-0 border-foreground">
+                        <div className="relative h-[26rem] w-[26rem] border-1 border-b-0 border">
                             <Image
-                                src="/CD-case.png"
+                                src="/CD.png"
                                 alt="CD Case"
                                 priority={true}
                                 layout="fill"
@@ -199,7 +199,7 @@ export default function AboutContent() {
                         </div>
                         <div className="w-[26rem]">
                             <Tag
-                                tag="CD-case.png"
+                                tag="CD.png"
                                 hoverTag="Insert CD into CD-ROM"
                                 QRSrc="soft_dev"
                             />

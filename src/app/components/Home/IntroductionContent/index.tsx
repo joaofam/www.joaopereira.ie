@@ -52,7 +52,7 @@ export default function Intro() {
         <div className="relative flex h-screen w-full flex-col items-center justify-center font-SpaceMono text-2xs tracking-wide text-foreground sm:text-xs">
             <div className="grid grid-cols-1 grid-rows-1 sm:grid-cols-2">
                 <div className="relative z-10 flex h-[36rem] w-[36rem] flex-col items-center justify-center border-0 border-b-0 border-foreground">
-                    <div className="relative h-[36rem] w-[36rem]">
+                    <div className="relative h-[36rem] w-[36rem] border-b-0 border">
                         <Image
                             src="/yu-gi-oh-card.png"
                             alt="Profile Picture"

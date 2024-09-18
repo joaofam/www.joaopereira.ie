@@ -32,7 +32,7 @@ export default function Title() {
                         </h1>
                         {/* Developer ThrowUp */}
                         <div className="relative z-20 mt-[-6rem] uppercase tracking-tighter">
-                            <h1 className="absolute left-1/2 z-10 mr-4 mt-4 -translate-x-1/2 transform font-ThrowUpShadow text-5xl text-[#8E8E8E] sm:text-7xl md:text-9xl lg:text-10xl xl:text-12xl 2xl:text-14xl">
+                            <h1 className="absolute left-1/2 z-10 mr-4 mt-4 -translate-x-1/2 transform font-ThrowUpShadow text-5xl text-accent sm:text-7xl md:text-9xl lg:text-10xl xl:text-12xl 2xl:text-14xl">
                                 Developer
                             </h1>
                             <h1 className="absolute left-1/2 z-20 -translate-x-1/2 transform font-ThrowUpFill text-5xl text-background sm:text-7xl md:text-9xl lg:text-10xl xl:text-12xl 2xl:text-14xl">
