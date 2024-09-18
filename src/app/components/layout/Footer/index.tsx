@@ -1,52 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 
-import Image from 'next/image';
-
-import { Tag } from '@/app/components/common/ImageTag/index';
 import { CustomLink } from '@/app/components/common/Link/index';
 import Scramble from '@/app/components/common/Scramble/index';
 
 export const Footer = () => {
-    const [isHovered, setIsHovered] = useState(false);
-
     return (
         <div
-            className="relative h-[60vh]"
+            className="relative h-72 bg-[#8e8e8e]"
             style={{ clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)' }}
         >
-            <div className="fixed bottom-1 w-full bg-[#F7F4F3] py-4">
-                <div className="relative z-50 w-full bg-[#F7F4F3] pt-2">
-                    <div className="relative z-10 flex flex-col items-center justify-center border-t px-12 text-foreground">
-                        <span className="absolute left-32 top-0 -translate-y-1/2 transform bg-[#F7F4F3] px-2 font-SpaceMono text-xs font-bold lowercase">
-                            footer
-                        </span>
-                        <div className="grid w-full grid-cols-4 gap-4">
-                            <div className="col-span-2 flex items-center">
-                                <h1 className="pt-8 font-ThrowUp text-7xl text-foreground transition sm:text-10xl">
-                                    Joao Pereira
-                                </h1>
-                            </div>
+            <div className="fixed bottom-1 w-full bg-[#8e8e8e] py-4">
+                <div className="relative z-50 w-full bg-[#8e8e8e] pt-2">
+                    <div className="relative z-10 flex flex-col px-12 text-foreground">
+                        <div className="w-full flex items-center justify-between pt-12">
+                            {/* Title */}
+                            <h1 className="font-Nohemi text-3xl text-foreground transition font-black tracking-base mt-4 sm:text-[8.5rem]">
+                                JOAO PEREiRA
+                            </h1>
                             {/* Contact Information */}
-                            <div className="relative col-span-2 mt-9 flex flex-col items-end justify-center font-SpaceMono text-xs">
-                                <div className="grid grid-cols-2 gap-4">
-                                    {renderContactInfo(
-                                        'linkedin',
-                                        'linkedin.com/in/joao-joao'
-                                    )}
-                                    {renderContactInfo(
-                                        'github',
-                                        'github.com/joaofam'
-                                    )}
-                                    {renderContactInfo(
-                                        'mail',
-                                        'joao@example.com'
-                                    )}
-                                    {renderContactInfo(
-                                        'Last Commit',
-                                        'github.com/joaofam'
-                                    )}
+                            <div className="flex flex-col items-start justify-center font-SpaceMono text-xs mr-48">
+                                <div className="flex flex-col items-start space-y-1">
+                                    {renderContactLink('joaopereira.ie')}
+                                    {renderContactLink('github')}
+                                    {renderContactLink('linkedin')}
+                                    {renderContactLink('X')}
                                 </div>
                             </div>
                         </div>
@@ -58,10 +37,10 @@ export const Footer = () => {
                                     in 2024
                                 </Scramble>
                             </p>
-                            <div className="self-left col-span-1 flex w-full justify-start">
+                            <div className="col-span-1 flex w-full justify-end">
                                 <CustomLink href="/">Source Code</CustomLink>
                             </div>
-                            <div className="self-right col-span-1 flex w-full justify-end">
+                            <div className="col-span-1 flex w-full justify-end">
                                 <CustomLink href="/">Back to Top</CustomLink>
                             </div>
                         </div>
@@ -72,12 +51,9 @@ export const Footer = () => {
     );
 };
 
-// Helper function for rendering contact info blocks
-const renderContactInfo = (label: string, link: string) => (
-    <div className="relative mb-4 w-56 p-4 lowercase">
-        <span className="absolute left-4 top-0 -translate-y-1/2 transform bg-[#F7F4F3] px-2 text-2xs font-bold">
-            {label}
-        </span>
-        <p>{link}</p>
-    </div>
+// Helper function for rendering contact links
+const renderContactLink = (link: string) => (
+    <CustomLink href={link} className="">
+        {link}
+    </CustomLink>
 );

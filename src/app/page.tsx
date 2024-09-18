@@ -5,7 +5,6 @@ import { Experience } from '@/app/components/Home/ExperienceContent/index';
 import Intro from '@/app/components/Home/IntroductionContent/index';
 import Title from '@/app/components/Home/LandingContent/index';
 import Projects from '@/app/components/Home/ProjectsContent/index';
-import { Footer } from '@/app/components/layout/Footer/index';
 
 export default function Home() {
     return (
@@ -31,9 +30,6 @@ export default function Home() {
                         <Projects />
                     </div>
                 </main>
-            </div>
-            <div className="h-1/2 w-full">
-                <Footer />
             </div>
         </div>
     );

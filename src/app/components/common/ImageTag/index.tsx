@@ -25,18 +25,30 @@ export const Tag: React.FC<ITagProps> = ({
         }
     }, [shouldHover]);
 
+    const handleMouseEnter = () => {
+        if (shouldHover === undefined) {
+            setIsHovered(true);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (shouldHover === undefined) {
+            setIsHovered(false);
+        }
+    };
+
     return (
         <div
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             className="w-full"
         >
             <div className="flex grid h-12 w-full grid-cols-5 grid-rows-1 gap-0 border-1 font-SpaceMono text-xs tracking-tight">
                 <div className="col-span-4 flex items-center justify-center">
                     <span>
                         <Scramble
-                            textHovered={isHovered}
-                            className={`no-wrap transition-colors duration-300 ${isHovered ? 'text-primary' : ''}`}
+                            shouldScramble={isHovered}
+                            className={`no-wrap transition-colors duration-300 uppercase ${isHovered ? 'text-primary' : ''}`}
                         >
                             {isHovered ? hoverTag : tag}
                         </Scramble>

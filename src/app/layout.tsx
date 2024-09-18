@@ -6,6 +6,7 @@ import {
 } from 'next/font/google';
 import localFont from 'next/font/local';
 
+import { Footer } from '@/app/components/layout/Footer/index';
 import Navbar from '@/app/components/layout/Navbar';
 import SmoothScrolling from '@/app/components/SmoothScrolling/SmoothScrolling';
 import { ThemeProvider } from '@/app/components/theme-provider';
@@ -265,6 +266,7 @@ export default function RootLayout({
                                 <Navbar />
                             </div>
                             {children}
+                                <Footer />
                         </SmoothScrolling>
                     </ThemeProvider>
                 </Providers>

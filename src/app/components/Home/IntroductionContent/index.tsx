@@ -32,7 +32,6 @@ const Details = [
 export default function Intro() {
     const [textHovered, setTextHovered] = useState(false);
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-    const [shouldHover, setShouldHover] = useState(false);
 
     const handleMouseEnter = (index?: number) => {
         if (index !== undefined) {
@@ -52,10 +51,10 @@ export default function Intro() {
     return (
         <div className="relative flex h-screen w-full flex-col items-center justify-center font-SpaceMono text-2xs tracking-wide text-foreground sm:text-xs">
             <div className="grid grid-cols-1 grid-rows-1 sm:grid-cols-2">
-                <div className="relative z-10 flex h-[34.5rem] w-[36rem] flex-col items-center justify-center border-0 border-b-0 border-foreground">
-                    <div className="relative h-[30rem] w-[30rem]">
+                <div className="relative z-10 flex h-[36rem] w-[36rem] flex-col items-center justify-center border-0 border-b-0 border-foreground">
+                    <div className="relative h-[36rem] w-[36rem]">
                         <Image
-                            src="/yu-gi-oh-card-joao.png"
+                            src="/yu-gi-oh-card.png"
                             alt="Profile Picture"
                             priority={true}
                             layout="fill"
@@ -66,9 +65,8 @@ export default function Intro() {
                     <div className="w-[36rem]">
                         <Tag
                             tag="Introduction"
-                            hoverTag="yu-gi-oh-card-joao.png"
+                            hoverTag="yu-gi-oh-card.png"
                             QRSrc="soft_dev"
-                            shouldHover={shouldHover}
                         />
                     </div>
                 </div>
@@ -176,8 +174,8 @@ export default function Intro() {
                                                 }
                                             >
                                                 {hoveredIndex === index
-                                                    ? detail.hoveredTitle ??
-                                                      detail.title
+                                                    ? (detail.hoveredTitle ??
+                                                      detail.title)
                                                     : detail.title}
                                             </Scramble>
                                         </span>
@@ -191,8 +189,8 @@ export default function Intro() {
                                                 }
                                             >
                                                 {hoveredIndex === index
-                                                    ? detail.hoveredContent ??
-                                                      detail.content
+                                                    ? (detail.hoveredContent ??
+                                                      detail.content)
                                                     : detail.content}
                                             </Scramble>
                                         </span>
