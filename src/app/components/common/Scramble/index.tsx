@@ -2,12 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 import { useScramble } from 'use-scramble';
 
-interface ScrambleProps {
-    children: React.ReactNode;
-    shouldScramble?: boolean;
-    textHovered?: boolean;
-    className?: string;
-}
+import { ScrambleProps } from '@/app/types/types';
 
 const Scramble: React.FC<ScrambleProps> = ({
     children,

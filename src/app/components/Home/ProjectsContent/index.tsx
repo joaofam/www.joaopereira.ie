@@ -10,19 +10,19 @@ export default function Projects() {
     return (
         <div className="relative flex h-[100vh] w-full items-center justify-center font-SpaceMono tracking-tight text-foreground">
             <div className="relative w-full">
-                <h1 className="py-8 font-scrawler text-6xl font-medium 2xl:text-7xl">
+                <h1 className="ml-4 py-8 font-scrawler text-5xl font-medium sm:ml-0 2xl:text-7xl">
                     <Scramble>Projects</Scramble>
                 </h1>
-                <div className="relative w-full border p-8">
+                <div className="relative w-full border px-2 py-4 sm:py-8 md:px-8">
                     <span className="absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 text-xs uppercase tracking-wide text-secondary">
                         #######
                     </span>
                     <ShutterRow
-                        href='github.com/joaopereira.ie'
+                        href="https://github.com/joaofam/joaopereira.ie"
                         columns={[
                             {
                                 default: 'joaopereira.ie',
-                                hover: 'github.com/joaopereira.ie',
+                                hover: 'github.com/joaofam/joaopereira.ie',
                                 description: 'Personal Portfolio',
                             },
                             {
@@ -36,15 +36,16 @@ export default function Projects() {
                         ]}
                     />
                     <ShutterRow
-                        href="https://github.com/Fileflo"
+                        href="https://github.com/joaofam/FILEFLO"
                         columns={[
                             {
                                 default: 'Fileflo',
-                                hover: 'github.com/Fileflo',
-                                description: 'Blockchain File Storage/Sharing Platform',
+                                hover: 'github.com/joaofam/FILEFLO',
+                                description:
+                                    'Blockchain File Storage/Sharing Platform',
                             },
                             {
-                                default: 'Blockchain, Cryptography, Web Dev',
+                                default: 'Blockchain, Crypto, Web Dev',
                                 hover: 'React AWS Python NodeJS Solidity Web3',
                             },
                             {
@@ -54,15 +55,15 @@ export default function Projects() {
                         ]}
                     />
                     <ShutterRow
-                        href='github.com/Venato'
+                        href="https://github.com/joaofam/Venato"
                         columns={[
                             {
                                 default: 'Venato',
-                                hover: 'github.com/Venato',
+                                hover: 'github.com/joaofam/Venato',
                                 description: 'Android App for GRPS Tracking',
                             },
                             {
-                                default: 'IOT, Mobile Development',
+                                default: 'IOT, Android Dev',
                                 hover: 'React Native AWS Android Studio Python',
                             },
                             {

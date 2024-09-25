@@ -12,9 +12,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     return (
         <TransitionRouter
             auto={true}
-            leave={(next, from, to) => {
-                console.log({ from, to });
-
+            leave={next => {
                 const tl = gsap
                     .timeline({
                         onComplete: next,

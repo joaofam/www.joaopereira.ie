@@ -10,28 +10,24 @@ export default function Navbar() {
     const pathname = usePathname();
 
     return (
-        <header className="flex h-24 w-full shrink-0 items-center px-4 pt-6 text-foreground sm:px-6 lg:px-32 xl:px-24">
+        <header className="flex h-24 w-full shrink-0 items-center px-10 pt-8 sm:px-12 md:px-14 lg:px-28 xl:px-24">
             <Link
                 href="/"
-                className="mr-6 font-Nohemi text-xl font-semibold tracking-wide uppercase text-foreground transition-colors duration-300 hover:text-primary lg:flex"
+                className="mr-6 font-Nohemi text-2xl font-semibold tracking-wide text-foreground transition-colors duration-300 hover:text-primary lg:flex"
                 prefetch={false}
             >
                 <span>
-                    <Scramble>joao*pereira</Scramble>
+                    <Scramble>Joao Pereira</Scramble>
                 </span>
             </Link>
             <nav className="ml-auto space-x-8 text-sm lg:flex">
                 <CustomLink
                     href="/about"
-                    className={
-                        pathname === '/about'
-                            ? 'font-GlitchyChaos text-primary'
-                            : ''
-                    }
+                    className={`${pathname === '/about' ? 'italic text-primary' : ''}`}
                 >
                     About
                 </CustomLink>
-                <CustomLink href="https://github.com/joaofam">
+                <CustomLink href="https://github.com/joaofam" blank={true}>
                     GitHub
                 </CustomLink>
             </nav>

@@ -4,166 +4,226 @@ import { motion, useAnimation } from 'framer-motion';
 import Link from 'next/link';
 
 import Scramble from '@/app/components/common/Scramble/index';
+import { ShutterContainerProps } from '@/app/types/types';
 
-export interface ColumnData {
-    default?: string;
-    hover?: string;
-    description?: string;
-}
+// Animation Variants
+const borderVariants = {
+    hidden: { width: 0 },
+    visible: { width: '100%', transition: { duration: 1 } },
+};
 
-export interface TitleData {
-    default?: string;
-    hover?: string;
-}
+const firstColumnVariants = {
+    hidden: { opacity: 0, y: '100%' },
+    visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+};
 
-export interface ShutterContainerProps {
-    href?: string;
-    columns?: ColumnData[];
-    titleColumn?: TitleData[];
-}
+const slideInFromLeft = {
+    hidden: { x: '-100%' },
+    visible: { x: 0, transition: { duration: 1 } },
+};
+
+const lastColumnVariants = {
+    hidden: { x: '100%' },
+    visible: { x: 0, transition: { duration: 0.8 } },
+};
+
+// Helper Functions
+const setupDefaultColumns = (columns: any[]) => {
+    const defaultColumns = new Array(4).fill({ default: '', hover: '' });
+
+    switch (columns.length) {
+        case 1:
+            defaultColumns[0] = columns[0];
+            break;
+        case 2:
+            defaultColumns[0] = columns[0];
+            defaultColumns[3] = columns[1];
+            break;
+        case 3:
+            defaultColumns[0] = columns[0];
+            defaultColumns[2] = columns[1];
+            defaultColumns[3] = columns[2];
+            break;
+        default:
+            for (let i = 0; i < columns.length && i < 4; i++) {
+                defaultColumns[i] = columns[i];
+            }
+            break;
+    }
+
+    return defaultColumns;
+};
+
+// Motion Div Component
+const MotionDiv = ({ column, index, isHovered, isSmallScreen }: any) => (
+    <motion.div
+        key={index}
+        className={`flex-1 ${index === 3 ? 'text-right' : 'text-left'} whitespace-nowrap ${isSmallScreen && index !== 0 ? 'text-3xs' : ''}`}
+        variants={
+            index === 0
+                ? firstColumnVariants
+                : index === 3
+                  ? lastColumnVariants
+                  : slideInFromLeft
+        }
+    >
+        <Scramble>{isHovered ? column.hover : column.default}</Scramble>
+        {column.description && (
+            <div className="mt-2 text-4xs tracking-wider text-foreground sm:text-2xs">
+                {column.description}
+            </div>
+        )}
+    </motion.div>
+);
 
 export const ShutterRow: React.FC<ShutterContainerProps> = ({
     href,
     columns = [],
-    titleColumn,
 }) => {
     const [isHovered, setIsHovered] = useState(false);
     const ref = useRef(null);
     const controls = useAnimation();
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting) {
-                    controls.start('visible');
-                } else {
-                    controls.start('hidden');
-                }
+                controls.start(entry.isIntersecting ? 'visible' : 'hidden');
             },
-            {
-                threshold: 0.75,
-            }
+            { threshold: 0.75 }
         );
 
         const currentRef = ref.current;
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
+        if (currentRef) observer.observe(currentRef);
 
         return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
+            if (currentRef) observer.unobserve(currentRef);
         };
     }, [controls]);
 
-    const DivHovered = () => {
-        setIsHovered(true);
-    };
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth < 640);
+        };
 
-    const DivNotHovered = () => {
-        setIsHovered(false);
-    };
+        window.addEventListener('resize', handleResize);
+        handleResize();
 
-    const defaultColumns = new Array(4).fill({ default: '', hover: '' });
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
-    if (columns.length === 1) {
-        defaultColumns[0] = columns[0];
-    } else if (columns.length === 2) {
-        defaultColumns[0] = columns[0];
-        defaultColumns[3] = columns[1];
-    } else if (columns.length === 3) {
-        defaultColumns[0] = columns[0];
-        defaultColumns[2] = columns[1];
-        defaultColumns[3] = columns[2];
-    } else {
-        for (let i = 0; i < columns.length && i < 4; i++) {
-            defaultColumns[i] = columns[i];
-        }
-    }
+    const handleMouseEnter = () => setIsHovered(true);
+    const handleMouseLeave = () => setIsHovered(false);
 
-    const borderVariants = {
-        hidden: { width: 0 },
-        visible: { width: '100%', transition: { duration: 1 } },
-    };
-
-    const firstColumnVariants = {
-        hidden: { opacity: 0, y: '100%' },
-        visible: { opacity: 1, y: 0, transition: { duration: 1 } },
-    };
-
-    const slideInFromLeft = {
-        hidden: { x: '-100%' },
-        visible: { x: 0, transition: { duration: 1 } },
-    };
-
-    const lastColumnVariants = {
-        hidden: { x: '100%' },
-        visible: { x: 0, transition: { duration: 0.8 } },
-    };
+    const defaultColumns = setupDefaultColumns(columns);
 
     const rowContent = (
-        <>
-            <motion.div
-                ref={ref}
-                className="group relative h-16 w-full overflow-hidden border-b-1 text-2xs uppercase tracking-wider transition-colors duration-300 hover:bg-foreground hover:text-white sm:text-xs"
-                onMouseEnter={DivHovered}
-                onMouseLeave={DivNotHovered}
-                initial="hidden"
-                animate={controls}
-                variants={borderVariants}
-            >
-                <div className="flex h-full w-full items-center justify-between px-2 transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
-                    {defaultColumns.map((column, index) => (
+        <motion.div
+            ref={ref}
+            className="group relative h-16 w-full overflow-hidden border-b-1 text-2xs uppercase tracking-wider transition-colors duration-300 hover:bg-foreground hover:text-white sm:text-xs"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            initial="hidden"
+            animate={controls}
+            variants={borderVariants}
+        >
+            <div className="flex h-full w-full items-center justify-between px-2 transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
+                {isSmallScreen ? (
+                    <>
+                        <MotionDiv
+                            column={defaultColumns[0]}
+                            index={0}
+                            isHovered={isHovered}
+                            isSmallScreen={isSmallScreen}
+                        />
                         <motion.div
-                            key={index}
-                            className={`flex-1 ${index === defaultColumns.length - 1 ? 'text-right' : 'text-left'} whitespace-nowrap`}
-                            variants={
-                                index === 0
-                                    ? firstColumnVariants
-                                    : index === defaultColumns.length - 1
-                                    ? lastColumnVariants
-                                    : slideInFromLeft
-                            }
+                            className="flex-1 whitespace-nowrap text-right"
+                            variants={lastColumnVariants}
                         >
-                            <Scramble>
-                                {isHovered ? column.hover : column.default}
-                            </Scramble>
-                                {column.description && (
-                                    <div className="text-3xs text-gray-400 mt-2 tracking-wider">
-                                        {column.description}
-                                    </div>
-                                )}
+                            {defaultColumns.slice(1).map((column, index) => (
+                                <div
+                                    key={index}
+                                    className={`text-3xs ${!isHovered ? 'mb-2' : ''}`}
+                                >
+                                    <Scramble>
+                                        {isHovered
+                                            ? column.hover
+                                            : column.default}
+                                    </Scramble>
+                                    {column.description && (
+                                        <div className="mt-2 text-3xs tracking-wider text-foreground sm:text-2xs">
+                                            {column.description}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
                         </motion.div>
-                    ))}
-                </div>
-                <div className="absolute inset-x-0 top-full flex h-full w-full items-center justify-between px-2 transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
-                    {defaultColumns.map((column, index) => (
+                    </>
+                ) : (
+                    defaultColumns.map((column, index) => (
+                        <MotionDiv
+                            key={index}
+                            column={column}
+                            index={index}
+                            isHovered={isHovered}
+                            isSmallScreen={isSmallScreen}
+                        />
+                    ))
+                )}
+            </div>
+            <div className="absolute inset-x-0 top-full flex h-full w-full items-center justify-between px-2 transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
+                {isSmallScreen ? (
+                    <>
+                        <MotionDiv
+                            column={defaultColumns[0]}
+                            index={0}
+                            isHovered={isHovered}
+                            isSmallScreen={isSmallScreen}
+                        />
                         <motion.div
-                            key={index}
-                            className={`flex-1 ${index === defaultColumns.length - 1 ? 'text-right' : 'text-left'} whitespace-nowrap`}
-                            variants={
-                                index === 0
-                                    ? firstColumnVariants
-                                    : index === defaultColumns.length - 1
-                                    ? lastColumnVariants
-                                    : slideInFromLeft
-                            }
+                            className="flex-1 whitespace-nowrap text-right"
+                            variants={lastColumnVariants}
                         >
-                            <Scramble>
-                                {isHovered ? column.hover : column.default}
-                            </Scramble>
+                            {defaultColumns.slice(1).map((column, index) => (
+                                <div
+                                    key={index}
+                                    className={`text-3xs ${!isHovered ? 'mb-2' : ''}`}
+                                >
+                                    <Scramble>
+                                        {isHovered
+                                            ? column.hover
+                                            : column.default}
+                                    </Scramble>
+                                    {column.description && (
+                                        <div className="mt-2 text-3xs tracking-wider text-foreground sm:text-2xs">
+                                            {column.description}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
                         </motion.div>
-                    ))}
-                </div>
-            </motion.div>
-        </>
+                    </>
+                ) : (
+                    defaultColumns.map((column, index) => (
+                        <MotionDiv
+                            key={index}
+                            column={column}
+                            index={index}
+                            isHovered={isHovered}
+                            isSmallScreen={isSmallScreen}
+                        />
+                    ))
+                )}
+            </div>
+        </motion.div>
     );
 
     return (
-        <div className={`w-full ${href ? "cursor-pointer" : ""}`}>
+        <div className={`w-full ${href ? 'cursor-pointer' : ''}`}>
             {href ? (
-                <Link href={href} className="block">
+                <Link href={href} className="block" target="_blank">
                     {rowContent}
                 </Link>
             ) : (

@@ -1,9 +1,5 @@
-import type { Metadata } from 'next';
-import {
-    Hanken_Grotesk,
-    UnifrakturMaguntia,
-    Space_Mono,
-} from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import { Space_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import { Footer } from '@/app/components/layout/Footer/index';
@@ -15,21 +11,6 @@ import { cn } from '@/lib/utils';
 import { Providers } from './providers';
 
 import './globals.css';
-
-// Google font Hanken Grotesk
-const HankenGrotesk = Hanken_Grotesk({
-    subsets: ['latin'],
-    display: 'swap',
-    variable: '--font-hanken-grotesk',
-});
-
-// Google font UnifrakturMaguntia
-const UM = UnifrakturMaguntia({
-    subsets: ['latin'],
-    display: 'swap',
-    variable: '--font-unifraktur-maguntia',
-    weight: '400',
-});
 
 // Google font Space Mono
 const SpaceMono = Space_Mono({
@@ -91,62 +72,10 @@ const Nohemi = localFont({
     variable: '--font-nohemi',
 });
 
-// local font Swomp
-const SwompSloppy = localFont({
-    src: './fonts/swomp-sloppy.ttf',
-    variable: '--font-swomp-sloppy',
-});
-
-const SwompGapy = localFont({
-    src: './fonts/swomp-gapy.ttf',
-    variable: '--font-swomp-gapy',
-});
-
-const SwompRegular = localFont({
-    src: './fonts/swomp-regular.ttf',
-    variable: '--font-swomp-regular',
-});
-
-// local font Ladi Gross
-const LadiGross = localFont({
-    src: './fonts/ladi-gross.ttf',
-    variable: '--font-ladi-gross',
-});
-
-// local font Giga
-const Giga = localFont({
-    src: './fonts/giga.otf',
-    variable: '--font-giga',
-});
-
-// local font MagikMarker
-const MagikMarker = localFont({
-    src: './fonts/magikmarker.otf',
-    variable: '--font-magik-marker',
-});
-
-// local font throwup
-const ThrowUp = localFont({
-    src: './fonts/throwup.otf',
-    variable: '--font-throwup',
-});
-
-// local font rapscript
-const RapScript = localFont({
-    src: './fonts/rapscript.otf',
-    variable: '--font-rapscript',
-});
-
 // local font scrawler
 const Scrawler = localFont({
     src: './fonts/scrawler.otf',
     variable: '--font-scrawler',
-});
-
-// local font streeteuban-regular
-const StreetUeban = localFont({
-    src: './fonts/streetueban-regular.ttf',
-    variable: '--font-streetueban',
 });
 
 // local font throwup fill
@@ -173,69 +102,122 @@ const ThrowUpStroke = localFont({
     variable: '--font-throwup-stroke',
 });
 
-// local font throwup color
-const ThrowUpColor = localFont({
-    src: './fonts/throwup-color.otf',
-    variable: '--font-throwup-color',
-});
-
-// local font Glitchy light
-const GlitchyLight = localFont({
-    src: './fonts/glitchy-light.ttf',
-    variable: '--font-glitchy-light',
-});
-
-// local font Glitchy light chaos
-const GlitchyLightChaos = localFont({
-    src: './fonts/glitchy-lightchaos.ttf',
-    variable: '--font-glitchy-light-chaos',
-});
-
-// local font Glitchy light crushed
-const GlitchyLightCrushed = localFont({
-    src: './fonts/glitchy-lightcrushed.ttf',
-    variable: '--font-glitchy-light-crushed',
-});
-
-// local font Glitchy regular
-const Glitchy = localFont({
-    src: './fonts/glitchy-regular.ttf',
-    variable: '--font-glitchy',
-});
-
-// local font Glitchy regular chaos
-const GlitchyChaos = localFont({
-    src: './fonts/glitchy-regularchaos.ttf',
-    variable: '--font-glitchy-chaos',
-});
-
-// local font Glitchy regular crushed
-const GlitchyCrushed = localFont({
-    src: './fonts/glitchy-regularcrushed.ttf',
-    variable: '--font-glitchy-crushed',
-});
-
-// local font Glitchy bold
-const GlitchyBold = localFont({
-    src: './fonts/glitchy-bold.ttf',
-    variable: '--font-glitchy-bold',
-});
-
-// local font Glitchy bold chaos
-const GlitchyBoldChaos = localFont({
-    src: './fonts/glitchy-boldchaos.ttf',
-    variable: '--font-glitchy-bold-chaos',
-});
-
-// local font Glitchy bold crushed
-const GlitchyBoldCrushed = localFont({
-    src: './fonts/glitchy-boldcrushed.ttf',
-    variable: '--font-glitchy-bold-crushed',
-});
-
 export const metadata: Metadata = {
-    title: 'Joao Pereira',
-    description: 'Joao Pereira personal developer portfolio',
+    metadataBase: new URL('https://joaopereira.ie'),
+    openGraph: {
+        siteName: 'Personal Portfolio | Joao Pereira',
+        type: 'website',
+        locale: 'en_IE',
+        url: 'https://joaopereira.ie',
+        images: [
+            {
+                url: '/home.jpg',
+                width: 1200,
+                height: 630,
+                alt: 'Personal Portfolio | Joao Pereira',
+            },
+        ],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+        'max-video-preview': -1,
+        googleBot: 'index, follow',
+    },
+    alternates: {
+        types: {
+            'application/rss+xml': 'https://joaopereira.ie/rss.xml',
+        },
+    },
+    applicationName: 'Personal Portfolio | Joao Pereira',
+    appleWebApp: {
+        title: 'Personal Portfolio | Joao Pereira',
+        statusBarStyle: 'default',
+        capable: true,
+    },
+    icons: {
+        icon: [
+            {
+                url: './icon.png',
+                type: 'image/png',
+            },
+            {
+                url: '/icon/icon-16x16.png',
+                sizes: '16x16',
+                type: 'image/png',
+            },
+            {
+                url: '/icon/icon-32x32.png',
+                sizes: '32x32',
+                type: 'image/png',
+            },
+            {
+                url: '/icon/icon-96x96.png',
+                sizes: '96x96',
+                type: 'image/png',
+            },
+            {
+                url: '/icon/icon-192x192.png',
+                sizes: '192x192',
+                type: 'image/png',
+            },
+        ],
+        shortcut: [
+            {
+                url: '/icon.png',
+                type: 'image/png',
+            },
+        ],
+        apple: [
+            {
+                url: '/icon/icon-57x57.png',
+                sizes: '57x57',
+                type: 'image/png',
+            },
+            {
+                url: '/icon/icon-60x60.png',
+                sizes: '60x60',
+                type: 'image/png',
+            },
+            {
+                url: '/icon/icon-72x72.png',
+                sizes: '72x72',
+                type: 'image/png',
+            },
+            {
+                url: '/icon/icon-76x76.png',
+                sizes: '76x76',
+                type: 'image/png',
+            },
+            {
+                url: '/icon/icon-114x114.png',
+                sizes: '114x114',
+                type: 'image/png',
+            },
+            {
+                url: '/icon/icon-120x120.png',
+                sizes: '120x120',
+                type: 'image/png',
+            },
+            {
+                url: '/icon/icon-144x144.png',
+                sizes: '144x144',
+                type: 'image/png',
+            },
+            {
+                url: '/icon/icon-152x152.png',
+                sizes: '152x152',
+                type: 'image/png',
+            },
+            {
+                url: '/icon/icon-180x180.png',
+                sizes: '180x180',
+                type: 'image/png',
+            },
+        ],
+    },
 };
 
 export default function RootLayout({
@@ -246,12 +228,12 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={` ${HankenGrotesk.variable} ${UM.variable} ${SpaceMono.variable} ${Nohemi.variable} font-sans ${SwompSloppy.variable} font-sans ${SwompGapy.variable} font-sans ${SwompRegular.variable} font-sans ${LadiGross.variable} font-sans ${Giga.variable} font-sans ${MagikMarker.variable} font-sans ${ThrowUp.variable} font-sans ${RapScript.variable} font-sans ${Scrawler.variable} font-sans ${StreetUeban.variable} font-sans ${ThrowUpFill.variable} font-sans ${ThrowUpHighlight.variable} font-sans ${ThrowUpShadow.variable} font-sans ${ThrowUpStroke.variable} font-sans ${ThrowUpColor.variable} font-sans ${GlitchyLight.variable} font-sans ${GlitchyLightChaos.variable} font-sans ${GlitchyLightCrushed.variable} font-sans ${Glitchy.variable} font-sans ${GlitchyChaos.variable} font-sans ${GlitchyCrushed.variable} font-sans ${GlitchyBold.variable} font-sans ${GlitchyBoldChaos.variable} font-sans ${GlitchyBoldCrushed.variable} font-sans`}
+            className={`${SpaceMono.variable} ${Nohemi.variable} ${Scrawler.variable} ${ThrowUpFill.variable} ${ThrowUpHighlight.variable} ${ThrowUpShadow.variable} ${ThrowUpStroke.variable}`}
         >
             <body
                 suppressHydrationWarning
                 className={cn(
-                    'min-h-screen bg-background font-sans antialiased'
+                    'min-h-screen bg-background font-SpaceMono antialiased'
                 )}
             >
                 <Providers>
@@ -266,7 +248,7 @@ export default function RootLayout({
                                 <Navbar />
                             </div>
                             {children}
-                                <Footer />
+                            <Footer />
                         </SmoothScrolling>
                     </ThemeProvider>
                 </Providers>

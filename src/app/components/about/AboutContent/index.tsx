@@ -4,15 +4,11 @@ import React, { useState } from 'react';
 
 import Image from 'next/image';
 
+import DetailItem from '@/app/components/common/DetailItem';
+import DualContainer from '@/app/components/common/DualContainer/index';
 import { Tag } from '@/app/components/common/ImageTag/index';
 import Scramble from '@/app/components/common/Scramble/index';
-
-interface DetailProps {
-    title: string;
-    content: string;
-    hoveredTitle?: string;
-    hoveredContent?: string;
-}
+import { DetailProps } from '@/app/types/types';
 
 const Details: DetailProps[] = [
     {
@@ -28,15 +24,8 @@ const Details: DetailProps[] = [
         hoveredContent: 'Lisbon, Portugal',
     },
     {
-        title: 'personal endeavours',
-        content:
-            'Usually week-by-week, within the job, i code for 30 hours a week and spend the rest either on a meeting or eating lunch.\n\nOther than that I like to throw myself out into different hobbies and skillsets so I dont become the void of a person. My interests lie primarily within 35/120m photosgraphy, fitness [football and gym], music and cycling as well as the expensive hobby of collecting Lego.\n\n I plan to utilise this space as a hub for myself in regards to anything tech as well as [possibly in the future] blogs of knowledge n things in life that interest me as mentioned.',
-        hoveredTitle: 'personal endeavours [+]',
-        hoveredContent: 'Hi',
-    },
-    {
         title: 'os of choice',
-        content: 'Debian',
+        content: 'Debian | Nix',
         hoveredTitle: 'Primary OS',
         hoveredContent: 'Ubuntu [for its stableness]',
     },
@@ -54,9 +43,9 @@ const Details: DetailProps[] = [
     },
     {
         title: 'favourite tech trends',
-        content: 'Dublin, Ireland',
-        hoveredTitle: 'Favourite Tech Trends',
-        hoveredContent: 'Portugal',
+        content: 'AI ML IOT and Web3',
+        hoveredTitle: 'favourite tech areas',
+        hoveredContent: 'Open Source Linux CLI Web Dev DevOps Cloud IoT',
     },
 ];
 
@@ -68,74 +57,96 @@ interface DetailItemProps {
     onMouseLeave: () => void;
 }
 
-const DetailItem: React.FC<DetailItemProps> = ({
-    detail,
-    index,
-    hoveredIndex,
-    onMouseEnter,
-    onMouseLeave,
-}) => (
-    <div
-        className="relative p-4"
-        onMouseEnter={() => onMouseEnter(index)}
-        onMouseLeave={onMouseLeave}
-    >
-        <span
-            className={`absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 font-bold ${
-                hoveredIndex === index ? 'uppercase text-blue-500' : ''
-            }`}
-        >
-            <Scramble shouldScramble={hoveredIndex === index}>
-                {hoveredIndex === index
-                    ? (detail.hoveredTitle ?? detail.title)
-                    : detail.title}
-            </Scramble>
-        </span>
-        <span className="whitespace-pre-wrap" style={{ lineHeight: '1.5' }}>
-            <Scramble shouldScramble={hoveredIndex === index}>
-                {hoveredIndex === index
-                    ? (detail.hoveredContent ?? detail.content)
-                    : detail.content}
-            </Scramble>
-        </span>
-    </div>
-);
-
 const PersonalEndeavours: React.FC<DetailItemProps> = ({
-    detail,
     index,
-    hoveredIndex,
     onMouseEnter,
     onMouseLeave,
-}) => (
-    <div
-        className="relative border border-foreground p-8"
-        onMouseEnter={() => onMouseEnter(index)}
-        onMouseLeave={onMouseLeave}
-    >
-        <span
-            className={`absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 text-2xs font-bold uppercase tracking-wider text-blue-500 ${
-                hoveredIndex === index ? 'uppercase text-blue-500' : ''
-            } 2xl:text-xs`}
+}) => {
+    const [textHovered, setTextHovered] = useState(false);
+    const scrambleClass = `no-wrap transition-colors duration-300 ${textHovered ? 'text-primary italic' : ''}`;
+
+    return (
+        <div
+            className="relative border border-foreground p-8"
+            onMouseEnter={() => {
+                onMouseEnter(index);
+                setTextHovered(true);
+            }}
+            onMouseLeave={() => {
+                onMouseLeave();
+                setTextHovered(false);
+            }}
         >
-            <Scramble shouldScramble={hoveredIndex === index}>
-                {hoveredIndex === index
-                    ? (detail.hoveredTitle ?? detail.title)
-                    : detail.title}
-            </Scramble>
-        </span>
-        <span
-            className="whitespace-pre-wrap text-xs tracking-tight 2xl:text-sm"
-            style={{ lineHeight: '1.5' }}
-        >
-            <Scramble shouldScramble={hoveredIndex === index}>
-                {hoveredIndex === index
-                    ? (detail.hoveredContent ?? detail.content)
-                    : detail.content}
-            </Scramble>
-        </span>
-    </div>
-);
+            <span
+                className={`absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 text-2xs font-bold uppercase tracking-wider text-primary ${
+                    textHovered ? 'uppercase text-primary' : ''
+                } 2xl:text-xs`}
+            >
+                <Scramble shouldScramble={textHovered}>
+                    {textHovered ? 'personal endeavours' : 'personal'}
+                </Scramble>
+            </span>
+            <span
+                className="whitespace-pre-wrap text-xs tracking-tight 2xl:text-sm"
+                style={{ lineHeight: '1.5' }}
+            >
+                <p className="text-left sm:text-left">
+                    Usually week-by-week, within the job, I code for{' '}
+                    <Scramble
+                        shouldScramble={textHovered}
+                        className={scrambleClass}
+                    >
+                        {textHovered ? '35' : '30'}
+                    </Scramble>{' '}
+                    hours a week and spend the rest either on a meeting or
+                    eating lunch.
+                    <br />
+                    <br />
+                    Other than that I like to{' '}
+                    <Scramble
+                        shouldScramble={textHovered}
+                        className={scrambleClass}
+                    >
+                        {textHovered ? 'explore' : 'throw myself out into'}
+                    </Scramble>{' '}
+                    different hobbies and skillsets so I dont become the void of
+                    a person. My interests lie primarily within{' '}
+                    <Scramble
+                        shouldScramble={textHovered}
+                        className={scrambleClass}
+                    >
+                        {textHovered ? 'street' : '35/120m'}
+                    </Scramble>{' '}
+                    photography, fitness [football and gym], music and cycling
+                    as well as the{' '}
+                    <Scramble
+                        shouldScramble={textHovered}
+                        className={scrambleClass}
+                    >
+                        {textHovered ? 'wallet-draining' : 'expensive'}
+                    </Scramble>{' '}
+                    hobby of collecting Lego.
+                    <br />
+                    <br />I plan to utilise this space as a hub for myself in
+                    regards to anything tech as well as{' '}
+                    <Scramble
+                        shouldScramble={textHovered}
+                        className={scrambleClass}
+                    >
+                        {textHovered
+                            ? 'sharing insights and experiences'
+                            : '[possibly in the future] blogs of knowledge'}
+                    </Scramble>{' '}
+                    n things in life that interest me as mentioned.
+                    <br />
+                    <br />
+                    Life is what happens while youre busy making other plans.
+                    [John Lennon]
+                </p>
+            </span>
+        </div>
+    );
+};
 
 export default function AboutContent() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -143,70 +154,69 @@ export default function AboutContent() {
     const handleMouseEnter = (index: number) => setHoveredIndex(index);
     const handleMouseLeave = () => setHoveredIndex(null);
 
-    return (
-        <div className="flex h-screen w-full flex-col items-center justify-center font-SpaceMono text-xs text-foreground 2xl:text-sm">
-            <div className="grid h-full w-full grid-cols-1 grid-rows-4 items-start gap-4 sm:grid-cols-5 sm:grid-rows-3">
-                {/* About Content */}
-                <div className="row-span-3 flex h-full flex-col justify-start space-y-8 sm:col-span-3">
-                    <div className="relative h-full space-y-8 border border-foreground p-10">
-                        <span className="absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 font-bold lowercase 2xl:text-sm">
-                            About
-                        </span>
-                        <div className="grid grid-cols-2 gap-4">
-                            {Details.slice(0, 2).map((detail, index) => (
-                                <DetailItem
-                                    key={index}
-                                    detail={detail}
-                                    index={index}
-                                    hoveredIndex={hoveredIndex}
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                />
-                            ))}
-                        </div>
-                        <PersonalEndeavours
-                            detail={Details[2]}
-                            index={2}
-                            hoveredIndex={hoveredIndex}
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        />
-                        <div className="mt-4 grid grid-cols-2 gap-4">
-                            {Details.slice(3, 7).map((detail, index) => (
-                                <DetailItem
-                                    key={index + 3}
-                                    detail={detail}
-                                    index={index + 3}
-                                    hoveredIndex={hoveredIndex}
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-                {/* About Image */}
-                <div className="row-span-1 flex items-start justify-end sm:col-span-2">
-                    <div className="relative flex flex-col items-center">
-                        <div className="relative h-[26rem] w-[26rem] border-1 border-b-0 border">
-                            <Image
-                                src="/CD.png"
-                                alt="CD Case"
-                                priority={true}
-                                layout="fill"
-                                objectFit="contain"
-                            />
-                        </div>
-                        <div className="w-[26rem]">
-                            <Tag
-                                tag="CD.png"
-                                hoverTag="Insert CD into CD-ROM"
-                                QRSrc="soft_dev"
-                            />
-                        </div>
-                    </div>
-                </div>
+    const rightContent = (
+        <div className="space-y-8">
+            <div className="grid grid-cols-2 gap-4">
+                {Details.slice(0, 2).map((detail, index) => (
+                    <DetailItem
+                        key={index}
+                        detail={detail}
+                        index={index}
+                        hoveredIndex={hoveredIndex}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    />
+                ))}
+            </div>
+            <PersonalEndeavours
+                detail={Details[2]}
+                index={2}
+                hoveredIndex={hoveredIndex}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            />
+            <div className="mt-4 grid grid-cols-2 gap-4">
+                {Details.slice(2, 6).map((detail, index) => (
+                    <DetailItem
+                        key={index + 3}
+                        detail={detail}
+                        index={index + 3}
+                        hoveredIndex={hoveredIndex}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    />
+                ))}
             </div>
         </div>
+    );
+
+    const leftContent = (
+        <div className="relative flex flex-col items-center">
+            <div className="relative h-80 w-80 xl:h-[26rem] xl:w-[26rem]">
+                <Image
+                    src="/CD.png"
+                    alt="CD Case"
+                    priority={true}
+                    layout="fill"
+                    objectFit="contain"
+                />
+            </div>
+            <div className="w-80 xl:w-[26rem]">
+                <Tag
+                    tag="CD.png"
+                    hoverTag="Insert CD into CD-ROM"
+                    QRSrc="soft_dev"
+                />
+            </div>
+        </div>
+    );
+
+    return (
+        <DualContainer
+            leftContent={leftContent}
+            rightContent={rightContent}
+            leftTitle="About"
+            rightTitle="Img"
+        />
     );
 }

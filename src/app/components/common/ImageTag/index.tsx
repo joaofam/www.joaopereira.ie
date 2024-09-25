@@ -3,15 +3,9 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 import Scramble from '@/app/components/common/Scramble/index';
+import { TagProps } from '@/app/types/types';
 
-export interface ITagProps {
-    tag: string;
-    hoverTag?: string;
-    QRSrc?: string;
-    shouldHover?: boolean;
-}
-
-export const Tag: React.FC<ITagProps> = ({
+export const Tag: React.FC<TagProps> = ({
     tag,
     QRSrc,
     hoverTag,
@@ -43,12 +37,12 @@ export const Tag: React.FC<ITagProps> = ({
             onMouseLeave={handleMouseLeave}
             className="w-full"
         >
-            <div className="flex grid h-12 w-full grid-cols-5 grid-rows-1 gap-0 border-1 font-SpaceMono text-xs tracking-tight">
+            <div className="flex grid h-12 w-full grid-cols-5 grid-rows-1 gap-0 border-1 font-SpaceMono text-2xs tracking-tight sm:text-xs">
                 <div className="col-span-4 flex items-center justify-center">
                     <span>
                         <Scramble
                             shouldScramble={isHovered}
-                            className={`no-wrap transition-colors duration-300 uppercase ${isHovered ? 'text-primary' : ''}`}
+                            className={`no-wrap uppercase transition-colors duration-300 ${isHovered ? 'font-bold text-secondary' : ''}`}
                         >
                             {isHovered ? hoverTag : tag}
                         </Scramble>

@@ -44,7 +44,7 @@ export default function NotFound() {
             <div className="flex items-center justify-center">
                 <div className="w-[650px] text-center">
                     <VinylPlayer />
-                    <div className="mt-4 w-full grid-cols-2 font-HK text-3xs font-medium tracking-widest text-foreground sm:text-sm">
+                    <div className="font-HK mt-4 w-full grid-cols-2 text-3xs font-medium tracking-widest text-foreground sm:text-sm">
                         <div className="text-right">
                             <Button text="Return home" />
                         </div>

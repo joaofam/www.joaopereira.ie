@@ -2,20 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-interface Pixel {
-    id: string;
-    x: number;
-    y: number;
-    size: number;
-    isWhite: boolean;
-    changeTime: number;
-}
-
-interface ButtonProps {
-    text: string;
-    href?: string;
-    blank?: boolean;
-}
+import { ButtonProps, Pixel } from '@/app/types/types';
 
 const Button: React.FC<ButtonProps> = ({ text, href, blank }) => {
     const router = useRouter();
@@ -120,7 +107,7 @@ const Button: React.FC<ButtonProps> = ({ text, href, blank }) => {
 
     return (
         <button
-            className="relative cursor-pointer overflow-hidden border-none bg-blue-600 px-4 py-2 font-SpaceMono text-xs uppercase text-white transition-colors duration-300 ease-in-out hover:text-primary sm:text-sm"
+            className="relative cursor-pointer overflow-hidden border-none bg-primary px-4 py-2 font-SpaceMono text-xs uppercase text-white transition-colors duration-300 ease-in-out hover:text-primary sm:text-sm"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={handleClick}
@@ -130,7 +117,7 @@ const Button: React.FC<ButtonProps> = ({ text, href, blank }) => {
                 {pixels.map((pixel: Pixel) => (
                     <div
                         key={pixel.id}
-                        className={`absolute transition-colors duration-75 ${pixel.isWhite ? 'bg-white' : 'bg-[#3461D6]'}`}
+                        className={`absolute transition-colors duration-75 ${pixel.isWhite ? 'bg-white' : 'bg-primary'}`}
                         style={{
                             top: `${pixel.y}px`,
                             left: `${pixel.x}px`,
