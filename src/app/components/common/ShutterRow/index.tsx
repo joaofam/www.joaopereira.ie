@@ -69,8 +69,8 @@ const MotionDiv = ({ column, index, isHovered, isSmallScreen }: any) => (
     >
         <Scramble>{isHovered ? column.hover : column.default}</Scramble>
         {column.description && (
-            <div className="mt-2 text-4xs tracking-wider text-foreground sm:text-2xs">
-                {column.description}
+            <div className="mt-2 text-4xs tracking-wider sm:text-2xs">
+                {isHovered ? "Expand ↗" : column.description}
             </div>
         )}
     </motion.div>
@@ -153,7 +153,7 @@ export const ShutterRow: React.FC<ShutterContainerProps> = ({
                                             : column.default}
                                     </Scramble>
                                     {column.description && (
-                                        <div className="mt-2 text-3xs tracking-wider text-foreground sm:text-2xs">
+                                        <div className="mt-2 text-3xs tracking-wider sm:text-2xs">
                                             {column.description}
                                         </div>
                                     )}
@@ -197,7 +197,7 @@ export const ShutterRow: React.FC<ShutterContainerProps> = ({
                                             : column.default}
                                     </Scramble>
                                     {column.description && (
-                                        <div className="mt-2 text-3xs tracking-wider text-foreground sm:text-2xs">
+                                        <div className="mt-2 text-3xs tracking-wider sm:text-2xs">
                                             {column.description}
                                         </div>
                                     )}

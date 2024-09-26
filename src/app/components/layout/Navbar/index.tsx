@@ -20,7 +20,7 @@ export default function Navbar() {
                     <Scramble>Joao Pereira</Scramble>
                 </span>
             </Link>
-            <nav className="ml-auto space-x-8 text-sm lg:flex">
+            <nav className="ml-auto space-x-8 text-sm lg:flex text-foreground">
                 <CustomLink
                     href="/about"
                     className={`${pathname === '/about' ? 'italic text-primary' : ''}`}

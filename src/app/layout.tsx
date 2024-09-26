@@ -244,6 +244,7 @@ export default function RootLayout({
                         disableTransitionOnChange
                     >
                         <SmoothScrolling>
+                            <div className="hero"></div>
                             <div className="absolute left-0 top-0 z-50 w-full">
                                 <Navbar />
                             </div>

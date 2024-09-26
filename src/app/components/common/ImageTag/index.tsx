@@ -42,7 +42,7 @@ export const Tag: React.FC<TagProps> = ({
                     <span>
                         <Scramble
                             shouldScramble={isHovered}
-                            className={`no-wrap uppercase transition-colors duration-300 ${isHovered ? 'font-bold text-secondary' : ''}`}
+                            className={`no-wrap uppercase transition-all duration-300 ease-in-out ${isHovered ? 'font-bold text-secondary' : ''}`}
                         >
                             {isHovered ? hoverTag : tag}
                         </Scramble>

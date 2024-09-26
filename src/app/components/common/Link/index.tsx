@@ -28,7 +28,7 @@ export const CustomLink: React.FC<LinkProps> = ({
 
     const commonProps = {
         href,
-        className: `inline-flex items-center uppercase tracking-wide text-2xs text-foreground sm:text-xs md:text-sm 2xl:text-sm ${className} group relative overflow-hidden`,
+        className: `inline-flex items-center uppercase tracking-wide text-2xs sm:text-xs md:text-sm 2xl:text-sm ${className} group relative overflow-hidden`,
         onMouseEnter: () => setIsHovered(true),
         onMouseLeave: () => setIsHovered(false),
         onClick: handleClick,
