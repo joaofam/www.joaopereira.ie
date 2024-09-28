@@ -5,15 +5,16 @@ import { usePathname } from 'next/navigation';
 
 import { CustomLink } from '@/app/components/common/Link/index';
 import Scramble from '@/app/components/common/Scramble/index';
+import { Time } from '@/app/components/Home/LandingContent/time';
 
 export default function Navbar() {
     const pathname = usePathname();
 
     return (
-        <header className="flex h-24 w-full shrink-0 items-center px-10 pt-8 sm:px-12 md:px-14 lg:px-28 xl:px-24">
+        <header className="flex h-24 w-full shrink-0 text-foreground items-center px-10 pt-8 sm:px-12 md:px-14 lg:px-28 xl:px-24">
             <Link
                 href="/"
-                className="mr-6 font-Nohemi text-2xl font-semibold tracking-wide text-foreground transition-colors duration-300 hover:text-primary lg:flex"
+                className="mr-6 font-Nohemi text-2xl font-semibold tracking-wide  transition-colors duration-300 hover:text-primary lg:flex"
                 prefetch={false}
             >
                 <span>
@@ -21,6 +22,9 @@ export default function Navbar() {
                 </span>
             </Link>
             <nav className="ml-auto space-x-8 text-sm lg:flex text-foreground">
+                <div className='cursor-default'>
+                    <Time />
+                </div>
                 <CustomLink
                     href="/about"
                     className={`${pathname === '/about' ? 'italic text-primary' : ''}`}

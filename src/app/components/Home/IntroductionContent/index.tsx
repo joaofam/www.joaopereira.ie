@@ -184,7 +184,7 @@ export default function Intro() {
     );
 
     return (
-        <div className="relative flex min-h-screen w-full flex-col items-center justify-center p-4 font-SpaceMono text-2xs tracking-wide text-foreground sm:text-xs">
+        <div className="relative flex min-h-full w-full flex-col items-center justify-center p-4 font-SpaceMono text-2xs tracking-wide text-foreground sm:text-xs">
             <DualContainer
                 leftContent={leftContent}
                 rightContent={rightContent}

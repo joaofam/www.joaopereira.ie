@@ -135,7 +135,6 @@ export const metadata: Metadata = {
     appleWebApp: {
         title: 'Personal Portfolio | Joao Pereira',
         statusBarStyle: 'default',
-        capable: true,
     },
     icons: {
         icon: [
@@ -231,7 +230,7 @@ export default function RootLayout({
             className={`${SpaceMono.variable} ${Nohemi.variable} ${Scrawler.variable} ${ThrowUpFill.variable} ${ThrowUpHighlight.variable} ${ThrowUpShadow.variable} ${ThrowUpStroke.variable}`}
         >
             <body
-                suppressHydrationWarning
+                suppressHydrationWarning={true}
                 className={cn(
                     'min-h-screen bg-background font-SpaceMono antialiased'
                 )}

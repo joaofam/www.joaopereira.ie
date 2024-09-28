@@ -17,7 +17,7 @@ export const Footer = () => {
                 {/* Two Rows */}
                 <div className="grid h-full grid-cols-1 grid-rows-[2fr_auto_1fr] px-2 md:px-4 xl:px-12">
                     {/* Row 1 - Two Columns */}
-                    <div className="row-start-1 grid grid-cols-2 gap-4">
+                    <div className="row-start-1 grid grid-cols-2 gap-4 cursor-default">
                         <div className="relative mb-16 flex items-center justify-start text-5xl uppercase sm:mb-0 sm:items-start sm:text-7xl md:mt-6 md:text-6xl lg:mb-8 lg:text-8xl xl:text-9xl 2xl:text-10xl">
                             <div className="relative">
                                 <h1 className="absolute left-0 top-0 mt-2 -translate-x-0 transform font-ThrowUpShadow text-foreground">

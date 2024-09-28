@@ -11,7 +11,7 @@ const Button: React.FC<ButtonProps> = ({ text, href, blank }) => {
     const [isReversing, setIsReversing] = useState(false);
 
     const initializePixels = useCallback(() => {
-        const size = 5;
+        const size = 15;
         const cols = Math.ceil(300 / size);
         const rows = Math.ceil(100 / size);
         const newPixels: Pixel[] = [];

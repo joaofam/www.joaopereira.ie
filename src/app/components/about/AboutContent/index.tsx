@@ -192,14 +192,15 @@ export default function AboutContent() {
 
     const leftContent = (
         <div className="relative flex flex-col items-center">
-            <div className="relative h-80 w-80 xl:h-[26rem] xl:w-[26rem]">
-                <Image
-                    src="/CD.png"
-                    alt="CD Case"
-                    priority={true}
-                    layout="fill"
-                    objectFit="contain"
-                />
+            <div className="relative h-80 w-80 xl:h-[26rem] xl:w-[26rem] 2xl:h-[28rem] 2xl:w-[28rem]">
+            <Image
+                src="/CD.png"
+                alt="CD Case"
+                priority={true}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                style={{ objectFit: 'contain' }}
+            />
             </div>
             <div className="w-80 xl:w-[26rem]">
                 <Tag

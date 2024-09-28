@@ -62,7 +62,7 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <div className="relative">
-            <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8 xl:px-16 2xl:px-32">
+            <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8 xl:px-16 2xl:px-64">
                 <main className="flex min-h-screen w-full flex-col items-center justify-between border-l-0 border-r-0 border-gray-300">
                     <div className="flex h-full w-full items-center justify-center">
                         <Title />

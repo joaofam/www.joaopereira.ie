@@ -8,13 +8,13 @@ import { ShutterRow } from '@/app/components/common/ShutterRow/index';
 
 export default function Projects() {
     return (
-        <div className="relative flex h-[100vh] w-full items-center justify-center font-SpaceMono tracking-tight text-foreground">
+        <div className="relative flex h-[75vh] sm:[25vh] md:h-[70vh] lg:h-[75vh] xl:h-[75vh] 2xl:h-[50vh] w-full items-center justify-center font-SpaceMono tracking-tight text-foreground">
             <div className="relative w-full">
-                <h1 className="ml-4 py-8 font-scrawler text-5xl font-medium sm:ml-0 2xl:text-7xl">
+                <h1 className="ml-4 py-8 font-scrawler cursor-default text-5xl font-medium sm:ml-0 2xl:text-7xl">
                     <Scramble>Projects</Scramble>
                 </h1>
                 <div className="relative w-full border px-2 py-4 sm:py-8 md:px-8">
-                    <span className="absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 text-xs uppercase tracking-wide text-secondary">
+                    <span className="absolute left-4 cursor-default top-0 -translate-y-1/2 transform bg-white px-2 text-xs uppercase tracking-wide text-secondary">
                         #######
                     </span>
                     <ShutterRow
