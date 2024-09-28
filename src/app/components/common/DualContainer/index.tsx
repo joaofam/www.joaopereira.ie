@@ -7,7 +7,7 @@ const DualContainer: React.FC<DualContainerProps> = ({
     rightTitle = 'Img',
 }) => {
     return (
-        <div className="flex h-full w-full flex-col items-center justify-center font-SpaceMono text-2xs text-foreground sm:text-xs 2xl:text-sm">
+        <div className="flex h-full w-full flex-col items-center justify-center font-SpaceMono text-2xs text-foreground sm:text-xs 2xl:text-sm cursor-default">
             <div className="grid-rows-auto sm:grid-rows-0 grid h-full w-full items-start gap-8 xl:grid-cols-2">
                 {/* Left Content Container (previously Right) */}
                 <div className="relative flex h-full w-full items-center justify-center border border-foreground">

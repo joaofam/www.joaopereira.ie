@@ -21,7 +21,7 @@ export default function Title() {
     };
 
     return (
-        <div className="flex h-[10vh] w-full flex-col items-center justify-between font-SpaceMono text-foreground sm:h-[17.5vh] md:h-[20vh] lg:h-[22.5vh] xl:h-[40vh] 2xl:h-[25vh]">
+        <div className="flex h-[10vh] w-full flex-col items-center justify-between font-SpaceMono text-foreground sm:h-[17.5vh] md:h-[20vh] lg:h-[22.5vh] xl:h-[40vh] 2xl:h-[25vh] cursor-default">
         <div className="flex h-full w-full flex-grow flex-col items-center justify-center">
             {/* Landing Title */}
             <div className="flex h-full w-full items-center justify-center">

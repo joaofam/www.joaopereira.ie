@@ -21,7 +21,7 @@ const DetailItem: React.FC<DetailItemProps> = ({
     className,
 }) => (
     <div
-        className={`relative p-4 ${className}`}
+        className={`relative p-4 ${className} cursor-default`}
         onMouseEnter={() => onMouseEnter(index)}
         onMouseLeave={onMouseLeave}
     >
