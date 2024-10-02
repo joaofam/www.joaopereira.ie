@@ -94,7 +94,7 @@ export const Footer = () => {
                                     fill
                                     sizes="(max-width: 1280px) 10rem, 26rem"
                                     style={{ objectFit: 'contain' }}
-                                    loading="lazy"
+                                    priority
                                 />
                             </div>
                         </div>
