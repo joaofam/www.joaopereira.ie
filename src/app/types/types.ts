@@ -52,6 +52,7 @@ export interface ScrambleProps {
     shouldScramble?: boolean;
     textHovered?: boolean;
     className?: string;
+    loop?: boolean;
 }
 
 // Shutter Props

@@ -9,6 +9,7 @@ const Scramble: React.FC<ScrambleProps> = ({
     shouldScramble,
     textHovered,
     className,
+    loop
 }) => {
     const text = typeof children === 'string' ? children : '';
     const { ref, replay } = useScramble({
@@ -41,6 +42,22 @@ const Scramble: React.FC<ScrambleProps> = ({
             }
         };
     }, [replay]);
+
+    useEffect(() => {
+        let interval: NodeJS.Timeout | null = null;
+
+        if (loop) {
+            interval = setInterval(() => {
+                replay();
+            }, 100); // Adjust the interval time as needed
+        }
+
+        return () => {
+            if (interval) {
+                clearInterval(interval);
+            }
+        };
+    }, [loop, replay]);
 
     return (
         <span ref={divRef} className={className}>
