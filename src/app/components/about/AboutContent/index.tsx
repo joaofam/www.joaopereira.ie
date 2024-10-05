@@ -38,7 +38,7 @@ const Details: DetailProps[] = [
     {
         title: 'coffee order',
         content: 'espresso [double sometimes]',
-        hoveredTitle: 'coffee order',
+        hoveredTitle: 'coffee snack',
         hoveredContent: 'cinnamon bun',
     },
     {
