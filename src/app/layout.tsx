@@ -228,9 +228,9 @@ export default function RootLayout({
         <html
             lang="en"
             className={`${SpaceMono.variable} ${Nohemi.variable} ${Scrawler.variable} ${ThrowUpFill.variable} ${ThrowUpHighlight.variable} ${ThrowUpShadow.variable} ${ThrowUpStroke.variable}`}
+            suppressHydrationWarning={true}
         >
             <body
-                suppressHydrationWarning={true}
                 className={cn(
                     'min-h-screen bg-background font-SpaceMono antialiased'
                 )}
