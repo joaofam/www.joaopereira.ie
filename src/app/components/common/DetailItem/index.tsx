@@ -26,8 +26,8 @@ const DetailItem: React.FC<DetailItemProps> = ({
         onMouseLeave={onMouseLeave}
     >
         <span
-            className={`absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 font-bold ${
-                hoveredIndex === index ? 'uppercase text-primary' : ''
+            className={`capitalize absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 font-bold ${
+                hoveredIndex === index ? 'capitalize text-primary' : ''
             }`}
         >
             <Scramble shouldScramble={hoveredIndex === index}>
