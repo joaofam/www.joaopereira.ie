@@ -212,8 +212,8 @@ export default function AboutContent() {
         <DualContainer
             leftContent={leftContent}
             rightContent={rightContent}
-            leftTitle="About"
-            rightTitle="Img"
+            leftTitle="img"
+            rightTitle="about"
         />
     );
 }
