@@ -15,25 +15,25 @@ const Details: DetailProps[] = [
         title: 'name',
         content: 'Joao Pereira',
         hoveredTitle: 'pronunciation',
-        hoveredContent: 'Jo-ow Pe-ray-ra',
+        hoveredContent: 'Jow Per-air-ah',
     },
     {
         title: 'location',
         content: 'Dublin, Ireland',
-        hoveredTitle: 'origin [nationality]',
+        hoveredTitle: 'nationality',
         hoveredContent: 'Lisbon, Portugal',
     },
     {
         title: 'os of choice',
         content: 'Debian | Nix',
         hoveredTitle: 'Primary OS',
-        hoveredContent: 'Ubuntu [for its stableness]',
+        hoveredContent: 'Ubuntu',
     },
     {
-        title: 'ide of choice',
+        title: 'ide',
         content: 'vscode intellij',
-        hoveredTitle: 'ide of choice',
-        hoveredContent: '[nvim when in the cli]',
+        hoveredTitle: 'cli ide',
+        hoveredContent: 'nvim',
     },
     {
         title: 'coffee order',
@@ -50,9 +50,7 @@ const Details: DetailProps[] = [
 ];
 
 interface DetailItemProps {
-    detail: DetailProps;
     index: number;
-    hoveredIndex: number | null;
     onMouseEnter: (index: number) => void;
     onMouseLeave: () => void;
 }
@@ -169,9 +167,7 @@ export default function AboutContent() {
                 ))}
             </div>
             <PersonalEndeavours
-                detail={Details[2]}
                 index={2}
-                hoveredIndex={hoveredIndex}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             />
