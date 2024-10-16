@@ -25,7 +25,15 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
         if (inputRef.current) {
             inputRef.current.focus();
         }
-        setOutput(getWelcomeMessage().split('\n').map((line, index) => <div key={index}>{line || '\u00A0'}</div>));
+        setOutput(
+            getWelcomeMessage()
+                .split('\n')
+                .map((line, index) => (
+                    <div key={index} className="whitespace-pre">
+                        {line || '\u00A0'}
+                    </div>
+                ))
+        );
     }, []);
 
     useEffect(() => {
@@ -46,7 +54,7 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
             <div key={prev.length}>
                 <span style={{ color: '#2194f3' }}>{currentDir}$&nbsp;</span>
                 <span>{input}</span>
-            </div>
+            </div>,
         ]);
 
         if (command) {
@@ -64,29 +72,37 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
             case 'help':
                 setOutput(prev => [
                     ...prev,
-                    ...help().split('\n').map((line, index) => <div key={prev.length + 1 + index}>{line || '\u00A0'}</div>)
+                    ...help()
+                        .split('\n')
+                        .map((line, index) => (
+                            <div key={prev.length + 1 + index}>
+                                {line || '\u00A0'}
+                            </div>
+                        )),
                 ]);
                 break;
-            case 'ls':
+            case 'ls': {
                 const dirContents = ls(currentDir);
                 setOutput(prev => [
                     ...prev,
-                    <div key={prev.length + 1}>{dirContents}</div>
+                    <div key={prev.length + 1}>{dirContents}</div>,
                 ]);
                 break;
-            case 'cd':
+            }
+            case 'cd': {
                 const newDir = args[0];
                 const { newDir: updatedDir, error } = cd(currentDir, newDir);
                 if (error) {
                     setOutput(prev => [
                         ...prev,
-                        <div key={prev.length + 1}>{error}</div>
+                        <div key={prev.length + 1}>{error}</div>,
                     ]);
                 } else {
                     setCurrentDir(updatedDir);
                 }
                 break;
-            case 'cat':
+            }
+            case 'cat': {
                 const fileName = args[0];
                 const fileContent = cat(currentDir, fileName);
                 setOutput(prev => [
@@ -94,10 +110,11 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
                     <div key={prev.length + 1}>{fileContent}</div>,
                 ]);
                 break;
+            }
             default:
                 setOutput(prev => [
                     ...prev,
-                    <div key={prev.length + 1}>Command not recognized</div>
+                    <div key={prev.length + 1}>Command not recognized</div>,
                 ]);
                 break;
         }
@@ -111,12 +128,20 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
         } else if (e.key === 'ArrowUp') {
             if (historyIndex < commandHistory.length - 1) {
                 setHistoryIndex(prev => prev + 1);
-                setInput(commandHistory[commandHistory.length - 1 - (historyIndex + 1)]);
+                setInput(
+                    commandHistory[
+                        commandHistory.length - 1 - (historyIndex + 1)
+                    ]
+                );
             }
         } else if (e.key === 'ArrowDown') {
             if (historyIndex > 0) {
                 setHistoryIndex(prev => prev - 1);
-                setInput(commandHistory[commandHistory.length - 1 - (historyIndex - 1)]);
+                setInput(
+                    commandHistory[
+                        commandHistory.length - 1 - (historyIndex - 1)
+                    ]
+                );
             } else if (historyIndex === 0) {
                 setHistoryIndex(-1);
                 setInput('');
@@ -125,19 +150,21 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     };
 
     return (
-        <div ref={terminalRef} className="h-full overflow-y-auto bg-foreground p-4 text-xs text-white">
+        <div
+            ref={terminalRef}
+            className="h-full overflow-y-auto bg-foreground p-4 text-xs text-white"
+        >
             {output}
-            <div className="flex relative"> {/* Added relative positioning */}
-                <span className='text-primary'>{currentDir}$&nbsp;</span>
+            <div className="relative flex">
+                <span className="text-primary">{currentDir} $&nbsp;</span>
                 <input
                     ref={inputRef}
                     type="text"
                     value={input}
                     onChange={handleInputChange}
                     onKeyDown={handleInputSubmit}
-                    className="flex-grow bg-transparent outline-none text-white"
+                    className="flex-grow bg-transparent text-white outline-none"
                 />
-                {/* Pseudo Cursor */}
             </div>
         </div>
     );
