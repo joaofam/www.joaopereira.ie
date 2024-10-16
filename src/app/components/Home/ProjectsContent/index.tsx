@@ -79,7 +79,7 @@ const ProjectList = () => (
 
 export default function Projects() {
     return (
-        <div className="sm:[25vh] relative flex h-[75vh] w-full items-center justify-center font-SpaceMono tracking-tight text-foreground md:h-[70vh] lg:h-[75vh] xl:h-[75vh] 2xl:h-[50vh]">
+        <div className="sm:[25vh] relative flex h-[75vh] w-full items-center justify-center font-SpaceMono tracking-tight text-foreground md:h-[70vh] lg:h-[75vh] xl:h-[75vh] 2xl:h-[60vh]">
             <div className="relative w-full">
                 <SectionHeader 
                     title="Projects" 

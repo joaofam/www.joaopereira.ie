@@ -74,7 +74,7 @@ const TechSummary: React.FC<DetailItemProps> = ({
                 className="text-primary"
             />
             <span
-                className="whitespace-pre-wrap text-xs tracking-tight 2xl:text-sm"
+                className="whitespace-pre-wrap text-xs tracking-tight text-2xs sm:text-xs 2xl:text-sm"
                 style={{ lineHeight: '1.5' }}
             >
                 <p className="text-left sm:text-left">
@@ -157,7 +157,7 @@ export default function Intro() {
 
     const leftContent = (
         <div className="relative flex flex-col items-center">
-            <div className="relative h-[22rem] w-[20rem] sm:h-[25rem] sm:w-[25rem] xl:h-[26rem] xl:w-[26rem]">
+            <div className="relative h-[22rem] w-[20rem] sm:h-[25rem] sm:w-[25rem] xl:h-[26rem] xl:w-[26rem] 2xl:h-[30rem] 2xl:w-[30rem]">
                 <Image
                     src="/yu-gi-oh-card.png"
                     alt="Profile Picture"

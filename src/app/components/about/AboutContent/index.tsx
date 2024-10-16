@@ -81,7 +81,7 @@ const PersonalEndeavours: React.FC<DetailItemProps> = ({
                 className="text-primary"
             />
             <span
-                className="whitespace-pre-wrap text-xs tracking-tight 2xl:text-sm"
+                className="whitespace-pre-wrap text-xs tracking-tight text-2xs sm:text-xs 2xl:text-sm"
                 style={{ lineHeight: '1.5' }}
             >
                 <p className="text-left sm:text-left">
