@@ -92,19 +92,19 @@ const PersonalEndeavours: React.FC<DetailItemProps> = ({
                     >
                         {textHovered ? '35' : '30'}
                     </Scramble>{' '}
-                    hours a week and spend the rest either on a meeting or
+                    hours a week and spend the rest either in a meeting or
                     eating lunch.
                     <br />
                     <br />
-                    Other than that I like to{' '}
+                    Other than that, I like to{' '}
                     <Scramble
                         shouldScramble={textHovered}
                         className={scrambleClass}
                     >
-                        {textHovered ? 'explore' : 'throw myself out into'}
+                        {textHovered ? 'explore' : 'throw myself into'}
                     </Scramble>{' '}
                     different hobbies and skillsets so life doesnt
-                    become too stale. My interests lie primarily within{' '}
+                    become too stale. Some of my hobbies include{' '}
                     <Scramble
                         shouldScramble={textHovered}
                         className={scrambleClass}
@@ -128,8 +128,8 @@ const PersonalEndeavours: React.FC<DetailItemProps> = ({
                         className={scrambleClass}
                     >
                         {textHovered
-                            ? 'sharing insights and experiences'
-                            : '[possibly in the future] blogs of knowledge'}
+                            ? 'sharing insights and experiences.'
+                            : '[possibly in the future] blogs of knowledge.'}
                     </Scramble>{' '}
                 </p>
             </span>
