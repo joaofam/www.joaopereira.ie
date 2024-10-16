@@ -16,6 +16,8 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     const [input, setInput] = useState('');
     const [output, setOutput] = useState<React.ReactNode[]>([]);
     const [currentDir, setCurrentDir] = useState('/');
+    const [commandHistory, setCommandHistory] = useState<string[]>([]); // Store command history
+    const [historyIndex, setHistoryIndex] = useState(-1); // Track current index in command history
     const inputRef = useRef<HTMLInputElement>(null);
     const terminalRef = useRef<HTMLDivElement>(null);
 
@@ -40,7 +42,7 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     const handleCommand = (command: string) => {
         const [cmd, ...args] = command.split(' ');
 
-        // Display the command the user entered
+        // Display the command the user entered with the current directory
         setOutput(prev => [
             ...prev,
             <div key={prev.length}>
@@ -48,6 +50,12 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
                 <span>{input}</span>
             </div>
         ]);
+
+        // Add command to history if it is not empty
+        if (command) {
+            setCommandHistory(prev => [...prev, command]);
+            setHistoryIndex(-1); // Reset history index after new command
+        }
 
         switch (cmd) {
             case 'exit':
@@ -87,7 +95,7 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
                 const fileContent = cat(currentDir, fileName);
                 setOutput(prev => [
                     ...prev,
-                    <div key={prev.length + 1}>{fileContent}</div>
+                    <div key={prev.length + 1}>{fileContent}</div>,
                 ]);
                 break;
             default:
@@ -104,6 +112,22 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
             const trimmedInput = input.trim().toLowerCase();
             handleCommand(trimmedInput);
             setInput('');
+        } else if (e.key === 'ArrowUp') {
+            // Show previous command
+            if (historyIndex < commandHistory.length - 1) {
+                setHistoryIndex(prev => prev + 1);
+                setInput(commandHistory[commandHistory.length - 1 - (historyIndex + 1)]); // Show the last command first
+            }
+        } else if (e.key === 'ArrowDown') {
+            // Show next command
+            if (historyIndex > 0) {
+                setHistoryIndex(prev => prev - 1);
+                setInput(commandHistory[commandHistory.length - 1 - (historyIndex - 1)]);
+            } else if (historyIndex === 0) {
+                // Reset input when reaching the end
+                setHistoryIndex(-1);
+                setInput('');
+            }
         }
     };
 
@@ -112,13 +136,13 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
             {output}
             {/* Render prompt with the current directory after command execution */}
             <div className="flex">
-                <span style={{ color: '#2194f3' }}>{currentDir}$&nbsp;</span>
+                <span className='text-primary'>{currentDir}$&nbsp;</span>
                 <input
                     ref={inputRef}
                     type="text"
                     value={input}
                     onChange={handleInputChange}
-                    onKeyPress={handleInputSubmit}
+                    onKeyDown={handleInputSubmit} // Changed to onKeyDown to capture Arrow keys
                     className="flex-grow bg-transparent outline-none text-white"
                 />
             </div>
