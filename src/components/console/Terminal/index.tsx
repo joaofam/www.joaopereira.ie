@@ -16,8 +16,8 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     const [input, setInput] = useState('');
     const [output, setOutput] = useState<React.ReactNode[]>([]);
     const [currentDir, setCurrentDir] = useState('/');
-    const [commandHistory, setCommandHistory] = useState<string[]>([]); // Store command history
-    const [historyIndex, setHistoryIndex] = useState(-1); // Track current index in command history
+    const [commandHistory, setCommandHistory] = useState<string[]>([]);
+    const [historyIndex, setHistoryIndex] = useState(-1);
     const inputRef = useRef<HTMLInputElement>(null);
     const terminalRef = useRef<HTMLDivElement>(null);
 
@@ -25,7 +25,6 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
         if (inputRef.current) {
             inputRef.current.focus();
         }
-        // Display welcome message when component mounts
         setOutput(getWelcomeMessage().split('\n').map((line, index) => <div key={index}>{line || '\u00A0'}</div>));
     }, []);
 
@@ -42,7 +41,6 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     const handleCommand = (command: string) => {
         const [cmd, ...args] = command.split(' ');
 
-        // Display the command the user entered with the current directory
         setOutput(prev => [
             ...prev,
             <div key={prev.length}>
@@ -51,10 +49,9 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
             </div>
         ]);
 
-        // Add command to history if it is not empty
         if (command) {
             setCommandHistory(prev => [...prev, command]);
-            setHistoryIndex(-1); // Reset history index after new command
+            setHistoryIndex(-1);
         }
 
         switch (cmd) {
@@ -86,7 +83,6 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
                         <div key={prev.length + 1}>{error}</div>
                     ]);
                 } else {
-                    // Change directory but only reflect it in the next prompt
                     setCurrentDir(updatedDir);
                 }
                 break;
@@ -113,18 +109,15 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
             handleCommand(trimmedInput);
             setInput('');
         } else if (e.key === 'ArrowUp') {
-            // Show previous command
             if (historyIndex < commandHistory.length - 1) {
                 setHistoryIndex(prev => prev + 1);
-                setInput(commandHistory[commandHistory.length - 1 - (historyIndex + 1)]); // Show the last command first
+                setInput(commandHistory[commandHistory.length - 1 - (historyIndex + 1)]);
             }
         } else if (e.key === 'ArrowDown') {
-            // Show next command
             if (historyIndex > 0) {
                 setHistoryIndex(prev => prev - 1);
                 setInput(commandHistory[commandHistory.length - 1 - (historyIndex - 1)]);
             } else if (historyIndex === 0) {
-                // Reset input when reaching the end
                 setHistoryIndex(-1);
                 setInput('');
             }
@@ -134,17 +127,17 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     return (
         <div ref={terminalRef} className="h-full overflow-y-auto bg-foreground p-4 text-xs text-white">
             {output}
-            {/* Render prompt with the current directory after command execution */}
-            <div className="flex">
+            <div className="flex relative"> {/* Added relative positioning */}
                 <span className='text-primary'>{currentDir}$&nbsp;</span>
                 <input
                     ref={inputRef}
                     type="text"
                     value={input}
                     onChange={handleInputChange}
-                    onKeyDown={handleInputSubmit} // Changed to onKeyDown to capture Arrow keys
+                    onKeyDown={handleInputSubmit}
                     className="flex-grow bg-transparent outline-none text-white"
                 />
+                {/* Pseudo Cursor */}
             </div>
         </div>
     );

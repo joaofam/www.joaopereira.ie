@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { Browser, TerminalWindow } from '@phosphor-icons/react';
 import Draggable, { DraggableEvent, DraggableData } from 'react-draggable';
 
 import Terminal from '@/components/console/Terminal/index';
@@ -11,7 +12,10 @@ interface ConsoleProps {
 }
 
 export default function Console({ onClose }: ConsoleProps) {
-    const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+    const [position, setPosition] = useState<{ x: number; y: number }>({
+        x: 0,
+        y: 0,
+    });
 
     const handleDrag = (e: DraggableEvent, data: DraggableData) => {
         setPosition({ x: data.x, y: data.y });
@@ -23,16 +27,26 @@ export default function Console({ onClose }: ConsoleProps) {
             defaultPosition={position}
             onDrag={handleDrag}
         >
-            <div className="fixed z-50 w-[600px] h-[400px] bg-white text-foreground shadow-lg border border-foreground flex flex-col">
+            <div className="fixed z-50 flex h-[400px] w-[600px] flex-col border border-foreground bg-white text-foreground shadow-lg">
                 {/* Top Bar */}
-                <div className="handle h-8 bg-white border-b-1 border-foreground cursor-move flex items-center justify-between px-4">
-                    <span className='text-2xs sm:text-xs 2xl:text-sm'>JTerm Console</span>
-                    <button onClick={onClose} className="text-gray-400 hover:text-black">
+                <div className="handle flex h-8 cursor-move items-center justify-between border-b-1 border-foreground bg-white px-4">
+                    <div className="flex items-center space-x-2">
+                        {/* Icons container */}
+                        <Browser size={12} />
+                        <TerminalWindow size={12} />
+                    </div>
+                    <span className="flex-grow text-center text-2xs sm:text-xs 2xl:text-sm">
+                        JTerm Console
+                    </span>
+                    <button
+                        onClick={onClose}
+                        className="text-gray-400 hover:text-black"
+                    >
                         ×
                     </button>
                 </div>
                 {/* Terminal */}
-                <div className="flex-grow overflow-hidden p-2 rounded-md">
+                <div className="flex-grow overflow-hidden rounded-md p-2">
                     <Terminal onClose={onClose} />
                 </div>
             </div>

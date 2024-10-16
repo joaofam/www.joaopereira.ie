@@ -17,7 +17,7 @@ export type FileSystemItem = {
                     'career.md': {
                         name: 'career.md',
                         type: 'file',
-                        content: '# career Information\n\nThis is the **career** information.\n\n===Important Highlight===\n\n---\n\nMore details here...'
+                        content: '# Tech Career Summary\n\nAs a software engineer with 4 years of Full Stack development (university and work), I have defined my skills in application and CLI development as well as infrastructure.\n\n I am particularly interested in Linux and Open Source technologies, though my interests span across various platforms and technologies (just not Haskell and Assembly). My approach combines technical proficiency with a keen eye for design, allowing me to create solutions that are not only functional but also visually appealing.'
                     },
                     'personal.md': {
                         name: 'personal.md',

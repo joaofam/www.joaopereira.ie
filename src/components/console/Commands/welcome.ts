@@ -3,6 +3,7 @@ export const getWelcomeMessage = (): string => {
 Welcome to the JTerm Console!
 
 Available commands:
+
 - help: Display available commands
 - ls: List files and directories
 - cd: Change directory
