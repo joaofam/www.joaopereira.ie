@@ -37,7 +37,7 @@ const experiences = [
 const ExperienceList = () => (
     <FieldSet className="relative w-full border px-2 py-4 sm:py-8 md:px-8">
         <Legend 
-            title="~~~~~~~"
+            title="^^^^^^^"
             className="tracking-wide text-secondary"
         />
         {experiences.map((experience, index) => (

@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Button from '@/app/components/common/Button/index';
 import DetailItem from '@/app/components/common/DetailItem';
 import DualContainer from '@/app/components/common/DualContainer/index';
+import { Legend } from '@/app/components/common/FieldSet/Legend/index';
 import { Tag } from '@/app/components/common/ImageTag/index';
 import Scramble from '@/app/components/common/Scramble/index';
 import { DetailProps } from '@/types/types';
@@ -68,17 +69,10 @@ const TechSummary: React.FC<DetailItemProps> = ({
                 setTextHovered(false);
             }}
         >
-            <span
-                className={`absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 text-2xs font-bold uppercase tracking-wider text-primary ${
-                    hoveredIndex === index ? 'uppercase text-primary' : ''
-                } 2xl:text-xs`}
-            >
-                <Scramble shouldScramble={hoveredIndex === index}>
-                    {hoveredIndex === index
-                        ? (detail.hoveredTitle ?? detail.title)
-                        : detail.title}
-                </Scramble>
-            </span>
+            <Legend
+                title="Summary"
+                className="text-primary"
+            />
             <span
                 className="whitespace-pre-wrap text-xs tracking-tight 2xl:text-sm"
                 style={{ lineHeight: '1.5' }}

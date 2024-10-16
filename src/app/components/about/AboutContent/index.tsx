@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 import DetailItem from '@/app/components/common/DetailItem';
 import DualContainer from '@/app/components/common/DualContainer/index';
+import { Legend } from '@/app/components/common/FieldSet/Legend/index';
 import { Tag } from '@/app/components/common/ImageTag/index';
 import Scramble from '@/app/components/common/Scramble/index';
 import { DetailProps } from '@/types/types';
@@ -75,15 +76,10 @@ const PersonalEndeavours: React.FC<DetailItemProps> = ({
                 setTextHovered(false);
             }}
         >
-            <span
-                className={`absolute left-4 top-0 -translate-y-1/2 transform bg-white px-2 text-2xs font-bold uppercase tracking-wider text-primary ${
-                    textHovered ? 'uppercase text-primary' : ''
-                } 2xl:text-xs`}
-            >
-                <Scramble shouldScramble={textHovered}>
-                    {textHovered ? 'personal endeavours' : 'personal'}
-                </Scramble>
-            </span>
+            <Legend
+                title="endeavours"
+                className="text-primary"
+            />
             <span
                 className="whitespace-pre-wrap text-xs tracking-tight 2xl:text-sm"
                 style={{ lineHeight: '1.5' }}
