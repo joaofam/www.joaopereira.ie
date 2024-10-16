@@ -1,4 +1,4 @@
-# www.joaopereira.ie
+# joaopereira.ie
 
 Welcome to the repository for my personal portfolio website, hosted at [www.joaopereira.ie](https://www.joaopereira.ie).
 
