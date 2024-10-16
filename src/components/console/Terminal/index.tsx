@@ -21,6 +21,8 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const terminalRef = useRef<HTMLDivElement>(null);
 
+    const validCommands = ['exit', 'clear', 'help', 'ls', 'cd', 'cat'];
+
     useEffect(() => {
         if (inputRef.current) {
             inputRef.current.focus();
@@ -43,17 +45,21 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     }, [output]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInput(e.target.value);
+        const value = e.target.value;
+        setInput(value);
     };
 
     const handleCommand = (command: string) => {
         const [cmd, ...args] = command.split(' ');
 
+        const isValidCommand = validCommands.includes(cmd.toLowerCase());
+
         setOutput(prev => [
             ...prev,
             <div key={prev.length}>
                 <span style={{ color: '#2194f3' }}>{currentDir}$&nbsp;</span>
-                <span>{input}</span>
+                <span className={isValidCommand ? 'text-secondary' : 'text-white'}>{cmd}</span>
+                <span className="text-white">&nbsp;{args.join(' ')}</span>
             </div>,
         ]);
 
@@ -149,23 +155,35 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
         }
     };
 
-    return (
-        <div
-            ref={terminalRef}
-            className="h-full overflow-y-auto bg-foreground p-4 text-xs text-white"
-        >
-            {output}
+    const renderInput = () => {
+        const [cmd, ...rest] = input.split(' ');
+        const isValidCommand = validCommands.includes(cmd.toLowerCase());
+        return (
             <div className="relative flex">
-                <span className="text-primary">{currentDir} $&nbsp;</span>
+                <span className="text-primary">{currentDir}$&nbsp;</span>
+                <span className={isValidCommand ? 'text-secondary' : 'text-white'}>
+                    {cmd}
+                </span>
+                <span className="text-white">&nbsp;{rest.join(' ')}</span>
                 <input
                     ref={inputRef}
                     type="text"
                     value={input}
                     onChange={handleInputChange}
                     onKeyDown={handleInputSubmit}
-                    className="flex-grow bg-transparent text-white outline-none"
+                    className="flex-grow bg-transparent text-white outline-none absolute inset-0 opacity-0"
                 />
             </div>
+        );
+    };
+
+    return (
+        <div
+            ref={terminalRef}
+            className="h-full overflow-y-auto bg-foreground p-4 text-3xs sm:text-2xs md:text-xs text-white"
+        >
+            {output}
+            {renderInput()}
         </div>
     );
 };

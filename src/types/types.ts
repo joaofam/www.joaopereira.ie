@@ -23,10 +23,28 @@ export interface Pixel {
     changeTime: number;
 }
 
+// Button Props
 export interface ButtonProps {
     text: string;
     href?: string;
     blank?: boolean;
+}
+
+// Custom Link Props
+export interface CustomNavLinksProps {
+    isConsoleOpen: boolean;
+    toggleConsole: () => void;
+}
+
+// Mobile Nav Props
+export interface MobileNavProps {
+    onClick: () => void;
+}
+
+// Mobile Menu Props
+export interface MobileMenuProps {
+    isOpen: boolean;
+    onClose: () => void;
 }
 
 // Tag Props

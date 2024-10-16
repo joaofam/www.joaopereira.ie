@@ -122,7 +122,7 @@ export const ShutterRow: React.FC<ShutterContainerProps> = ({
     const rowContent = (
         <motion.div
             ref={ref}
-            className="group relative h-16 w-full overflow-hidden border-b-1 text-2xs uppercase tracking-wider transition-colors duration-300 hover:bg-foreground hover:text-white sm:text-xs"
+            className="group relative h-16 w-full overflow-hidden border-b-1 text-2xs uppercase tracking-wider transition-colors duration-300 hover:bg-foreground hover:text-white sm:text-xs md:text-sm"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             initial="hidden"

@@ -1,4 +1,4 @@
-import { parseMarkdown } from './mdParser';
+import { parseMarkdown } from './parseMarkdown';
 import { fileSystem, FileSystemItem } from '../FileSystem/files';
 
 export const cat = (
@@ -14,7 +14,7 @@ export const cat = (
         const file = current.children[fileName];
         if (file.type === 'file') {
             // Parse markdown content if it's a .md file
-            return parseMarkdown(file.content || '');
+            return parseMarkdown(file.content ?? '');
         }
         return [`cat: ${fileName}: Is a directory`];
     }
