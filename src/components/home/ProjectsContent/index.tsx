@@ -18,7 +18,7 @@ const projects = [
                 description: 'Personal Portfolio',
             },
             {
-                default: 'Web Design',
+                default: 'Web Dev',
                 hover: 'NextJS TS TailwindCSS',
             },
             {
