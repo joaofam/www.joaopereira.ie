@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 
+import { cat } from '@/components/console/Commands/cat';
+import { cd } from '@/components/console/Commands/cd';
 import { clear } from '@/components/console/Commands/clear';
 import { exit } from '@/components/console/Commands/exit';
-import { getWelcomeMessage } from '@/components/console/Commands/welcome';
 import { help } from '@/components/console/Commands/help';
+import { ls } from '@/components/console/Commands/ls';
+import { getWelcomeMessage } from '@/components/console/Commands/welcome';
 
 interface TerminalProps {
     onClose: () => void;
@@ -12,6 +15,7 @@ interface TerminalProps {
 const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     const [input, setInput] = useState('');
     const [output, setOutput] = useState<React.ReactNode[]>([]);
+    const [currentDir, setCurrentDir] = useState('/');
     const inputRef = useRef<HTMLInputElement>(null);
     const terminalRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +38,18 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     };
 
     const handleCommand = (command: string) => {
-        switch (command) {
+        const [cmd, ...args] = command.split(' ');
+
+        // Display the command the user entered
+        setOutput(prev => [
+            ...prev,
+            <div key={prev.length}>
+                <span style={{ color: '#2194f3' }}>{currentDir}$&nbsp;</span>
+                <span>{input}</span>
+            </div>
+        ]);
+
+        switch (cmd) {
             case 'exit':
                 exit(onClose);
                 break;
@@ -42,21 +57,43 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
                 clear(setOutput);
                 break;
             case 'help':
-                setOutput([...output, 
-                    <div key={output.length}>
-                        <span style={{ color: '#2194f3' }}>$&nbsp;</span>
-                        <span>{input}</span>
-                    </div>,
-                    ...help().split('\n').map((line, index) => <div key={output.length + 1 + index}>{line || '\u00A0'}</div>)
+                setOutput(prev => [
+                    ...prev,
+                    ...help().split('\n').map((line, index) => <div key={prev.length + 1 + index}>{line || '\u00A0'}</div>)
+                ]);
+                break;
+            case 'ls':
+                const dirContents = ls(currentDir);
+                setOutput(prev => [
+                    ...prev,
+                    <div key={prev.length + 1}>{dirContents}</div>
+                ]);
+                break;
+            case 'cd':
+                const newDir = args[0];
+                const { newDir: updatedDir, error } = cd(currentDir, newDir);
+                if (error) {
+                    setOutput(prev => [
+                        ...prev,
+                        <div key={prev.length + 1}>{error}</div>
+                    ]);
+                } else {
+                    // Change directory but only reflect it in the next prompt
+                    setCurrentDir(updatedDir);
+                }
+                break;
+            case 'cat':
+                const fileName = args[0];
+                const fileContent = cat(currentDir, fileName);
+                setOutput(prev => [
+                    ...prev,
+                    <div key={prev.length + 1}>{fileContent}</div>
                 ]);
                 break;
             default:
-                setOutput([...output, 
-                    <div key={output.length}>
-                        <span style={{ color: '#2194f3' }}>$&nbsp;</span>
-                        <span>{input}</span>
-                    </div>,
-                    <div key={output.length + 1}>Command not recognized</div>
+                setOutput(prev => [
+                    ...prev,
+                    <div key={prev.length + 1}>Command not recognized</div>
                 ]);
                 break;
         }
@@ -73,8 +110,9 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     return (
         <div ref={terminalRef} className="h-full overflow-y-auto bg-foreground p-4 text-xs text-white">
             {output}
+            {/* Render prompt with the current directory after command execution */}
             <div className="flex">
-                <span style={{ color: '#2194f3' }}>$&nbsp;</span>
+                <span style={{ color: '#2194f3' }}>{currentDir}$&nbsp;</span>
                 <input
                     ref={inputRef}
                     type="text"
