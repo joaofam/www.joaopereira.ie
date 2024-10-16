@@ -38,7 +38,7 @@ const ExperienceList = () => (
     <FieldSet className="relative w-full border px-2 py-4 sm:py-8 md:px-8">
         <Legend 
             title="~~~~~~~"
-            className="absolute cursor-default left-4 top-0 -translate-y-1/2 transform bg-white px-2 font-SpaceMono text-xs uppercase tracking-wide text-secondary"
+            className="tracking-wide text-secondary"
         />
         {experiences.map((experience, index) => (
             <ShutterRow key={index} columns={experience.columns} />
