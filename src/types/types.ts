@@ -80,3 +80,22 @@ export interface DualContainerProps {
     leftTitle?: string;
     rightTitle?: string;
 }
+
+// Field Set Props
+export interface FieldSetProps {
+    children: React.ReactNode;
+    className?: string;
+}
+
+// Legend Props
+export interface LegendProps {
+    title: string;
+    className?: string;
+}
+
+// Section Header Props
+export interface SectionHeaderProps {
+    title: string;
+    count: number;
+    className?: string;
+}
