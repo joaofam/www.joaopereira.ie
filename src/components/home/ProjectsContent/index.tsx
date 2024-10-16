@@ -36,7 +36,7 @@ const projects = [
                 description: 'Blockchain File Storage/Sharing Platform',
             },
             {
-                default: 'Blockchain, Crypto, Web Dev',
+                default: 'Blockchain Crypto Web Dev',
                 hover: 'React AWS Python NodeJS Solidity Web3',
             },
             {
@@ -54,7 +54,7 @@ const projects = [
                 description: 'Android App for GRPS Tracking',
             },
             {
-                default: 'IOT, Android Dev',
+                default: 'IOT Android Dev',
                 hover: 'React Native AWS Android Studio Python',
             },
             {

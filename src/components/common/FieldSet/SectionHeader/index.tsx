@@ -9,7 +9,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
     <h1 className={className}>
         <div className="flex items-baseline">
             <Scramble>{title}</Scramble>
-            <p className="ml-2 text-2xs lg:text-xs xl:text-sm">({count})</p>
+            <p className="ml-2 text-2xs lg:text-xs xl:text-sm">[{count}]</p>
         </div>
     </h1>
 );
