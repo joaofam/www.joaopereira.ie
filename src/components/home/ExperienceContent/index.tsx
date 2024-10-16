@@ -2,10 +2,10 @@
 
 import React from 'react';
 
-import { FieldSet } from '@/components/common/FieldSet/FieldSet/index';
-import { Legend } from '@/components/common/FieldSet/Legend';
-import { SectionHeader } from '@/components/common/FieldSet/SectionHeader/index';
-import { ShutterRow } from '@/components/common/ShutterRow/index';
+import { FieldSet } from '@/components/Common/FieldSet/FieldSet/index';
+import { Legend } from '@/components/Common/FieldSet/Legend';
+import { SectionHeader } from '@/components/Common/FieldSet/SectionHeader/index';
+import { ShutterRow } from '@/components/Common/ShutterRow/index';
 
 const experiences = [
     {

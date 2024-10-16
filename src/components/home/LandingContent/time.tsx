@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Scramble from '@/components/common/Scramble';
+import Scramble from '@/components/Common/Scramble';
 
 export const Time = () => {
     const [time, setTime] = useState('');

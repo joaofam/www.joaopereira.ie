@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Image from 'next/image';
 
-import Scramble from '@/components/common/Scramble/index';
+import Scramble from '@/components/Common/Scramble/index';
 import { TagProps } from '@/types/types';
 
 export const Tag: React.FC<TagProps> = ({

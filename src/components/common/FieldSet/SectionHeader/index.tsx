@@ -1,4 +1,4 @@
-import Scramble from '@/components/common/Scramble';
+import Scramble from '@/components/Common/Scramble';
 import { SectionHeaderProps } from '@/types/types';
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({

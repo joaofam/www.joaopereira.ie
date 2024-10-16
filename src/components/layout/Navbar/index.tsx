@@ -7,10 +7,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { CustomLink } from '@/components/common/Link/index';
-import Scramble from '@/components/common/Scramble/index';
-import Console from '@/components/console/index';
-import { Time } from '@/components/home/LandingContent/time';
+import { CustomLink } from '@/components/Common/Link/index';
+import Scramble from '@/components/Common/Scramble/index';
+import Console from '@/components/Console/index';
+import { Time } from '@/components/Home/LandingContent/time';
 import {
     CustomNavLinksProps,
     MobileNavProps,

@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-import { cat } from '@/components/console/Commands/cat';
-import { cd } from '@/components/console/Commands/cd';
-import { clear } from '@/components/console/Commands/clear';
-import { exit } from '@/components/console/Commands/exit';
-import { help } from '@/components/console/Commands/help';
-import { ls } from '@/components/console/Commands/ls';
-import { getWelcomeMessage } from '@/components/console/Commands/welcome';
+import { cat } from '@/components/Console/Commands/cat';
+import { cd } from '@/components/Console/Commands/cd';
+import { clear } from '@/components/Console/Commands/clear';
+import { exit } from '@/components/Console/Commands/exit';
+import { help } from '@/components/Console/Commands/help';
+import { ls } from '@/components/Console/Commands/ls';
+import { getWelcomeMessage } from '@/components/Console/Commands/welcome';
 
 interface TerminalProps {
     onClose: () => void;

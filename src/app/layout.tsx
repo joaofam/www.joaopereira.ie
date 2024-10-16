@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Space_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 
-import { Footer } from '@/components/layout/Footer/index';
-import Navbar from '@/components/layout/Navbar';
+import { Footer } from '@/components/Layout/Footer/index';
+import Navbar from '@/components/Layout/Navbar';
 import SmoothScrolling from '@/components/SmoothScrolling/SmoothScrolling';
 import { ThemeProvider } from '@/components/theme-provider';
 import { cn } from '@/lib/utils';

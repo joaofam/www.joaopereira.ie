@@ -4,7 +4,7 @@ import { Browser } from '@phosphor-icons/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Draggable, { DraggableEvent, DraggableData } from 'react-draggable';
 
-import Terminal from '@/components/console/Terminal/index';
+import Terminal from '@/components/Console/Terminal/index';
 
 interface ConsoleProps {
     readonly onClose: () => void;

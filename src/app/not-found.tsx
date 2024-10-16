@@ -1,6 +1,6 @@
 'use client';
 
-import Scramble from '@/components/common/Scramble';
+import Scramble from '@/components/Common/Scramble';
 
 export default function NotFound() {
     return (

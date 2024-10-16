@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import Link from 'next/link';
 
-import Scramble from '@/components/common/Scramble/index';
+import Scramble from '@/components/Common/Scramble/index';
 import { ShutterContainerProps } from '@/types/types';
 
 // Animation Variants
