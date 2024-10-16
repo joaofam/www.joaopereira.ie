@@ -1,6 +1,16 @@
 import { ReactNode } from 'react';
 
-// Content Props
+export interface ButtonProps {
+    text: string;
+    href?: string;
+    blank?: boolean;
+}
+
+export interface CustomNavLinksProps {
+    isConsoleOpen: boolean;
+    toggleConsole: () => void;
+}
+
 export interface DetailProps {
     title: string;
     content: string;
@@ -8,54 +18,23 @@ export interface DetailProps {
     hoveredContent?: string;
 }
 
-// Smooth Scrolling Props
-export interface SmoothScrollingProps {
-    children: ReactNode;
+export interface DualContainerProps {
+    leftContent: ReactNode;
+    rightContent: ReactNode;
+    leftTitle?: string;
+    rightTitle?: string;
 }
 
-// Button Props
-export interface Pixel {
-    id: string;
-    x: number;
-    y: number;
-    size: number;
-    isWhite: boolean;
-    changeTime: number;
+export interface FieldSetProps {
+    children: React.ReactNode;
+    className?: string;
 }
 
-// Button Props
-export interface ButtonProps {
-    text: string;
-    href?: string;
-    blank?: boolean;
+export interface LegendProps {
+    title: string;
+    className?: string;
 }
 
-// Custom Link Props
-export interface CustomNavLinksProps {
-    isConsoleOpen: boolean;
-    toggleConsole: () => void;
-}
-
-// Mobile Nav Props
-export interface MobileNavProps {
-    onClick: () => void;
-}
-
-// Mobile Menu Props
-export interface MobileMenuProps {
-    isOpen: boolean;
-    onClose: () => void;
-}
-
-// Tag Props
-export interface TagProps {
-    tag: string;
-    hoverTag?: string;
-    QRSrc?: string;
-    shouldHover?: boolean;
-}
-
-// Link Props
 export interface LinkProps {
     href?: string;
     className?: string;
@@ -65,7 +44,15 @@ export interface LinkProps {
     onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
-// Scramble Props
+export interface MobileMenuProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
+
+export interface MobileNavProps {
+    onClick: () => void;
+}
+
 export interface ScrambleProps {
     children: React.ReactNode;
     shouldScramble?: boolean;
@@ -74,16 +61,10 @@ export interface ScrambleProps {
     loop?: boolean;
 }
 
-// Shutter Props
-export interface ColumnData {
-    default?: string;
-    hover?: string;
-    description?: string;
-}
-
-export interface TitleData {
-    default?: string;
-    hover?: string;
+export interface SectionHeaderProps {
+    title: string;
+    count: number;
+    className?: string;
 }
 
 export interface ShutterContainerProps {
@@ -92,29 +73,33 @@ export interface ShutterContainerProps {
     titleColumn?: TitleData[];
 }
 
-// Dual Container Props
-export interface DualContainerProps {
-    leftContent: ReactNode;
-    rightContent: ReactNode;
-    leftTitle?: string;
-    rightTitle?: string;
+export interface SmoothScrollingProps {
+    children: ReactNode;
 }
 
-// Field Set Props
-export interface FieldSetProps {
-    children: React.ReactNode;
-    className?: string;
+export interface TagProps {
+    tag: string;
+    hoverTag?: string;
+    QRSrc?: string;
+    shouldHover?: boolean;
 }
 
-// Legend Props
-export interface LegendProps {
-    title: string;
-    className?: string;
+export interface ColumnData {
+    default?: string;
+    hover?: string;
+    description?: string;
 }
 
-// Section Header Props
-export interface SectionHeaderProps {
-    title: string;
-    count: number;
-    className?: string;
+export interface Pixel {
+    id: string;
+    x: number;
+    y: number;
+    size: number;
+    isWhite: boolean;
+    changeTime: number;
+}
+
+export interface TitleData {
+    default?: string;
+    hover?: string;
 }
