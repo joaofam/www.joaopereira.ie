@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { List, X } from '@phosphor-icons/react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -9,11 +11,11 @@ import { CustomLink } from '@/components/common/Link/index';
 import Scramble from '@/components/common/Scramble/index';
 import Console from '@/components/console/index';
 import { Time } from '@/components/home/LandingContent/time';
-
-interface CustomNavLinksProps {
-    isConsoleOpen: boolean;
-    toggleConsole: () => void;
-}
+import {
+    CustomNavLinksProps,
+    MobileNavProps,
+    MobileMenuProps,
+} from '@/types/types';
 
 function CustomNavLinks({
     isConsoleOpen,
@@ -45,11 +47,138 @@ function CustomNavLinks({
     );
 }
 
+const MobileNavMenu = ({ onClick }: Readonly<MobileNavProps>) => (
+    <button className="sm:hidden" onClick={onClick} aria-label="Open menu">
+        <List weight="bold" />
+    </button>
+);
+
+const MenuItem = ({
+    href,
+    onClick,
+    isActive,
+    children,
+    blank = false,
+    index,
+}: {
+    href: string;
+    onClick: () => void;
+    isActive: boolean;
+    children: React.ReactNode;
+    blank?: boolean;
+    index: number;
+}) => (
+    <motion.div
+        className="flex h-28 items-center justify-start"
+        initial={{ x: 300, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: 300, opacity: 0 }}
+        transition={{ duration: 0.3, delay: index * 0.15 }}
+    >
+        <CustomLink
+            href={href}
+            onClick={blank ? undefined : onClick}
+            blank={blank}
+            className={`h-full w-full border-b border-foreground px-16 text-3xl ${isActive ? 'bg-foreground text-white' : ''}`}
+        >
+            {children}
+        </CustomLink>
+    </motion.div>
+);
+
+const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
+    const pathname = usePathname();
+
+    const menuItems = [
+        { href: '/', label: 'Home', index: 0 },
+        { href: '/about', label: 'About', index: 1 },
+        {
+            href: 'https://github.com/joaofam',
+            label: 'GitHub',
+            index: 2,
+            blank: true,
+        },
+        { href: '/resume.pdf', label: 'Resume', index: 3, blank: true },
+    ];
+
+    return (
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    className="fixed right-0 top-0 h-screen w-full bg-white sm:hidden"
+                    initial={{ x: '100%' }}
+                    animate={{ x: 0 }}
+                    exit={{ x: '100%' }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                >
+                    <button
+                        className="absolute right-8 top-8 text-foreground"
+                        onClick={onClose}
+                        aria-label="Close menu"
+                    >
+                        <X weight="bold" size={16} />
+                    </button>
+                    <motion.div
+                        className="flex h-full flex-col justify-center uppercase text-foreground"
+                        initial="closed"
+                        animate="open"
+                        exit="closed"
+                        variants={{
+                            open: {
+                                transition: {
+                                    staggerChildren: 0.1,
+                                    delayChildren: 0.2,
+                                },
+                            },
+                            closed: {
+                                transition: {
+                                    staggerChildren: 0.05,
+                                    staggerDirection: -1,
+                                },
+                            },
+                        }}
+                    >
+                        {menuItems.map(item => (
+                            <MenuItem
+                                key={item.href}
+                                href={item.href}
+                                onClick={onClose}
+                                isActive={pathname === item.href}
+                                blank={item.blank}
+                                index={item.index}
+                            >
+                                <span className="text-sm">
+                                    [0{item.index + 1}]{' '}
+                                </span>
+                                {item.label}
+                            </MenuItem>
+                        ))}
+                        <motion.div
+                            className="flex h-24 items-center justify-center px-4 text-xl"
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: 20, opacity: 0 }}
+                            transition={{ duration: 0.3, delay: 0.75 }}
+                        >
+                            <Time />
+                        </motion.div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+};
+
 export default function Navbar() {
     const [isConsoleOpen, setIsConsoleOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const toggleConsole = () => {
         setIsConsoleOpen(!isConsoleOpen);
+    };
+
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
     return (
@@ -65,15 +194,27 @@ export default function Navbar() {
                     </span>
                 </Link>
                 <nav className="ml-auto flex items-center space-x-8 text-sm text-foreground">
-                    <CustomNavLinks
-                        isConsoleOpen={isConsoleOpen}
-                        toggleConsole={toggleConsole}
-                    />
+                    <div className="flex sm:hidden">
+                        <CustomLink
+                            onClick={toggleConsole}
+                            className={`${isConsoleOpen ? 'italic text-primary' : ''}`}
+                        >
+                            Console
+                        </CustomLink>
+                    </div>
+                    <MobileNavMenu onClick={toggleMobileMenu} />
+                    <div className="hidden space-x-8 sm:flex">
+                        <CustomNavLinks
+                            isConsoleOpen={isConsoleOpen}
+                            toggleConsole={toggleConsole}
+                        />
+                    </div>
                 </nav>
             </header>
             {isConsoleOpen && (
                 <Console onClose={() => setIsConsoleOpen(false)} />
             )}
+            <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
         </>
     );
 }
