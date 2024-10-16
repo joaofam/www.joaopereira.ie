@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { ButtonProps, Pixel } from '@/app/types/types';
+import { ButtonProps, Pixel } from '@/types/types';
 
 const Button: React.FC<ButtonProps> = ({ text, href, blank }) => {
     const router = useRouter();

@@ -2,7 +2,7 @@
 
 import { ReactLenis } from '@studio-freight/react-lenis';
 
-import { SmoothScrollingProps } from '@/app/types/types';
+import { SmoothScrollingProps } from '@/types/types';
 
 const SmoothScrolling: React.FC<SmoothScrollingProps> = ({ children }) => {
     return (

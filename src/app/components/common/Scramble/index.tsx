@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 import { useScramble } from 'use-scramble';
 
-import { ScrambleProps } from '@/app/types/types';
+import { ScrambleProps } from '@/types/types';
 
 const Scramble: React.FC<ScrambleProps> = ({
     children,

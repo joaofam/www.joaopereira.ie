@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { animate } from 'framer-motion';
 import { Link } from 'next-transition-router';
 
-import { LinkProps } from '@/app/types/types';
+import { LinkProps } from '@/types/types';
 
 export const CustomLink: React.FC<LinkProps> = ({
     href,

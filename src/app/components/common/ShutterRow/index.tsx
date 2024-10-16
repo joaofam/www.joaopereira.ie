@@ -4,7 +4,7 @@ import { motion, useAnimation } from 'framer-motion';
 import Link from 'next/link';
 
 import Scramble from '@/app/components/common/Scramble/index';
-import { ShutterContainerProps } from '@/app/types/types';
+import { ShutterContainerProps } from '@/types/types';
 
 // Animation Variants
 const borderVariants = {

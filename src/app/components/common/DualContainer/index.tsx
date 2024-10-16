@@ -1,4 +1,4 @@
-import { DualContainerProps } from '@/app/types/types';
+import { DualContainerProps } from '@/types/types';
 
 const DualContainer: React.FC<DualContainerProps> = ({
     leftContent,

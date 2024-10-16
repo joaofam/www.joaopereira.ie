@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Scramble from '@/app/components/common/Scramble/index';
-import { DetailProps } from '@/app/types/types';
+import { DetailProps } from '@/types/types';
 
 interface DetailItemProps {
     detail: DetailProps;

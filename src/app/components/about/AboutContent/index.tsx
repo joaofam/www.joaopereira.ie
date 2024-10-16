@@ -8,7 +8,7 @@ import DetailItem from '@/app/components/common/DetailItem';
 import DualContainer from '@/app/components/common/DualContainer/index';
 import { Tag } from '@/app/components/common/ImageTag/index';
 import Scramble from '@/app/components/common/Scramble/index';
-import { DetailProps } from '@/app/types/types';
+import { DetailProps } from '@/types/types';
 
 const Details: DetailProps[] = [
     {
