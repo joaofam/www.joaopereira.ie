@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { CustomLink } from '@/app/components/common/Link/index';
-import Scramble from '@/app/components/common/Scramble/index';
-import { Time } from '@/app/components/Home/LandingContent/time';
+import { CustomLink } from '@/components/common/Link/index';
+import Scramble from '@/components/common/Scramble/index';
+import { Time } from '@/components/Home/LandingContent/time';
 
 export default function Navbar() {
     const pathname = usePathname();

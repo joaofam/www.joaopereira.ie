@@ -1,8 +1,6 @@
 'use client';
 
-import Image from 'next/image';
-
-import Scramble from './components/common/Scramble';
+import Scramble from '@/components/common/Scramble';
 
 export default function NotFound() {
     return (

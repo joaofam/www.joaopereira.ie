@@ -4,8 +4,8 @@ import React from 'react';
 
 import Image from 'next/image';
 
-import { CustomLink } from '@/app/components/common/Link/index';
-import Scramble from '@/app/components/common/Scramble/index';
+import { CustomLink } from '@/components/common/Link/index';
+import Scramble from '@/components/common/Scramble/index';
 
 export const Footer = () => {
     return (

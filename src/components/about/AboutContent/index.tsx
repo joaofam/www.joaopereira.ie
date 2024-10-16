@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 
 import Image from 'next/image';
 
-import DetailItem from '@/app/components/common/DetailItem';
-import DualContainer from '@/app/components/common/DualContainer/index';
-import { Legend } from '@/app/components/common/FieldSet/Legend/index';
-import { Tag } from '@/app/components/common/ImageTag/index';
-import Scramble from '@/app/components/common/Scramble/index';
+import DetailItem from '@/components/common/DetailItem';
+import DualContainer from '@/components/common/DualContainer/index';
+import { Legend } from '@/components/common/FieldSet/Legend/index';
+import { Tag } from '@/components/common/ImageTag/index';
+import Scramble from '@/components/common/Scramble/index';
 import { DetailProps } from '@/types/types';
 
 const Details: DetailProps[] = [

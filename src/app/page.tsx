@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
-import { Divider } from '@/app/components/common/Divider/index';
-import { Experience } from '@/app/components/Home/ExperienceContent/index';
-import Intro from '@/app/components/Home/IntroductionContent/index';
-import Title from '@/app/components/Home/LandingContent/index';
-import Projects from '@/app/components/Home/ProjectsContent/index';
+import { Divider } from '@/components/common/Divider/index';
+import { Experience } from '@/components/Home/ExperienceContent/index';
+import Intro from '@/components/Home/IntroductionContent/index';
+import Title from '@/components/Home/LandingContent/index';
+import Projects from '@/components/Home/ProjectsContent/index';
 
 export const metadata: Metadata = {
     title: 'Joao Pereira | Personal Portfolio',

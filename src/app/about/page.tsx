@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import AboutContent from '@/app/components/about/AboutContent/index';
+import AboutContent from '@/components/about/AboutContent/index';
 
 export const metadata: Metadata = {
     title: 'About | Joao Pereira',

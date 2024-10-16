@@ -2,11 +2,11 @@
 
 import React from 'react';
 
-import Button from '@/app/components/common/Button/index';
-import { FieldSet } from '@/app/components/common/FieldSet/FieldSet/index';
-import { Legend } from '@/app/components/common/FieldSet/Legend';
-import { SectionHeader } from '@/app/components/common/FieldSet/SectionHeader/index';
-import { ShutterRow } from '@/app/components/common/ShutterRow/index';
+import Button from '@/components/common/Button/index';
+import { FieldSet } from '@/components/common/FieldSet/FieldSet/index';
+import { Legend } from '@/components/common/FieldSet/Legend';
+import { SectionHeader } from '@/components/common/FieldSet/SectionHeader/index';
+import { ShutterRow } from '@/components/common/ShutterRow/index';
 
 const projects = [
     {

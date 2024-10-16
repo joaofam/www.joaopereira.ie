@@ -1,4 +1,4 @@
-import { Legend } from '@/app/components/common/FieldSet/Legend';
+import { Legend } from '@/components/common/FieldSet/Legend';
 import { DualContainerProps } from '@/types/types';
 
 const DualContainer: React.FC<DualContainerProps> = ({

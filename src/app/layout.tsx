@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import { Space_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 
-import { Footer } from '@/app/components/layout/Footer/index';
-import Navbar from '@/app/components/layout/Navbar';
-import SmoothScrolling from '@/app/components/SmoothScrolling/SmoothScrolling';
-import { ThemeProvider } from '@/app/components/theme-provider';
+import { Footer } from '@/components/layout/Footer/index';
+import Navbar from '@/components/layout/Navbar';
+import SmoothScrolling from '@/components/SmoothScrolling/SmoothScrolling';
+import { ThemeProvider } from '@/components/theme-provider';
 import { cn } from '@/lib/utils';
 
 import { Providers } from './providers';
