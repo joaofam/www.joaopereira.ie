@@ -17,7 +17,7 @@ export const Footer = () => {
                 {/* Two Rows */}
                 <div className="grid h-full grid-cols-1 grid-rows-[2fr_auto_1fr] px-2 md:px-4 xl:px-12">
                     {/* Row 1 - Two Columns */}
-                    <div className="row-start-1 grid grid-cols-2 gap-4 cursor-default">
+                    <div className="row-start-1 grid cursor-default grid-cols-2 gap-4">
                         <div className="relative mb-16 flex items-center justify-start text-5xl uppercase sm:mb-0 sm:items-start sm:text-7xl md:mt-6 md:text-6xl lg:mb-8 lg:text-8xl xl:text-9xl 2xl:text-10xl">
                             <div className="relative">
                                 <h1 className="absolute left-0 top-0 mt-2 -translate-x-0 transform font-ThrowUpShadow text-foreground">
@@ -45,57 +45,55 @@ export const Footer = () => {
                         </div>
                     </div>
                     {/* Divider Line */}
-                    <hr className="row-start-2 my-2 w-[85vw] border-t border-gray-500" />
+                    <hr className="row-start-2 my-2 w-full border-t border-gray-500" />
                     {/* Row 2 */}
                     <div className="row-start-3 h-full">
-                        <div className="flex h-full flex-col items-center">
-                            <div className="flex w-full flex-col items-start justify-start gap-2">
-                                <div className="flex w-full">
-                                    {renderContactLink(
-                                        'mailto:joaopereira2213@gmail.com',
-                                        'joaopereira2213@gmail.com'
-                                    )}
-                                </div>
-                                <div className="flex w-full justify-start">
-                                    {renderContactLink(
-                                        'https://github.com/joaofam',
-                                        'github.com/joaofam'
-                                    )}
-                                </div>
-                                <div className="flex w-full justify-start">
-                                    {renderContactLink(
-                                        'https://linkedin.com/in/joao-joao',
-                                        'linkedin.com/in/joao-joao/'
-                                    )}
+                        <div className="flex grid h-full grid-cols-2 grid-rows-1 gap-0 pb-2">
+                            <div className="flex h-full items-end justify-start">
+                                <div className="grid grid-cols-1 grid-rows-3 gap-2">
+                                    <div className="flex w-full">
+                                        {renderContactLink(
+                                            'mailto:joaopereira2213@gmail.com',
+                                            'joaopereira2213@gmail.com'
+                                        )}
+                                    </div>
+                                    <div className="flex w-full justify-start">
+                                        {renderContactLink(
+                                            'https://github.com/joaofam',
+                                            'github.com/joaofam'
+                                        )}
+                                    </div>
+                                    <div className="flex w-full justify-start">
+                                        {renderContactLink(
+                                            'https://linkedin.com/in/joao-joao',
+                                            'linkedin.com/in/joao-joao/'
+                                        )}
+                                    </div>
                                 </div>
                             </div>
-                            <div className="mr-32 flex w-full items-end justify-end space-x-4 sm:mr-60 md:mr-80 xl:mr-64 xl:space-x-16 2xl:mr-80">
-                                <CustomLink
-                                    blank={true}
-                                    href="https://github.com/joaopereira2.0"
-                                    white
-                                    className="text-3xs text-[#8e8e8e] sm:text-2xs md:text-xs"
-                                >
-                                    Src code
-                                </CustomLink>
-                                <CustomLink
-                                    blank={true}
-                                    href="#top"
-                                    white
-                                    className="text-3xs text-[#8e8e8e] sm:text-2xs md:text-xs"
-                                >
-                                    Back2top
-                                </CustomLink>
-                            </div>
-                            <div className="absolute bottom-1 right-1 h-[5rem] w-[5rem] sm:h-[7.5rem] sm:w-[7.5rem] lg:w-[9.25rem] xl:h-[10rem] xl:w-[10rem]">
-                                <Image
-                                    src="/stamp.svg"
-                                    alt="Stamp"
-                                    fill
-                                    sizes="(max-width: 1280px) 10rem, 26rem"
-                                    style={{ objectFit: 'contain' }}
-                                    priority
-                                />
+                            <div className="flex h-full items-end justify-end">
+                                <div className="grid grid-cols-2 grid-rows-1 gap-16 2xl:gap-32">
+                                    <div>
+                                        <CustomLink
+                                            blank={true}
+                                            href="https://github.com/joaopereira2.0"
+                                            white
+                                            className="text-3xs text-[#8e8e8e] sm:text-2xs md:text-xs"
+                                        >
+                                            Src code
+                                        </CustomLink>
+                                    </div>
+                                    <div>
+                                        <CustomLink
+                                            blank={true}
+                                            href="#top"
+                                            white
+                                            className="text-3xs text-[#8e8e8e] sm:text-2xs md:text-xs"
+                                        >
+                                            Back2top
+                                        </CustomLink>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
