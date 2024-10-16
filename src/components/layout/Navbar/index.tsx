@@ -40,12 +40,12 @@ export default function Navbar() {
                     >
                         About
                     </CustomLink>
-                    <button
+                    <CustomLink
                         onClick={toggleConsole}
                         className={`${isConsoleOpen ? 'italic text-primary' : ''}`}
                     >
                         Console
-                    </button>
+                    </CustomLink>
                     <CustomLink href="https://github.com/joaofam" blank={true}>
                         GitHub
                     </CustomLink>

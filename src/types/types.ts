@@ -39,11 +39,12 @@ export interface TagProps {
 
 // Link Props
 export interface LinkProps {
-    href: string;
+    href?: string;
     className?: string;
     children: React.ReactNode;
     white?: boolean;
     blank?: boolean;
+    onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
 // Scramble Props

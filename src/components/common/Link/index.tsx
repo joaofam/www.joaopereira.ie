@@ -11,13 +11,15 @@ export const CustomLink: React.FC<LinkProps> = ({
     children,
     white = false,
     blank = false,
+    onClick,
 }) => {
     const [isHovered, setIsHovered] = useState(false);
 
-    const handleClick = (
-        e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-    ) => {
-        if (href === '#top') {
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        if (onClick) {
+            e.preventDefault();
+            onClick(e);
+        } else if (href === '#top') {
             e.preventDefault();
             animate(window.scrollY, 0, {
                 duration: 0.5,
@@ -27,14 +29,14 @@ export const CustomLink: React.FC<LinkProps> = ({
     };
 
     const commonProps = {
-        href,
+        href: href ?? '#',
         className: `inline-flex items-center uppercase tracking-wide text-2xs sm:text-xs md:text-sm 2xl:text-sm ${className} group relative overflow-hidden`,
         onMouseEnter: () => setIsHovered(true),
         onMouseLeave: () => setIsHovered(false),
         onClick: handleClick,
     };
 
-    const LinkComponent = blank ? 'a' : Link;
+    const LinkComponent = blank || onClick ? 'a' : Link;
 
     return (
         <LinkComponent
