@@ -15,7 +15,7 @@ const experiences = [
                 hover: 'Associate Applications Developer',
             },
             {
-                default: '10/23 - Present [1 year]',
+                default: '10.23 - Present [1 year]',
                 hover: 'Java Python JS TS NextJS SQL PTC Agile',
             },
         ],
@@ -27,7 +27,7 @@ const experiences = [
                 hover: 'Software Developer Intern',
             },
             {
-                default: '03/23 - 08/23 [6 Months]',
+                default: '03.22 - 08.22 [6 Months]',
                 hover: 'Python React Ansible SQL TestRail Scrum',
             },
         ],
