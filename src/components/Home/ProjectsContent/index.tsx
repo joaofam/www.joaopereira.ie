@@ -10,7 +10,7 @@ import { ShutterRow } from '@/components/Common/ShutterRow/index';
 
 const projects = [
     {
-        href: "https://github.com/joaofam/joaopereira.ie",
+        href: 'https://github.com/joaofam/joaopereira.ie',
         columns: [
             {
                 default: 'joaopereira.ie',
@@ -28,7 +28,7 @@ const projects = [
         ],
     },
     {
-        href: "https://github.com/joaofam/FILEFLO",
+        href: 'https://github.com/joaofam/FILEFLO',
         columns: [
             {
                 default: 'Fileflo',
@@ -46,7 +46,7 @@ const projects = [
         ],
     },
     {
-        href: "https://github.com/joaofam/Venato",
+        href: 'https://github.com/joaofam/Venato',
         columns: [
             {
                 default: 'Venato',
@@ -67,12 +67,13 @@ const projects = [
 
 const ProjectList = () => (
     <FieldSet className="relative w-full border px-2 py-4 sm:py-8 md:px-8">
-        <Legend 
-            title="#######"
-            className="tracking-wide text-secondary"
-        />
+        <Legend title="#######" className="tracking-wide text-secondary" />
         {projects.map((project, index) => (
-            <ShutterRow key={index} href={project.href} columns={project.columns} />
+            <ShutterRow
+                key={index}
+                href={project.href}
+                columns={project.columns}
+            />
         ))}
     </FieldSet>
 );
@@ -81,10 +82,10 @@ export default function Projects() {
     return (
         <div className="sm:[25vh] relative flex h-[75vh] w-full items-center justify-center font-SpaceMono tracking-tight text-foreground md:h-[70vh] lg:h-[75vh] xl:h-[75vh] 2xl:h-[60vh]">
             <div className="relative w-full">
-                <SectionHeader 
-                    title="Projects" 
+                <SectionHeader
+                    title="Projects"
                     count={3}
-                    className="cursor-default py-8 font-Nohemi text-4xl sm:text-4xl font-regular 2xl:text-6xl"
+                    className="cursor-default py-8 font-Nohemi text-4xl font-regular sm:text-4xl 2xl:text-6xl"
                 />
                 <ProjectList />
                 <div className="pt-8 text-end">

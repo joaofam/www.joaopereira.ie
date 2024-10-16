@@ -9,7 +9,7 @@ const Scramble: React.FC<ScrambleProps> = ({
     shouldScramble,
     textHovered,
     className,
-    loop
+    loop,
 }) => {
     const text = typeof children === 'string' ? children : '';
     const { ref, replay } = useScramble({

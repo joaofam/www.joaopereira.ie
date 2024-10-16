@@ -70,7 +70,7 @@ const MotionDiv = ({ column, index, isHovered, isSmallScreen }: any) => (
         <Scramble>{isHovered ? column.hover : column.default}</Scramble>
         {column.description && (
             <div className="mt-2 text-4xs tracking-wider sm:text-2xs">
-                {isHovered ? "Expand ↗" : column.description}
+                {isHovered ? 'Expand ↗' : column.description}
             </div>
         )}
     </motion.div>

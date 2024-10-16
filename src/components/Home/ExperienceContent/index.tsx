@@ -36,10 +36,7 @@ const experiences = [
 
 const ExperienceList = () => (
     <FieldSet className="relative w-full border px-2 py-4 sm:py-8 md:px-8">
-        <Legend 
-            title="^^^^^^^"
-            className="tracking-wide text-secondary"
-        />
+        <Legend title="^^^^^^^" className="tracking-wide text-secondary" />
         {experiences.map((experience, index) => (
             <ShutterRow key={index} columns={experience.columns} />
         ))}
@@ -50,10 +47,10 @@ export const Experience = () => {
     return (
         <div className="relative flex h-[75vh] w-full items-center justify-center font-SpaceMono tracking-tight text-foreground">
             <div className="relative w-full">
-                <SectionHeader 
-                    title="Experience" 
+                <SectionHeader
+                    title="Experience"
                     count={2}
-                    className="cursor-default py-8 font-Nohemi text-4xl sm:text-4xl font-regular 2xl:text-6xl"
+                    className="cursor-default py-8 font-Nohemi text-4xl font-regular sm:text-4xl 2xl:text-6xl"
                 />
                 <ExperienceList />
             </div>

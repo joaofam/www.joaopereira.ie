@@ -76,12 +76,9 @@ const PersonalEndeavours: React.FC<DetailItemProps> = ({
                 setTextHovered(false);
             }}
         >
-            <Legend
-                title="endeavours"
-                className="text-primary"
-            />
+            <Legend title="endeavours" className="text-primary" />
             <span
-                className="whitespace-pre-wrap text-xs tracking-tight text-2xs sm:text-xs 2xl:text-sm"
+                className="whitespace-pre-wrap text-2xs text-xs tracking-tight sm:text-xs 2xl:text-sm"
                 style={{ lineHeight: '1.5' }}
             >
                 <p className="text-left sm:text-left">
@@ -103,8 +100,8 @@ const PersonalEndeavours: React.FC<DetailItemProps> = ({
                     >
                         {textHovered ? 'explore' : 'throw myself into'}
                     </Scramble>{' '}
-                    different hobbies and skillsets so life doesnt
-                    become too stale. Some of my hobbies include{' '}
+                    different hobbies and skillsets so life doesnt become too
+                    stale. Some of my hobbies include{' '}
                     <Scramble
                         shouldScramble={textHovered}
                         className={scrambleClass}
@@ -180,14 +177,14 @@ export default function AboutContent() {
     const leftContent = (
         <div className="relative flex flex-col items-center">
             <div className="relative h-80 w-80 xl:h-[26rem] xl:w-[26rem] 2xl:h-[28rem] 2xl:w-[28rem]">
-            <Image
-                src="/CD.png"
-                alt="CD Case"
-                priority={true}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                style={{ objectFit: 'contain' }}
-            />
+                <Image
+                    src="/CD.png"
+                    alt="CD Case"
+                    priority={true}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                    style={{ objectFit: 'contain' }}
+                />
             </div>
             <div className="w-80 xl:w-[26rem]">
                 <Tag

@@ -69,12 +69,9 @@ const TechSummary: React.FC<DetailItemProps> = ({
                 setTextHovered(false);
             }}
         >
-            <Legend
-                title="Summary"
-                className="text-primary"
-            />
+            <Legend title="Summary" className="text-primary" />
             <span
-                className="whitespace-pre-wrap text-xs tracking-tight text-2xs sm:text-xs 2xl:text-sm"
+                className="whitespace-pre-wrap text-2xs text-xs tracking-tight sm:text-xs 2xl:text-sm"
                 style={{ lineHeight: '1.5' }}
             >
                 <p className="text-left sm:text-left">

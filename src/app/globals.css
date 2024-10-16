@@ -76,27 +76,50 @@
     z-index: -1;
 }
 .hero:after {
-    content: "";
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Dissolve_Noise_Texture.png");
+    content: '';
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Dissolve_Noise_Texture.png');
     height: 300%;
     width: 300%;
     position: fixed;
     opacity: 0.04;
     animation: animateGrain 8s steps(10) infinite;
-    z-index: 0
+    z-index: 0;
 }
 @keyframes animateGrain {
-    0%, 100% { transform: translate(0, 0); }
-    10% { transform: translate(-5%, -10%); }
-    20% { transform: translate(-15%, -20%); }
-    30% { transform: translate(-5%, -10%); }
-    40% { transform: translate(-15%, -20%); }
-    50% { transform: translate(-5%, -10%); }
-    60% { transform: translate(-15%, -20%); }
-    70% { transform: translate(-5%, -10%); }
-    80% { transform: translate(-15%, -20%); }
-    90% { transform: translate(-5%, -10%); }
-    100% { transform: translate(-15%, -20%); }
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(-5%, -10%);
+    }
+    20% {
+        transform: translate(-15%, -20%);
+    }
+    30% {
+        transform: translate(-5%, -10%);
+    }
+    40% {
+        transform: translate(-15%, -20%);
+    }
+    50% {
+        transform: translate(-5%, -10%);
+    }
+    60% {
+        transform: translate(-15%, -20%);
+    }
+    70% {
+        transform: translate(-5%, -10%);
+    }
+    80% {
+        transform: translate(-15%, -20%);
+    }
+    90% {
+        transform: translate(-5%, -10%);
+    }
+    100% {
+        transform: translate(-15%, -20%);
+    }
 }
 
 .nowrap {

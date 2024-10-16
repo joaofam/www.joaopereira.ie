@@ -58,7 +58,11 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
             ...prev,
             <div key={prev.length}>
                 <span style={{ color: '#2194f3' }}>{currentDir}$&nbsp;</span>
-                <span className={isValidCommand ? 'text-secondary' : 'text-white'}>{cmd}</span>
+                <span
+                    className={isValidCommand ? 'text-secondary' : 'text-white'}
+                >
+                    {cmd}
+                </span>
                 <span className="text-white">&nbsp;{args.join(' ')}</span>
             </div>,
         ]);
@@ -161,7 +165,9 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
         return (
             <div className="relative flex">
                 <span className="text-primary">{currentDir}$&nbsp;</span>
-                <span className={isValidCommand ? 'text-secondary' : 'text-white'}>
+                <span
+                    className={isValidCommand ? 'text-secondary' : 'text-white'}
+                >
                     {cmd}
                 </span>
                 <span className="text-white">&nbsp;{rest.join(' ')}</span>
@@ -171,7 +177,7 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
                     value={input}
                     onChange={handleInputChange}
                     onKeyDown={handleInputSubmit}
-                    className="flex-grow bg-transparent text-white outline-none absolute inset-0 opacity-0"
+                    className="absolute inset-0 flex-grow bg-transparent text-white opacity-0 outline-none"
                 />
             </div>
         );
@@ -180,7 +186,7 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     return (
         <div
             ref={terminalRef}
-            className="h-full overflow-y-auto bg-foreground p-4 text-3xs sm:text-2xs md:text-xs text-white"
+            className="h-full overflow-y-auto bg-foreground p-4 text-3xs text-white sm:text-2xs md:text-xs"
         >
             {output}
             {renderInput()}

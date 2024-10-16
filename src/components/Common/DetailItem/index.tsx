@@ -26,7 +26,7 @@ const DetailItem: React.FC<DetailItemProps> = ({
         onMouseLeave={onMouseLeave}
     >
         <span
-            className={`capitalize absolute left-4 top-0 -translate-y-1/2 transform px-2 font-bold ${
+            className={`absolute left-4 top-0 -translate-y-1/2 transform px-2 font-bold capitalize ${
                 hoveredIndex === index ? 'capitalize text-primary' : ''
             }`}
         >

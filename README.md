@@ -6,10 +6,10 @@ Welcome to the repository for my personal portfolio website, hosted at [www.joao
 
 This project is built using modern web technologies and frameworks:
 
-- **Next.js 14.2.5**: React framework for production-grade applications
-- **React 18.3.1**: JavaScript library for building user interfaces
-- **TypeScript 5.5.3**: Typed superset of JavaScript
-- **Tailwind CSS 3.4.6**: Utility-first CSS framework
+-   **Next.js 14.2.5**: React framework for production-grade applications
+-   **React 18.3.1**: JavaScript library for building user interfaces
+-   **TypeScript 5.5.3**: Typed superset of JavaScript
+-   **Tailwind CSS 3.4.6**: Utility-first CSS framework
 
 ## Package Management
 

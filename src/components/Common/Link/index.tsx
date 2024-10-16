@@ -15,7 +15,9 @@ export const CustomLink: React.FC<LinkProps> = ({
 }) => {
     const [isHovered, setIsHovered] = useState(false);
 
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    const handleClick = (
+        e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+    ) => {
         if (onClick) {
             e.preventDefault();
             onClick(e);
