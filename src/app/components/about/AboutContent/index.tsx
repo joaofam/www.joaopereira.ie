@@ -103,8 +103,8 @@ const PersonalEndeavours: React.FC<DetailItemProps> = ({
                     >
                         {textHovered ? 'explore' : 'throw myself out into'}
                     </Scramble>{' '}
-                    different hobbies and skillsets so I dont become the void of
-                    a person. My interests lie primarily within{' '}
+                    different hobbies and skillsets so life doesnt
+                    become too stale. My interests lie primarily within{' '}
                     <Scramble
                         shouldScramble={textHovered}
                         className={scrambleClass}
@@ -131,11 +131,6 @@ const PersonalEndeavours: React.FC<DetailItemProps> = ({
                             ? 'sharing insights and experiences'
                             : '[possibly in the future] blogs of knowledge'}
                     </Scramble>{' '}
-                    n things in life that interest me as mentioned.
-                    <br />
-                    <br />
-                    Life is what happens while youre busy making other plans.
-                    [John Lennon]
                 </p>
             </span>
         </div>
