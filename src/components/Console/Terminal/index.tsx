@@ -6,6 +6,7 @@ import { clear } from '@/components/Console/Commands/clear';
 import { exit } from '@/components/Console/Commands/exit';
 import { help } from '@/components/Console/Commands/help';
 import { ls } from '@/components/Console/Commands/ls';
+import { Surprise } from '@/components/Console/Commands/surprise';
 import { getWelcomeMessage } from '@/components/Console/Commands/welcome';
 
 interface TerminalProps {
@@ -18,10 +19,11 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     const [currentDir, setCurrentDir] = useState('/');
     const [commandHistory, setCommandHistory] = useState<string[]>([]);
     const [historyIndex, setHistoryIndex] = useState(-1);
+    const [showSurprise, setShowSurprise] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
     const terminalRef = useRef<HTMLDivElement>(null);
 
-    const validCommands = ['exit', 'clear', 'help', 'ls', 'cd', 'cat'];
+    const validCommands = ['exit', 'clear', 'help', 'ls', 'cd', 'cat', 'surprise'];
 
     useEffect(() => {
         if (inputRef.current) {
@@ -121,6 +123,9 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
                 ]);
                 break;
             }
+            case 'surprise':
+                setShowSurprise(true);
+                break;
             default:
                 setOutput(prev => [
                     ...prev,
@@ -184,13 +189,16 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     };
 
     return (
-        <div
-            ref={terminalRef}
-            className="h-full overflow-y-auto bg-foreground p-4 text-3xs text-white sm:text-2xs md:text-xs"
-        >
-            {output}
-            {renderInput()}
-        </div>
+        <>
+            <div
+                ref={terminalRef}
+                className="h-full overflow-y-auto bg-foreground p-4 text-3xs text-white sm:text-2xs md:text-xs"
+            >
+                {output}
+                {renderInput()}
+            </div>
+            {showSurprise && <Surprise onClose={() => setShowSurprise(false)} />}
+        </>
     );
 };
 
