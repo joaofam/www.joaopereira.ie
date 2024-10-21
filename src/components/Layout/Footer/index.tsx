@@ -76,7 +76,7 @@ export const Footer = () => {
                                     <div>
                                         <CustomLink
                                             blank={true}
-                                            href="https://github.com/joaopereira2.0"
+                                            href="https://github.com/joaofam/www.joaopereira.ie"
                                             white
                                             className="text-3xs text-[#8e8e8e] sm:text-2xs md:text-xs"
                                         >
