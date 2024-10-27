@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
 import { List, X } from '@phosphor-icons/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
@@ -11,16 +9,11 @@ import { CustomLink } from '@/components/Common/Link/index';
 import Scramble from '@/components/Common/Scramble/index';
 import Console from '@/components/Console/index';
 import { Time } from '@/components/Home/LandingContent/time';
-import {
-    CustomNavLinksProps,
-    MobileNavProps,
-    MobileMenuProps,
-} from '@/types/types';
+import { useNavbar } from '@/hooks/useNavbar';
+import { CustomNavLinksProps, MobileNavProps, MobileMenuProps } from '@/types/types';
 
-function CustomNavLinks({
-    isConsoleOpen,
-    toggleConsole,
-}: Readonly<CustomNavLinksProps>) {
+
+function CustomNavLinks({ isConsoleOpen, toggleConsole }: Readonly<CustomNavLinksProps>) {
     const pathname = usePathname();
 
     return (
@@ -28,16 +21,10 @@ function CustomNavLinks({
             <div className="hidden cursor-default sm:flex">
                 <Time />
             </div>
-            <CustomLink
-                href="/about"
-                className={`${pathname === '/about' ? 'italic text-primary' : ''}`}
-            >
+            <CustomLink href="/about" className={`${pathname === '/about' ? 'italic text-primary' : ''}`}>
                 About
             </CustomLink>
-            <CustomLink
-                onClick={toggleConsole}
-                className={`${isConsoleOpen ? 'italic text-primary' : ''}`}
-            >
+            <CustomLink onClick={toggleConsole} className={`${isConsoleOpen ? 'italic text-primary' : ''}`}>
                 Console
             </CustomLink>
             <CustomLink href="https://github.com/joaofam" blank={true}>
@@ -53,14 +40,7 @@ const MobileNavMenu = ({ onClick }: Readonly<MobileNavProps>) => (
     </button>
 );
 
-const MenuItem = ({
-    href,
-    onClick,
-    isActive,
-    children,
-    blank = false,
-    index,
-}: {
+const MenuItem = ({ href, onClick, isActive, children, blank = false, index }: {
     href: string;
     onClick: () => void;
     isActive: boolean;
@@ -92,12 +72,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
     const menuItems = [
         { href: '/', label: 'Home', index: 0 },
         { href: '/about', label: 'About', index: 1 },
-        {
-            href: 'https://github.com/joaofam',
-            label: 'GitHub',
-            index: 2,
-            blank: true,
-        },
+        { href: 'https://github.com/joaofam', label: 'GitHub', index: 2, blank: true },
         { href: '/resume.pdf', label: 'Resume', index: 3, blank: true },
     ];
 
@@ -111,11 +86,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                     exit={{ x: '100%' }}
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                 >
-                    <button
-                        className="absolute right-8 top-8 text-foreground"
-                        onClick={onClose}
-                        aria-label="Close menu"
-                    >
+                    <button className="absolute right-8 top-8 text-foreground" onClick={onClose} aria-label="Close menu">
                         <X weight="bold" size={16} />
                     </button>
                     <motion.div
@@ -147,9 +118,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                                 blank={item.blank}
                                 index={item.index}
                             >
-                                <span className="text-sm">
-                                    [0{item.index + 1}]{' '}
-                                </span>
+                                <span className="text-sm">[0{item.index + 1}] </span>
                                 {item.label}
                             </MenuItem>
                         ))}
@@ -170,16 +139,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
 };
 
 export default function Navbar() {
-    const [isConsoleOpen, setIsConsoleOpen] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-    const toggleConsole = () => {
-        setIsConsoleOpen(!isConsoleOpen);
-    };
-
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
+    const { isConsoleOpen, isMobileMenuOpen, toggleConsole, toggleMobileMenu } = useNavbar();
 
     return (
         <>
@@ -212,7 +172,7 @@ export default function Navbar() {
                 </nav>
             </header>
             {isConsoleOpen && (
-                <Console onClose={() => setIsConsoleOpen(false)} />
+                <Console onClose={toggleConsole} />
             )}
             <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
         </>

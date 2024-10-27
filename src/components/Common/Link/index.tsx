@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { usePathname } from 'next/navigation';
 import { animate } from 'framer-motion';
 import { Link } from 'next-transition-router';
 
@@ -14,6 +15,8 @@ export const CustomLink: React.FC<LinkProps> = ({
     onClick,
 }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const pathname = usePathname();
+    const isActive = pathname === href;
 
     const handleClick = (
         e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
@@ -32,7 +35,7 @@ export const CustomLink: React.FC<LinkProps> = ({
 
     const commonProps = {
         href: href ?? '#',
-        className: `inline-flex items-center uppercase tracking-wide text-2xs sm:text-xs md:text-sm 2xl:text-sm ${className} group relative overflow-hidden`,
+        className: `inline-flex items-center uppercase tracking-wide text-2xs sm:text-xs md:text-sm 2xl:text-sm ${className} ${isActive ? 'italic text-primary' : ''} group relative overflow-hidden`,
         onMouseEnter: () => setIsHovered(true),
         onMouseLeave: () => setIsHovered(false),
         onClick: handleClick,
