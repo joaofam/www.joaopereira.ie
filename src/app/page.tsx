@@ -76,11 +76,11 @@ export default function Home() {
                     <div className="flex h-full w-full items-center justify-center">
                         <Divider />
                     </div>
-                    <div className="flex h-[50vh] w-full items-center justify-center">
-                        <Experience />
-                    </div>
                     <div className="h-full w-full">
                         <Projects />
+                    </div>
+                    <div className="flex h-[50vh] w-full items-center justify-center">
+                        <Experience />
                     </div>
                 </main>
             </div>
