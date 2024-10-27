@@ -176,20 +176,20 @@ export default function AboutContent() {
 
     const leftContent = (
         <div className="relative flex flex-col items-center">
-            <div className="relative h-80 w-80 xl:h-[26rem] xl:w-[26rem] 2xl:h-[28rem] 2xl:w-[28rem]">
+            <div className="relative h-72 w-72 xl:h-[26rem] xl:w-[26rem] 2xl:h-[28rem] 2xl:w-[28rem]">
                 <Image
-                    src="/CD.png"
-                    alt="CD Case"
+                    src="/joao-sintra.png"
+                    alt="sintra"
                     priority={true}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                     style={{ objectFit: 'contain' }}
                 />
             </div>
-            <div className="w-80 xl:w-[26rem]">
+            <div>
                 <Tag
-                    tag="CD.png"
-                    hoverTag="Insert CD into CD-ROM"
+                    tag="joao-sintra-2.png"
+                    hoverTag="27.10.24"
                     QRSrc="soft_dev"
                 />
             </div>

@@ -16,7 +16,9 @@ const DualContainer: React.FC<DualContainerProps> = ({
                         title={leftTitle}
                         className="cursor-default px-2 font-bold lowercase"
                     />
-                    {leftContent}
+                    <div className='py-8'>
+                        {leftContent}
+                    </div>
                 </div>
 
                 {/* Right Content Container */}

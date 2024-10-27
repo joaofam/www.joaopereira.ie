@@ -164,13 +164,11 @@ export default function Intro() {
                     style={{ objectFit: 'contain' }}
                 />
             </div>
-            <div className="mt-4 w-80 xl:w-[26rem]">
                 <Tag
                     tag="yu-gi-oh-card.png"
-                    hoverTag="Insert yu-gi-oh card into deck"
+                    hoverTag="24.10.24"
                     QRSrc="soft_dev"
                 />
-            </div>
         </div>
     );
 

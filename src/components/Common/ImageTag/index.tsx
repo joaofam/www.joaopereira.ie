@@ -39,10 +39,10 @@ export const Tag: React.FC<TagProps> = ({
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onKeyDown={handleKeyDown}
-            className="w-full cursor-default"
+            className="w-full cursor-default mt-4 flex items-center justify-center"
         >
-            <div className="flex grid h-8 w-full grid-cols-5 grid-rows-1 gap-0 border-0 font-SpaceMono text-3xs tracking-tight sm:text-2xs">
-                <div className="col-span-4 flex items-center justify-center pl-4">
+            <div className="flex h-8 w-full items-center justify-center font-SpaceMono text-3xs tracking-tight sm:text-2xs">
+                <div className="flex items-center justify-center">
                     <span className={`mr-2 text-3xs ${isHovered ? 'text-primary' : 'text-accent'}`}>■</span>
                     <span>
                         [
