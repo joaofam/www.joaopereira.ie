@@ -139,7 +139,7 @@ export const metadata: Metadata = {
     icons: {
         icon: [
             {
-                url: './icon.png',
+                url: '/icon/icon.png',
                 type: 'image/png',
             },
             {
