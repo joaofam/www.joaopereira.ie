@@ -79,7 +79,7 @@ export default function Home() {
                     <div className="h-full w-full">
                         <Projects />
                     </div>
-                    <div className="flex h-[50vh] w-full items-center justify-center">
+                    <div className="h-full w-full">
                         <Experience />
                     </div>
                 </main>
