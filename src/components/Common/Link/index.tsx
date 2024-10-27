@@ -21,6 +21,11 @@ export const CustomLink: React.FC<LinkProps> = ({
     const handleClick = (
         e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
     ) => {
+        if (pathname === href) {
+            e.preventDefault();
+            return;
+        }
+
         if (onClick) {
             e.preventDefault();
             onClick(e);
