@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import Image from 'next/image';
-
 import Scramble from '@/components/Common/Scramble/index';
 import { TagProps } from '@/types/types';
 
 export const Tag: React.FC<TagProps> = ({
     tag,
-    QRSrc,
     hoverTag,
     shouldHover,
 }) => {
@@ -31,33 +28,34 @@ export const Tag: React.FC<TagProps> = ({
         }
     };
 
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            setIsHovered(!isHovered);
+        }
+    };
+
     return (
-        <div
+        <button
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className="w-full"
+            onKeyDown={handleKeyDown}
+            className="w-full cursor-default"
         >
-            <div className="flex grid h-12 w-full grid-cols-5 grid-rows-1 gap-0 border-1 font-SpaceMono text-2xs tracking-tight sm:text-xs">
-                <div className="col-span-4 flex items-center justify-center">
+            <div className="flex grid h-8 w-full grid-cols-5 grid-rows-1 gap-0 border-0 font-SpaceMono text-3xs tracking-tight sm:text-2xs">
+                <div className="col-span-4 flex items-center justify-center pl-4">
+                    <span className={`mr-2 text-3xs ${isHovered ? 'text-primary' : 'text-accent'}`}>■</span>
                     <span>
+                        [
                         <Scramble
                             shouldScramble={isHovered}
-                            className={`no-wrap uppercase transition-all duration-300 ease-in-out ${isHovered ? 'font-bold text-secondary' : ''}`}
+                            className={`no-wrap uppercase transition-all duration-300 ease-in-out ${isHovered ? 'text-primary' : ''}`}
                         >
                             {isHovered ? hoverTag : tag}
                         </Scramble>
+                        ]
                     </span>
                 </div>
-                <div className="flex items-center justify-center">
-                    <Image
-                        src={`/QR/${QRSrc}.svg`}
-                        alt="Tag"
-                        width={24}
-                        height={24}
-                    />
-                </div>
             </div>
-            <div className="flex grid h-4 w-full grid-cols-5 grid-rows-1 gap-0 border-1 border-t-0"></div>
-        </div>
+        </button>
     );
 };
