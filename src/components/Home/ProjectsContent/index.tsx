@@ -67,7 +67,7 @@ const projects = [
 
 const ProjectList = () => (
     <FieldSet className="relative w-full border px-2 py-4 sm:py-8 md:px-8">
-        <Legend title="#######" className="tracking-wide text-secondary" />
+        <Legend title="Hover/Click" className="tracking-wide text-secondary" />
         {projects.map((project, index) => (
             <ShutterRow
                 key={index}
