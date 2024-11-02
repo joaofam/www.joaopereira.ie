@@ -22,7 +22,7 @@ export const Surprise: React.FC<SurprisePopupProps> = ({ onClose }) => {
                 {/* Top Bar */}
                 <div className="handle flex h-8 cursor-move items-center justify-between border-b-1 border-foreground bg-white px-4">
                     <span className="flex-grow text-center text-2xs sm:text-xs 2xl:text-sm">
-                        ahahaha
+                        Get Rick Rolled
                     </span>
                     <button
                         onClick={onClose}
