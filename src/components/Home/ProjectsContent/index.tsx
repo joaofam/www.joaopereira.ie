@@ -89,7 +89,11 @@ export default function Projects() {
                 />
                 <ProjectList />
                 <div className="pt-8 text-end">
-                    <Button text="check my github" />
+                    <Button 
+                        text="check my github"
+                        href='https://github.com/joaofam'
+                        blank
+                    />
                 </div>
             </div>
         </div>
