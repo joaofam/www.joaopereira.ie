@@ -40,7 +40,7 @@ export const CustomLink: React.FC<LinkProps> = ({
 
     const commonProps = {
         href: href ?? '#',
-        className: `inline-flex items-center uppercase tracking-wide text-2xs sm:text-xs md:text-sm 2xl:text-sm ${className} ${isActive ? 'italic text-primary' : ''} group relative overflow-hidden`,
+        className: `inline-flex items-center uppercase tracking-wide text-2xs sm:text-xs md:text-sm 2xl:text-sm ${className} ${isActive ? ' text-primary' : ''} group relative overflow-hidden`,
         onMouseEnter: () => setIsHovered(true),
         onMouseLeave: () => setIsHovered(false),
         onClick: handleClick,
@@ -72,7 +72,7 @@ export const CustomLink: React.FC<LinkProps> = ({
                     {children}
                 </span>
                 <span
-                    className={`absolute inset-0 inline-block ${white ? 'text-white' : 'text-primary'} italic transition-all duration-300 ease-in-out`}
+                    className={`absolute inset-0 inline-block ${white ? 'text-white' : 'text-primary'}  transition-all duration-300 ease-in-out`}
                     style={{
                         opacity: isHovered ? 1 : 0,
                         transform: isHovered
