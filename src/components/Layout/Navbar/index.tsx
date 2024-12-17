@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 import { CustomLink } from '@/components/Common/Link/index';
 import Scramble from '@/components/Common/Scramble/index';
 import Console from '@/components/Console/index';
-import { Time } from '@/components/Home/LandingContent/time';
+import { Time } from '@/components/Layout/Navbar/time';
 import { useNavbar } from '@/hooks/useNavbar';
 import {
     CustomNavLinksProps,
