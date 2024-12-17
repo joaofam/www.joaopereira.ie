@@ -45,7 +45,7 @@ const ExperienceList = () => (
 
 export const Experience = () => {
     return (
-        <div className="relative flex h-[75vh] w-full items-center justify-center font-SpaceMono tracking-tight text-foreground">
+        <div className="relative flex w-full items-center justify-center font-SpaceMono tracking-tight text-foreground">
             <div className="relative w-full">
                 <SectionHeader
                     title="Experience"

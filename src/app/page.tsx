@@ -76,10 +76,10 @@ export default function Home() {
                     <div className="flex h-full w-full items-center justify-center">
                         <Divider />
                     </div>
-                    <div className="h-full w-full">
+                    <div className="h-full w-full py-4 sm:py-6 md:py-12 lg:py-16 xl:py-20 2xl:py-24">
                         <Projects />
                     </div>
-                    <div className="h-full w-full">
+                    <div className="h-full w-full pb-12 sm:pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32">
                         <Experience />
                     </div>
                 </main>
