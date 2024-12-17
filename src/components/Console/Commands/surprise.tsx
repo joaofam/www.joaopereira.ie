@@ -40,6 +40,12 @@ export const Surprise: React.FC<SurprisePopupProps> = ({ onClose }) => {
                             loop
                         >
                             <source src="/rick-roll.mp4" type="video/mp4" />
+                            <track
+                                kind="captions"
+                                srcLang="en"
+                                src="/rick-roll-captions.vtt"
+                                default
+                            />
                             Your browser does not support the video tag.
                         </video>
                     </div>

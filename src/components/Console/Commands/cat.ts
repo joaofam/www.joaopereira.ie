@@ -8,8 +8,7 @@ export const cat = (
     const current = getDirectory(currentDir);
     if (
         current?.type === 'directory' &&
-        current.children &&
-        current.children[fileName]
+        current.children?.[fileName]
     ) {
         const file = current.children[fileName];
         if (file.type === 'file') {
@@ -27,8 +26,7 @@ const getDirectory = (path: string): FileSystemItem | null => {
     for (const part of parts) {
         if (
             current.type === 'directory' &&
-            current.children &&
-            current.children[part]
+            current.children?.[part]
         ) {
             current = current.children[part];
         } else {

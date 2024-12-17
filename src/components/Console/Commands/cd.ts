@@ -27,8 +27,7 @@ const getDirectory = (path: string): FileSystemItem | null => {
     for (const part of parts) {
         if (
             current.type === 'directory' &&
-            current.children &&
-            current.children[part]
+            current.children?.[part]
         ) {
             current = current.children[part];
         } else {
