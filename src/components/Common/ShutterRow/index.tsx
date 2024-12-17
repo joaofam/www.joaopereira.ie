@@ -54,17 +54,18 @@ const setupDefaultColumns = (columns: any[]) => {
     return defaultColumns;
 };
 
-// Motion Div Component
 const MotionDiv = ({ column, index, isHovered, isSmallScreen }: any) => (
     <motion.div
         key={index}
-        className={`flex-1 ${index === 3 ? 'text-right' : 'text-left'} whitespace-nowrap ${isSmallScreen && index !== 0 ? 'text-3xs' : ''}`}
+        className={`flex-1 ${index === 3 ? 'text-right' : 'text-left'} whitespace-nowrap ${
+            isSmallScreen && index !== 0 ? 'text-3xs' : ''
+        }`}
         variants={
             index === 0
                 ? firstColumnVariants
                 : index === 3
-                  ? lastColumnVariants
-                  : slideInFromLeft
+                ? lastColumnVariants
+                : slideInFromLeft
         }
     >
         <Scramble>{isHovered ? column.hover : column.default}</Scramble>
@@ -76,10 +77,38 @@ const MotionDiv = ({ column, index, isHovered, isSmallScreen }: any) => (
     </motion.div>
 );
 
-export const ShutterRow: React.FC<ShutterContainerProps> = ({
-    href,
-    columns = [],
-}) => {
+// Function to render rows on small screens
+const SmallScreenRows = ({ defaultColumns, isHovered }: any) => (
+    <>
+        <MotionDiv column={defaultColumns[0]} index={0} isHovered={isHovered} isSmallScreen />
+        <motion.div className="flex-1 whitespace-nowrap text-right" variants={lastColumnVariants}>
+            {defaultColumns.slice(1).map((column: { default: string; hover: string; description?: string }, index: number) => (
+                <div key={index} className={`text-3xs ${!isHovered ? 'mb-2' : ''}`}>
+                    <Scramble>{isHovered ? column.hover : column.default}</Scramble>
+                    {column.description && (
+                        <div className="mt-2 text-3xs tracking-wider sm:text-2xs">
+                            {column.description}
+                        </div>
+                    )}
+                </div>
+            ))}
+        </motion.div>
+    </>
+);
+
+// Function to render rows on default screens
+const DefaultScreenRows = ({ defaultColumns, isHovered, isSmallScreen }: any) =>
+    defaultColumns.map((column: { default: string; hover: string; description?: string }, index: number) => (
+        <MotionDiv
+            key={index}
+            column={column}
+            index={index}
+            isHovered={isHovered}
+            isSmallScreen={isSmallScreen}
+        />
+    ));
+
+export const ShutterRow: React.FC<ShutterContainerProps> = ({ href, columns = [] }) => {
     const [isHovered, setIsHovered] = useState(false);
     const ref = useRef(null);
     const controls = useAnimation();
@@ -131,90 +160,24 @@ export const ShutterRow: React.FC<ShutterContainerProps> = ({
         >
             <div className="flex h-full w-full items-center justify-between px-2 transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
                 {isSmallScreen ? (
-                    <>
-                        <MotionDiv
-                            column={defaultColumns[0]}
-                            index={0}
-                            isHovered={isHovered}
-                            isSmallScreen={isSmallScreen}
-                        />
-                        <motion.div
-                            className="flex-1 whitespace-nowrap text-right"
-                            variants={lastColumnVariants}
-                        >
-                            {defaultColumns.slice(1).map((column, index) => (
-                                <div
-                                    key={index}
-                                    className={`text-3xs ${!isHovered ? 'mb-2' : ''}`}
-                                >
-                                    <Scramble>
-                                        {isHovered
-                                            ? column.hover
-                                            : column.default}
-                                    </Scramble>
-                                    {column.description && (
-                                        <div className="mt-2 text-3xs tracking-wider sm:text-2xs">
-                                            {column.description}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </motion.div>
-                    </>
+                    <SmallScreenRows defaultColumns={defaultColumns} isHovered={isHovered} />
                 ) : (
-                    defaultColumns.map((column, index) => (
-                        <MotionDiv
-                            key={index}
-                            column={column}
-                            index={index}
-                            isHovered={isHovered}
-                            isSmallScreen={isSmallScreen}
-                        />
-                    ))
+                    <DefaultScreenRows
+                        defaultColumns={defaultColumns}
+                        isHovered={isHovered}
+                        isSmallScreen={isSmallScreen}
+                    />
                 )}
             </div>
             <div className="absolute inset-x-0 top-full flex h-full w-full items-center justify-between px-2 transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
                 {isSmallScreen ? (
-                    <>
-                        <MotionDiv
-                            column={defaultColumns[0]}
-                            index={0}
-                            isHovered={isHovered}
-                            isSmallScreen={isSmallScreen}
-                        />
-                        <motion.div
-                            className="flex-1 whitespace-nowrap text-right"
-                            variants={lastColumnVariants}
-                        >
-                            {defaultColumns.slice(1).map((column, index) => (
-                                <div
-                                    key={index}
-                                    className={`text-3xs ${!isHovered ? 'mb-2' : ''}`}
-                                >
-                                    <Scramble>
-                                        {isHovered
-                                            ? column.hover
-                                            : column.default}
-                                    </Scramble>
-                                    {column.description && (
-                                        <div className="mt-2 text-3xs tracking-wider sm:text-2xs">
-                                            {column.description}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </motion.div>
-                    </>
+                    <SmallScreenRows defaultColumns={defaultColumns} isHovered={isHovered} />
                 ) : (
-                    defaultColumns.map((column, index) => (
-                        <MotionDiv
-                            key={index}
-                            column={column}
-                            index={index}
-                            isHovered={isHovered}
-                            isSmallScreen={isSmallScreen}
-                        />
-                    ))
+                    <DefaultScreenRows
+                        defaultColumns={defaultColumns}
+                        isHovered={isHovered}
+                        isSmallScreen={isSmallScreen}
+                    />
                 )}
             </div>
         </motion.div>

@@ -11,6 +11,20 @@ export interface CustomNavLinksProps {
     toggleConsole: () => void;
 }
 
+export interface DetailItemProps {
+    detail: DetailProps;
+    index: number;
+    hoveredIndex: number | null;
+    onMouseEnter: (index: number) => void;
+    onMouseLeave: () => void;
+}
+
+export interface AboutDetailItemProps {
+    index: number;
+    onMouseEnter: (index: number) => void;
+    onMouseLeave: () => void;
+}
+
 export interface DetailProps {
     title: string;
     content: string;

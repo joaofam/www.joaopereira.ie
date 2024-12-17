@@ -9,54 +9,10 @@ import DualContainer from '@/components/Common/DualContainer/index';
 import { Legend } from '@/components/Common/FieldSet/Legend/index';
 import { Tag } from '@/components/Common/ImageTag/index';
 import Scramble from '@/components/Common/Scramble/index';
-import { DetailProps } from '@/types/types';
+import { DETAILS } from '@/consts/about';
+import { AboutDetailItemProps } from '@/types/types';
 
-const Details: DetailProps[] = [
-    {
-        title: 'name',
-        content: 'Joao Pereira',
-        hoveredTitle: 'pronunciation',
-        hoveredContent: 'Jow Per-air-ah',
-    },
-    {
-        title: 'location',
-        content: 'Dublin, Ireland',
-        hoveredTitle: 'nationality',
-        hoveredContent: 'Lisbon, Portugal',
-    },
-    {
-        title: 'os of choice',
-        content: 'Debian | Nix',
-        hoveredTitle: 'Primary OS',
-        hoveredContent: 'Ubuntu',
-    },
-    {
-        title: 'ide',
-        content: 'vscode intellij',
-        hoveredTitle: 'cli ide',
-        hoveredContent: 'nvim',
-    },
-    {
-        title: 'coffee order',
-        content: 'espresso [double sometimes]',
-        hoveredTitle: 'coffee snack',
-        hoveredContent: 'cinnamon bun',
-    },
-    {
-        title: 'favourite tech trends',
-        content: 'AI ML IOT and Web3',
-        hoveredTitle: 'favourite tech areas',
-        hoveredContent: 'Open Source Linux CLI Web Dev DevOps Cloud IoT',
-    },
-];
-
-interface DetailItemProps {
-    index: number;
-    onMouseEnter: (index: number) => void;
-    onMouseLeave: () => void;
-}
-
-const PersonalEndeavours: React.FC<DetailItemProps> = ({
+const PersonalEndeavours: React.FC<AboutDetailItemProps> = ({
     index,
     onMouseEnter,
     onMouseLeave,
@@ -65,8 +21,8 @@ const PersonalEndeavours: React.FC<DetailItemProps> = ({
     const scrambleClass = `no-wrap transition-colors duration-300 ${textHovered ? 'text-primary italic' : ''}`;
 
     return (
-        <div
-            className="relative border border-foreground p-8"
+        <button
+            className="relative border border-foreground p-8 cursor-default"
             onMouseEnter={() => {
                 onMouseEnter(index);
                 setTextHovered(true);
@@ -130,7 +86,7 @@ const PersonalEndeavours: React.FC<DetailItemProps> = ({
                     </Scramble>{' '}
                 </p>
             </span>
-        </div>
+        </button>
     );
 };
 
@@ -143,7 +99,7 @@ export default function AboutContent() {
     const rightContent = (
         <div className="space-y-8">
             <div className="grid grid-cols-2 gap-4">
-                {Details.slice(0, 2).map((detail, index) => (
+                {DETAILS.slice(0, 2).map((detail, index) => (
                     <DetailItem
                         key={index}
                         detail={detail}
@@ -160,7 +116,7 @@ export default function AboutContent() {
                 onMouseLeave={handleMouseLeave}
             />
             <div className="mt-4 grid grid-cols-2 gap-4">
-                {Details.slice(2, 6).map((detail, index) => (
+                {DETAILS.slice(2, 6).map((detail, index) => (
                     <DetailItem
                         key={index + 3}
                         detail={detail}

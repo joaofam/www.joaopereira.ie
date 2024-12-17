@@ -7,68 +7,13 @@ import { FieldSet } from '@/components/Common/FieldSet/FieldSet/index';
 import { Legend } from '@/components/Common/FieldSet/Legend';
 import { SectionHeader } from '@/components/Common/FieldSet/SectionHeader/index';
 import { ShutterRow } from '@/components/Common/ShutterRow/index';
+import { PROJECTS } from '@/consts/home';
 
-const projects = [
-    {
-        href: 'https://github.com/joaofam/joaopereira.ie',
-        columns: [
-            {
-                default: 'joaopereira.ie',
-                hover: 'github.com/joaofam/joaopereira.ie',
-                description: 'Personal Portfolio',
-            },
-            {
-                default: 'Web Dev',
-                hover: 'NextJS TS TailwindCSS',
-            },
-            {
-                default: '2024',
-                hover: '2024',
-            },
-        ],
-    },
-    {
-        href: 'https://github.com/joaofam/FILEFLO',
-        columns: [
-            {
-                default: 'Fileflo',
-                hover: 'github.com/joaofam/FILEFLO',
-                description: 'Blockchain File Storage/Sharing Platform',
-            },
-            {
-                default: 'Blockchain Crypto Web Dev',
-                hover: 'React AWS Python NodeJS Solidity Web3',
-            },
-            {
-                default: '2023',
-                hover: '2023',
-            },
-        ],
-    },
-    {
-        href: 'https://github.com/joaofam/Venato',
-        columns: [
-            {
-                default: 'Venato',
-                hover: 'github.com/joaofam/Venato',
-                description: 'Android App for GRPS Tracking',
-            },
-            {
-                default: 'IOT Android Dev',
-                hover: 'React Native AWS Android Studio Python',
-            },
-            {
-                default: '2022',
-                hover: '2022',
-            },
-        ],
-    },
-];
 
 const ProjectList = () => (
     <FieldSet className="relative w-full border px-2 py-4 sm:py-8 md:px-8">
         <Legend title="Hover/Click" className="tracking-wide text-secondary" />
-        {projects.map((project, index) => (
+        {PROJECTS.map((project, index) => (
             <ShutterRow
                 key={index}
                 href={project.href}

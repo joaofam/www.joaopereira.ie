@@ -10,42 +10,8 @@ import DualContainer from '@/components/Common/DualContainer/index';
 import { Legend } from '@/components/Common/FieldSet/Legend/index';
 import { Tag } from '@/components/Common/ImageTag/index';
 import Scramble from '@/components/Common/Scramble/index';
-import { DetailProps } from '@/types/types';
-
-const Details: DetailProps[] = [
-    {
-        title: 'Backend',
-        content: 'Python Java Go Node.js REST SQL',
-        hoveredTitle: 'Backend',
-        hoveredContent: 'Python Java Go Node.js REST SQL',
-    },
-    {
-        title: 'Tools',
-        content: 'AWS Docker PTC Jenkins TestRail JIRA',
-        hoveredTitle: 'Tools',
-        hoveredContent: 'AWS Docker PTC Jenkins TestRail JIRA',
-    },
-    {
-        title: 'Frontend',
-        content: 'React Nextjs TS JS Tailwind SCSS Framer Motion',
-        hoveredTitle: 'Frontend',
-        hoveredContent: 'React Nextjs TS JS Tailwind SCSS Framer Motion',
-    },
-    {
-        title: 'Areas of interest',
-        content: 'Open Source Linux CLI DevOps Cloud IoT',
-        hoveredTitle: 'Areas of interest',
-        hoveredContent: 'Open Source Linux CLI Web Dev DevOps Cloud IoT',
-    },
-];
-
-interface DetailItemProps {
-    detail: DetailProps;
-    index: number;
-    hoveredIndex: number | null;
-    onMouseEnter: (index: number) => void;
-    onMouseLeave: () => void;
-}
+import { INTRODUCTION_DETAILS } from '@/consts/home';
+import { DetailItemProps } from '@/types/types';
 
 const TechSummary: React.FC<DetailItemProps> = ({
     detail,
@@ -58,8 +24,8 @@ const TechSummary: React.FC<DetailItemProps> = ({
     const scrambleClass = `no-wrap transition-colors duration-300 ${textHovered ? 'text-primary italic' : ''}`;
 
     return (
-        <div
-            className="relative border border-foreground p-8"
+        <button
+            className="relative border border-foreground p-8 cursor-default"
             onMouseEnter={() => {
                 onMouseEnter(index);
                 setTextHovered(true);
@@ -116,7 +82,7 @@ const TechSummary: React.FC<DetailItemProps> = ({
                     <br />
                 </p>
             </span>
-        </div>
+        </button>
     );
 };
 
@@ -129,7 +95,7 @@ export default function Intro() {
     const rightContent = (
         <div>
             <TechSummary
-                detail={Details[2]}
+                detail={INTRODUCTION_DETAILS[2]}
                 index={2}
                 hoveredIndex={hoveredIndex}
                 onMouseEnter={handleMouseEnter}
@@ -137,7 +103,7 @@ export default function Intro() {
             />
             <div className="relative w-full pt-12">
                 <div className="grid grid-cols-2 gap-4">
-                    {Details.slice(0, 4).map((detail, index) => (
+                    {INTRODUCTION_DETAILS.slice(0, 4).map((detail, index) => (
                         <DetailItem
                             key={index}
                             detail={detail}
