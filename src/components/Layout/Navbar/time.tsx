@@ -24,7 +24,7 @@ export const Time = () => {
         <button
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className={`transition-colors duration-300 ${isHovered ? 'text-primary' : ''}`}
+            className={`transition-colors duration-300 cursor-default ${isHovered ? 'text-primary' : ''}`}
         >
             <Scramble>{isHovered ? '[GMT+1]' : 'Dublin'}</Scramble> [{time}]
         </button>
