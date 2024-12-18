@@ -4,7 +4,7 @@ import React from 'react';
 
 import { MDXProvider } from '@mdx-js/react';
 
-import FilefloMDXContent from '@/components/Blog/Projects/FilefloContent/index.mdx';
+import FilefloMDXContent from '@/components/Blog/BlogContent/FilefloContent/index.mdx';
 import BlogContainer from '@/components/Common/BlogContainer/index';
 
 export default function FilefloContent() {

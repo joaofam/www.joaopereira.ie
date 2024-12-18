@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import FilefloContent from '@/components/Blog/Projects/FilefloContent/index';
+import FilefloContent from '@/components/Blog/BlogContent/FilefloContent/index';
 
 export const metadata: Metadata = {
     title: 'About | Joao Pereira',
