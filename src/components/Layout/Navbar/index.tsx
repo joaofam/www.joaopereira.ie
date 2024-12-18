@@ -35,7 +35,7 @@ function CustomNavLinks({
             </CustomLink>
             <CustomLink
                 href="/blog"
-                className={`${pathname === '/about' ? ' text-primary' : ''}`}
+                className={`${pathname === '/blog' ? ' text-primary' : ''}`}
             >
                 Blog
             </CustomLink>
