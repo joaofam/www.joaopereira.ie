@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { TransitionRouter } from 'next-transition-router';
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({ children }: { readonly children: React.ReactNode }) {
     const firstLayer = useRef<HTMLDivElement | null>(null);
     const secondLayer = useRef<HTMLDivElement | null>(null);
 
