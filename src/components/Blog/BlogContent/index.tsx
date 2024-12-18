@@ -65,7 +65,6 @@ const BlogItem: React.FC<BlogItemProps> = ({
         <p className="pt-2 text-xs">
             <Highlight text={description} highlight={searchTerm} />
         </p>
-        <div className="mt-4 border-t border-accent"></div>
     </div>
 );
 

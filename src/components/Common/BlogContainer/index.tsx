@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { SolidTag } from '@/components/Blog/Tag/Solid';
 import { Legend } from '@/components/Common/FieldSet/Legend';
 import { CustomLink } from '@/components/Common/Link';
@@ -11,6 +13,41 @@ const BlogContainer: React.FC<BlogContainerProps> = ({
     gitLink,
     location,
 }) => {
+    const [headerLinks, setHeaderLinks] = useState<{ id: string, text: string }[]>([]);
+    const [activeHeader, setActiveHeader] = useState<string | null>(null);
+
+    useEffect(() => {
+        const headers = document.querySelectorAll('h1, h2, h3, h4');
+        const links = Array.from(headers)
+            .filter(header => /-h[1-4]$/.test(header.id))
+            .map(header => ({
+                id: header.id,
+                text: header.textContent ?? '',
+            }));
+        setHeaderLinks(links);
+
+        const observer = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setActiveHeader(entry.target.id);
+                    }
+                });
+            },
+            {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1, // Trigger when 10% of the header is visible
+            }
+        );
+
+        headers.forEach(header => observer.observe(header));
+
+        return () => {
+            headers.forEach(header => observer.unobserve(header));
+        };
+    }, [rightContent]);
+
     return (
         <div className="flex h-full w-full cursor-default flex-col items-center justify-center font-SpaceMono text-2xs text-foreground sm:text-xs 2xl:text-sm">
             <div className="grid h-full w-full grid-cols-1 items-start gap-8 xl:grid-cols-6">
@@ -43,6 +80,39 @@ const BlogContainer: React.FC<BlogContainerProps> = ({
                                 >
                                     Link
                                 </CustomLink>
+                            </div>
+                            {/* Divider */}
+                            <div className="col-span-2 border-t border-accent mt-4" />
+                            {/* Header Sidebar */}
+                            <div className="col-span-2 mt-4">
+                                <div>Table of Contents:</div>
+                                <div className="space-y-1">
+                                    {headerLinks.map(link => {
+                                        let marginLeftClass = '';
+                                        if (link.id.endsWith('-h2')) {
+                                            marginLeftClass = 'ml-2';
+                                        } else if (link.id.endsWith('-h3')) {
+                                            marginLeftClass = 'ml-4';
+                                        } else if (link.id.endsWith('-h4')) {
+                                            marginLeftClass = 'ml-6';
+                                        }
+
+                                        const isActive = activeHeader === link.id;
+
+                                        return (
+                                            <div key={link.id} className={marginLeftClass}>
+                                                <a
+                                                    href={`#${link.id}`}
+                                                    className={`hover:text-primary  no-underline ${
+                                                        isActive ? 'text-primary' : ''
+                                                    }`}
+                                                >
+                                                    [{isActive ? 'x' : ''}] {link.text}
+                                                </a>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </div>
                     </div>

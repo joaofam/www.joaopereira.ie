@@ -1,15 +1,18 @@
 import type { MDXComponents } from 'mdx/types';
 import Image, { ImageProps } from 'next/image';
 
+// Function to generate an id from the header text
+const generateId = (text: string, level: string) => `${text.toLowerCase().replace(/\s+/g, '-')}-${level}`;
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         // Allows customizing built-in components, e.g. to add styling.
-        h1: ({ children }) => <h1 className="text-4xl">{children}</h1>,
+        h1: ({ children }) => <h1 id={generateId(children as string, 'h1')} className="text-4xl">{children}</h1>,
         h2: ({ children }) => (
-            <h2 className="text-3xl text-blue-500">{children}</h2>
+            <h2 id={generateId(children as string, 'h2')} className="text-3xl text-blue-500">{children}</h2>
         ),
         h3: ({ children }) => (
-            <h3 className="text-2xl text-green-500">{children}</h3>
+            <h3 id={generateId(children as string, 'h3')} className="text-2xl text-green-500">{children}</h3>
         ),
         p: ({ children }) => <p className="text-base leading-6">{children}</p>,
         strong: ({ children }) => (
