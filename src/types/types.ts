@@ -152,3 +152,9 @@ export interface TitleData {
     default?: string;
     hover?: string;
 }
+
+export interface ZoomableImageProps {
+    src: string;
+    alt: string;
+    className?: string;
+}

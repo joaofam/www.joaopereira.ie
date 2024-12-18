@@ -2,14 +2,13 @@
 
 import React, { useState } from 'react';
 
-import Image from 'next/image';
-
 import Button from '@/components/Common/Button/index';
 import DetailItem from '@/components/Common/DetailItem';
 import DualContainer from '@/components/Common/DualContainer/index';
 import { Legend } from '@/components/Common/FieldSet/Legend/index';
 import { Tag } from '@/components/Common/ImageTag/index';
 import Scramble from '@/components/Common/Scramble/index';
+import { ZoomableImage } from '@/components/Common/ZoomableImage';
 import { INTRODUCTION_DETAILS } from '@/consts/home';
 import { DetailItemProps } from '@/types/types';
 
@@ -25,7 +24,7 @@ const TechSummary: React.FC<DetailItemProps> = ({
 
     return (
         <button
-            className="relative border border-foreground p-8 cursor-default"
+            className="relative cursor-default border border-foreground p-8"
             onMouseEnter={() => {
                 onMouseEnter(index);
                 setTextHovered(true);
@@ -120,21 +119,12 @@ export default function Intro() {
 
     const leftContent = (
         <div className="relative flex flex-col items-center">
-            <div className="relative h-[22rem] w-[20rem] sm:h-[25rem] sm:w-[25rem] xl:h-[26rem] xl:w-[26rem] 2xl:h-[30rem] 2xl:w-[30rem]">
-                <Image
-                    src="/yu-gi-oh-card.png"
-                    alt="Profile Picture"
-                    priority={true}
-                    fill
-                    sizes="(max-width: 1280px) 10rem, 26rem"
-                    style={{ objectFit: 'contain' }}
-                />
-            </div>
-                <Tag
-                    tag="yu-gi-oh-card.png"
-                    hoverTag="24.10.24"
-                    QRSrc="soft_dev"
-                />
+            <ZoomableImage
+                src="/yu-gi-oh-card.png"
+                alt="Profile Picture"
+                className="h-[22rem] w-[20rem] sm:h-[25rem] sm:w-[25rem] xl:h-[26rem] xl:w-[26rem] 2xl:h-[30rem] 2xl:w-[30rem]"
+            />
+            <Tag tag="yu-gi-oh-card.png" hoverTag="24.10.24" QRSrc="soft_dev" />
         </div>
     );
 

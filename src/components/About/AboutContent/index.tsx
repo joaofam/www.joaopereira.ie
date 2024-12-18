@@ -2,13 +2,12 @@
 
 import React, { useState } from 'react';
 
-import Image from 'next/image';
-
 import DetailItem from '@/components/Common/DetailItem';
 import DualContainer from '@/components/Common/DualContainer/index';
 import { Legend } from '@/components/Common/FieldSet/Legend/index';
 import { Tag } from '@/components/Common/ImageTag/index';
 import Scramble from '@/components/Common/Scramble/index';
+import { ZoomableImage } from '@/components/Common/ZoomableImage';
 import { DETAILS } from '@/consts/about';
 import { AboutDetailItemProps } from '@/types/types';
 
@@ -93,6 +92,7 @@ const PersonalEndeavours: React.FC<AboutDetailItemProps> = ({
 export default function AboutContent() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+
     const handleMouseEnter = (index: number) => setHoveredIndex(index);
     const handleMouseLeave = () => setHoveredIndex(null);
 
@@ -132,16 +132,11 @@ export default function AboutContent() {
 
     const leftContent = (
         <div className="relative flex flex-col items-center">
-            <div className="relative h-72 w-72 xl:h-[26rem] xl:w-[26rem] 2xl:h-[28rem] 2xl:w-[28rem]">
-                <Image
-                    src="/joao-sintra.png"
-                    alt="sintra"
-                    priority={true}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                    style={{ objectFit: 'contain' }}
-                />
-            </div>
+            <ZoomableImage
+                src="/joao-sintra.png"
+                alt="sintra"
+                className="xl:h-[28rem] xl:w-[28rem] 2xl:h-[28rem] 2xl:w-[28rem]"
+            />
             <div>
                 <Tag
                     tag="joao-sintra-2.png"
