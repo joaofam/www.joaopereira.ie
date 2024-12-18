@@ -100,6 +100,12 @@ export interface ScrambleProps {
     loop?: boolean;
 }
 
+export interface SearchBarProps {
+    placeholder?: string;
+    title?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
 export interface SectionHeaderProps {
     title: string;
     count: number;

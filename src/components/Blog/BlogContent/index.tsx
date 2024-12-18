@@ -108,14 +108,14 @@ export default function BlogContent() {
             <div className="relative w-full">
                 <SectionHeader
                     title="Blog"
-                    count={1}
-                    className="cursor-default py-8 font-Nohemi text-4xl font-regular sm:text-4xl 2xl:text-6xl"
+                    count={filteredBlogItems.length}
+                    className="cursor-default font-Nohemi text-4xl font-regular sm:text-6xl 2xl:text-6xl"
                 />
                 {/* User Query Section */}
                 <div className="flex grid grid-cols-4 gap-4">
                     {/* Optional Tags */}
                     <div className="col-span-3 flex items-end">
-                        <div className="flex flex-row space-x-4">
+                        <div className="flex flex-row flex-wrap space-x-4">
                             {BLOG_FILTERS.map(filter => (
                                 <Filter
                                     key={filter}
