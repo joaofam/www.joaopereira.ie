@@ -6,8 +6,15 @@ import Image from 'next/image';
 
 import { ZoomableImageProps } from '@/types/types';
 
-export const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className }) => {
-    const [zoomPosition, setZoomPosition] = useState<{ x: number; y: number } | null>(null);
+export const ZoomableImage: React.FC<ZoomableImageProps> = ({
+    src,
+    alt,
+    className,
+}) => {
+    const [zoomPosition, setZoomPosition] = useState<{
+        x: number;
+        y: number;
+    } | null>(null);
     const imageRef = useRef<HTMLButtonElement>(null);
 
     const handleMouseMove = (e: React.MouseEvent) => {
@@ -55,12 +62,11 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, classNam
     );
 };
 
-
-                // <Image
-                //     src="/joao-sintra.png"
-                //     alt="sintra"
-                //     priority={true}
-                //     fill
-                //     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                //     style={{ objectFit: 'contain' }}
-                // />
+// <Image
+//     src="/joao-sintra.png"
+//     alt="sintra"
+//     priority={true}
+//     fill
+//     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+//     style={{ objectFit: 'contain' }}
+// />

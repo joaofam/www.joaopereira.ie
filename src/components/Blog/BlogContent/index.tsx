@@ -44,7 +44,11 @@ const BlogItem: React.FC<BlogItemProps> = ({
 }) => (
     <div className="pt-6">
         <div className="grid grid-cols-3">
-            <CustomLink className="col-span-2 text-4xl" href={link} blank={false}>
+            <CustomLink
+                className="col-span-2 text-4xl"
+                href={link}
+                blank={false}
+            >
                 <div className="col-span-2 text-4xl">
                     <Highlight text={title} highlight={searchTerm} />
                 </div>
@@ -58,7 +62,7 @@ const BlogItem: React.FC<BlogItemProps> = ({
             )}
         </div>
         {date && <p>{date}</p>}
-        <p className="text-xs pt-2">
+        <p className="pt-2 text-xs">
             <Highlight text={description} highlight={searchTerm} />
         </p>
         <div className="mt-4 border-t border-accent"></div>

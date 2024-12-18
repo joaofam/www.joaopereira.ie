@@ -4,27 +4,23 @@ import Image, { ImageProps } from 'next/image';
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         // Allows customizing built-in components, e.g. to add styling.
-        h1: ({ children }) => (
-            <h1 className="text-4xl">{children}</h1>
-        ),
+        h1: ({ children }) => <h1 className="text-4xl">{children}</h1>,
         h2: ({ children }) => (
-            <h2 className="text-blue-500 text-3xl">{children}</h2>
+            <h2 className="text-3xl text-blue-500">{children}</h2>
         ),
         h3: ({ children }) => (
-            <h3 className="text-green-500 text-2xl">{children}</h3>
+            <h3 className="text-2xl text-green-500">{children}</h3>
         ),
-        p: ({ children }) => (
-            <p className="text-base leading-6">{children}</p>
-        ),
+        p: ({ children }) => <p className="text-base leading-6">{children}</p>,
         strong: ({ children }) => (
             <strong className="font-regular text-primary">{children}</strong>
         ),
         img: props => (
             <Image
                 sizes="100vw"
-                className="w-full h-auto"
+                className="h-auto w-full"
                 {...(props as ImageProps)}
-                alt={props.alt ?? ""}
+                alt={props.alt ?? ''}
             />
         ),
         // ul: ({ children }) => (

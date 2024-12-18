@@ -21,7 +21,7 @@ const PersonalEndeavours: React.FC<AboutDetailItemProps> = ({
 
     return (
         <button
-            className="relative border border-foreground p-8 cursor-default"
+            className="relative cursor-default border border-foreground p-8"
             onMouseEnter={() => {
                 onMouseEnter(index);
                 setTextHovered(true);
@@ -91,7 +91,6 @@ const PersonalEndeavours: React.FC<AboutDetailItemProps> = ({
 
 export default function AboutContent() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
 
     const handleMouseEnter = (index: number) => setHoveredIndex(index);
     const handleMouseLeave = () => setHoveredIndex(null);

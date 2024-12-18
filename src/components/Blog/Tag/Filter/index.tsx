@@ -3,12 +3,17 @@ import React, { useState } from 'react';
 import { TEXT_TO_CLASS_MAP } from '@/consts/blog';
 import { FilterTagProps } from '@/types/types';
 
-export const Filter: React.FC<FilterTagProps> = ({ text, isClicked, isHovered, onClick }) => {
+export const Filter: React.FC<FilterTagProps> = ({
+    text,
+    isClicked,
+    isHovered,
+    onClick,
+}) => {
     const [hover, setHover] = useState(false);
 
     const buttonClass = TEXT_TO_CLASS_MAP[text];
-    const hoverClass = hover ? buttonClass : "";
-    const clickedClass = isClicked ? buttonClass : "";
+    const hoverClass = hover ? buttonClass : '';
+    const clickedClass = isClicked ? buttonClass : '';
 
     const handleClick = () => {
         if (onClick) {
@@ -19,7 +24,7 @@ export const Filter: React.FC<FilterTagProps> = ({ text, isClicked, isHovered, o
     return (
         <div className="flex flex-wrap">
             <button
-                className={`px-4 rounded-sm text-2xs sm:text-sm text-accent border border-accent transition-all duration-300 ${hoverClass} ${clickedClass}`}
+                className={`rounded-sm border border-accent px-4 text-2xs text-accent transition-all duration-300 sm:text-sm ${hoverClass} ${clickedClass}`}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
                 onClick={handleClick}

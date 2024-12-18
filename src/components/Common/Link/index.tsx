@@ -72,7 +72,7 @@ export const CustomLink: React.FC<LinkProps> = ({
                     {children}
                 </span>
                 <span
-                    className={`absolute inset-0 inline-block ${white ? 'text-white' : 'text-primary'}  transition-all duration-300 ease-in-out`}
+                    className={`absolute inset-0 inline-block ${white ? 'text-white' : 'text-primary'} transition-all duration-300 ease-in-out`}
                     style={{
                         opacity: isHovered ? 1 : 0,
                         transform: isHovered

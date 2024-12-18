@@ -23,7 +23,15 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const terminalRef = useRef<HTMLDivElement>(null);
 
-    const validCommands = ['exit', 'clear', 'help', 'ls', 'cd', 'cat', 'surprise'];
+    const validCommands = [
+        'exit',
+        'clear',
+        'help',
+        'ls',
+        'cd',
+        'cat',
+        'surprise',
+    ];
 
     useEffect(() => {
         if (inputRef.current) {
@@ -197,7 +205,9 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
                 {output}
                 {renderInput()}
             </div>
-            {showSurprise && <Surprise onClose={() => setShowSurprise(false)} />}
+            {showSurprise && (
+                <Surprise onClose={() => setShowSurprise(false)} />
+            )}
         </>
     );
 };

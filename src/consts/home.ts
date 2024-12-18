@@ -25,7 +25,6 @@ export const INTRODUCTION_DETAILS = [
     },
 ];
 
-
 export const EXPERIENCES = [
     {
         columns: [

@@ -96,32 +96,30 @@ const SmallScreenRows = ({ defaultColumns, isHovered }: any) => (
             className="flex-1 whitespace-nowrap text-right"
             variants={lastColumnVariants}
         >
-            {defaultColumns
-                .slice(1)
-                .map(
-                    (
-                        column: {
-                            default: string;
-                            hover: string;
-                            description?: string;
-                        },
-                        index: number
-                    ) => (
-                        <div
-                            key={index}
-                            className={`text-3xs ${!isHovered ? 'mb-2' : ''}`}
-                        >
-                            <Scramble>
-                                {isHovered ? column.hover : column.default}
-                            </Scramble>
-                            {column.description && (
-                                <div className="mt-2 text-3xs tracking-wider sm:text-2xs">
-                                    {column.description}
-                                </div>
-                            )}
-                        </div>
-                    )
-                )}
+            {defaultColumns.slice(1).map(
+                (
+                    column: {
+                        default: string;
+                        hover: string;
+                        description?: string;
+                    },
+                    index: number
+                ) => (
+                    <div
+                        key={index}
+                        className={`text-3xs ${!isHovered ? 'mb-2' : ''}`}
+                    >
+                        <Scramble>
+                            {isHovered ? column.hover : column.default}
+                        </Scramble>
+                        {column.description && (
+                            <div className="mt-2 text-3xs tracking-wider sm:text-2xs">
+                                {column.description}
+                            </div>
+                        )}
+                    </div>
+                )
+            )}
         </motion.div>
     </>
 );

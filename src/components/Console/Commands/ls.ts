@@ -12,10 +12,7 @@ const getDirectory = (path: string): FileSystemItem | null => {
     const parts = path.split('/').filter(Boolean);
     let current: FileSystemItem = fileSystem['/'];
     for (const part of parts) {
-        if (
-            current.type === 'directory' &&
-            current.children?.[part]
-        ) {
+        if (current.type === 'directory' && current.children?.[part]) {
             current = current.children[part];
         } else {
             return null;

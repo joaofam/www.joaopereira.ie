@@ -3,11 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Scramble from '@/components/Common/Scramble/index';
 import { TagProps } from '@/types/types';
 
-export const Tag: React.FC<TagProps> = ({
-    tag,
-    hoverTag,
-    shouldHover,
-}) => {
+export const Tag: React.FC<TagProps> = ({ tag, hoverTag, shouldHover }) => {
     const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
@@ -39,11 +35,15 @@ export const Tag: React.FC<TagProps> = ({
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onKeyDown={handleKeyDown}
-            className="w-full cursor-default mt-4 flex items-center justify-center"
+            className="mt-4 flex w-full cursor-default items-center justify-center"
         >
             <div className="flex h-8 w-full items-center justify-center font-SpaceMono text-3xs tracking-tight sm:text-2xs">
                 <div className="flex items-center justify-center">
-                    <span className={`mr-2 text-3xs ${isHovered ? 'text-primary' : 'text-accent'}`}>■</span>
+                    <span
+                        className={`mr-2 text-3xs ${isHovered ? 'text-primary' : 'text-accent'}`}
+                    >
+                        ■
+                    </span>
                     <span>
                         [
                         <Scramble

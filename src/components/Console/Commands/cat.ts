@@ -6,10 +6,7 @@ export const cat = (
     fileName: string
 ): React.ReactNode[] => {
     const current = getDirectory(currentDir);
-    if (
-        current?.type === 'directory' &&
-        current.children?.[fileName]
-    ) {
+    if (current?.type === 'directory' && current.children?.[fileName]) {
         const file = current.children[fileName];
         if (file.type === 'file') {
             // Parse markdown content if it's a .md file
@@ -24,10 +21,7 @@ const getDirectory = (path: string): FileSystemItem | null => {
     const parts = path.split('/').filter(Boolean);
     let current: FileSystemItem = fileSystem['/'];
     for (const part of parts) {
-        if (
-            current.type === 'directory' &&
-            current.children?.[part]
-        ) {
+        if (current.type === 'directory' && current.children?.[part]) {
             current = current.children[part];
         } else {
             return null;

@@ -9,7 +9,6 @@ import { SectionHeader } from '@/components/Common/FieldSet/SectionHeader/index'
 import { ShutterRow } from '@/components/Common/ShutterRow/index';
 import { PROJECTS } from '@/consts/home';
 
-
 const ProjectList = () => (
     <FieldSet className="relative w-full border px-2 py-4 sm:py-8 md:px-8">
         <Legend title="Hover/Click" className="tracking-wide text-secondary" />
@@ -34,9 +33,9 @@ export default function Projects() {
                 />
                 <ProjectList />
                 <div className="pt-8 text-end">
-                    <Button 
+                    <Button
                         text="check my github"
-                        href='https://github.com/joaofam'
+                        href="https://github.com/joaofam"
                         blank
                     />
                 </div>

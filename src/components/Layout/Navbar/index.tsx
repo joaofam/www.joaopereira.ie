@@ -29,19 +29,19 @@ function CustomNavLinks({
             </div>
             <CustomLink
                 href="/about"
-                className={`${pathname === '/about' ? ' text-primary' : ''}`}
+                className={`${pathname === '/about' ? 'text-primary' : ''}`}
             >
                 About
             </CustomLink>
             <CustomLink
                 href="/blog"
-                className={`${pathname === '/blog' ? ' text-primary' : ''}`}
+                className={`${pathname === '/blog' ? 'text-primary' : ''}`}
             >
                 Blog
             </CustomLink>
             <CustomLink
                 onClick={toggleConsole}
-                className={`${isConsoleOpen ? ' text-primary' : ''}`}
+                className={`${isConsoleOpen ? 'text-primary' : ''}`}
             >
                 Console
             </CustomLink>
