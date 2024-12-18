@@ -15,7 +15,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             <input
                 type="text"
                 placeholder={placeholder}
-                className="mt-2 w-full rounded border border-foreground bg-white bg-opacity-0 p-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="mt-2 w-full rounded-0 border border-foreground bg-white bg-opacity-0 p-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 onChange={onChange}
             />
         </div>
