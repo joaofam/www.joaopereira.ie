@@ -1,3 +1,18 @@
+export const BLOG_ITEMS = [
+    {
+        title: "Fileflo",
+        date: "17.12.24",
+        tags: ["Project", "Web Dev"],
+        description: "Fileflo is a secure, decentralised file-sharing platform that uses IPFS for peer-to-peer sharing and the Ethereum blockchain for immutable file metadata. It ensures privacy with advanced encryption and offers an intuitive interface for seamless file sharing and collaboration."
+    },
+    {
+        title: "Venato",
+        date: "17.12.24",
+        tags: ["Project", "Web Dev", "IoT"],
+        description: "Venato is a GPS tracking app for cyclists that helps prevent bike theft by providing real-time location tracking. Users can create personalized accounts, view their bike’s location on a map, and access features like settings and help for enhanced security and peace of mind."
+    }
+];
+
 export const FILEFLO = [
     {
         title: 'Languages/Tools',

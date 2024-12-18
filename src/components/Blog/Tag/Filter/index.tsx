@@ -17,13 +17,12 @@ const textToClassMap: { [key: string]: string } = {
 
 export const Filter: React.FC<TagProps> = ({ text, isClicked, isHovered, onClick }) => {
     const [hover, setHover] = useState(false);
-    const [pressed, setPressed] = useState(false);
+
     const buttonClass = textToClassMap[text];
     const hoverClass = hover ? buttonClass : "";
-    const clickedClass = pressed ? buttonClass : "";
+    const clickedClass = isClicked ? buttonClass : "";
 
     const handleClick = () => {
-        setPressed(!pressed);
         if (onClick) {
             onClick();
         }

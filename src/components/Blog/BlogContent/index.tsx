@@ -6,6 +6,7 @@ import { Filter } from '@/components/Blog/Tag/Filter/index';
 import { SolidTag } from '@/components/Blog/Tag/Solid/index';
 import { SectionHeader } from '@/components/Common/FieldSet/SectionHeader/index';
 import { SearchBar } from '@/components/Common/SearchBar/index';
+import { BLOG_ITEMS } from '@/consts/blog';
 
 interface BlogItemProps {
     title: string;
@@ -62,30 +63,40 @@ const BlogItem: React.FC<BlogItemProps> = ({
 
 const filters = ['All', 'Projects', 'Tutorials', 'Reviews', 'Web Dev'];
 
-const blogItems = [
-    {
-        title: "Fileflo",
-        date: "17.12.24",
-        tags: ["Project", "Web Dev"],
-        description: "Fileflo is a secure, decentralised file-sharing platform that uses IPFS for peer-to-peer sharing and the Ethereum blockchain for immutable file metadata. It ensures privacy with advanced encryption and offers an intuitive interface for seamless file sharing and collaboration."
-    },
-    {
-        title: "Venato",
-        date: "17.12.24",
-        tags: ["Project", "Web Dev", "IoT"],
-        description: "Venato is a GPS tracking app for cyclists that helps prevent bike theft by providing real-time location tracking. Users can create personalized accounts, view their bike’s location on a map, and access features like settings and help for enhanced security and peace of mind."
-    }
-    // Add more BlogItem objects as needed
-];
+
 
 export default function BlogContent() {
     const [searchTerm, setSearchTerm] = useState("");
+    const [activeFilters, setActiveFilters] = useState<string[]>(["All"]);
 
-    const filteredBlogItems = blogItems.filter(item =>
-        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (item.tags?.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())))
-    );
+    // Handle filter clicks
+    const handleFilterClick = (filter: string) => {
+        if (filter === "All") {
+            setActiveFilters(["All"]); // Reset to "All"
+        } else {
+            setActiveFilters(prevFilters => {
+                if (prevFilters.includes("All")) {
+                    // Remove "All" if another filter is selected
+                    return [filter];
+                }
+                // Toggle the clicked filter
+                return prevFilters.includes(filter)
+                    ? prevFilters.filter(f => f !== filter)
+                    : [...prevFilters, filter];
+            });
+        }
+    };
+
+    // Filter blog items based on active filters and search term
+    const filteredBlogItems = BLOG_ITEMS.filter(item => {
+        // Check if the item's tags match the active filters or "All" is selected
+        const matchesFilter = activeFilters.includes("All") || item.tags?.some(tag => activeFilters.includes(tag));
+        // Check if the search term matches the title, description, or tags
+        const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            (item.tags?.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())));
+        return matchesFilter && matchesSearch;
+    });
 
     return (
         <div className="relative flex w-full items-center justify-center font-SpaceMono tracking-tight text-foreground">
@@ -104,8 +115,9 @@ export default function BlogContent() {
                                 <Filter
                                     key={filter}
                                     text={filter}
-                                    isClicked={false}
+                                    isClicked={activeFilters.includes(filter)}
                                     isHovered={false}
+                                    onClick={() => handleFilterClick(filter)}
                                 />
                             ))}
                         </div>
@@ -134,3 +146,4 @@ export default function BlogContent() {
         </div>
     );
 }
+
