@@ -7,15 +7,7 @@ import { SolidTag } from '@/components/Blog/Tag/Solid/index';
 import { SectionHeader } from '@/components/Common/FieldSet/SectionHeader/index';
 import { SearchBar } from '@/components/Common/SearchBar/index';
 import { BLOG_ITEMS } from '@/consts/blog';
-
-interface BlogItemProps {
-    title: string;
-    date?: string;
-    tags?: string[];
-    description: string;
-    link?: string;
-    searchTerm: string;
-}
+import { BlogItemProps } from '@/types/types';
 
 const Highlight: React.FC<{ text: string; highlight: string }> = ({ text, highlight }) => {
     if (!highlight.trim()) {

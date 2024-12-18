@@ -34,6 +34,14 @@ export interface BlogContainerProps {
     location: string;
 }
 
+export interface BlogItemProps {
+    title: string;
+    date?: string;
+    tags?: string[];
+    description: string;
+    link?: string;
+    searchTerm: string;
+}
 
 export interface DetailProps {
     title: string;
@@ -52,6 +60,13 @@ export interface DualContainerProps {
 export interface FieldSetProps {
     children: React.ReactNode;
     className?: string;
+}
+
+export interface FilterTagProps {
+    text: string;
+    isClicked?: boolean;
+    isHovered?: boolean;
+    onClick?: () => void;
 }
 
 export interface LegendProps {
@@ -99,6 +114,10 @@ export interface ShutterContainerProps {
 
 export interface SmoothScrollingProps {
     children: ReactNode;
+}
+
+export interface SolidTagProps {
+    text: string;
 }
 
 export interface TagProps {

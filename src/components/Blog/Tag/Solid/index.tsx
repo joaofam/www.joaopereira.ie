@@ -1,8 +1,6 @@
 import React from 'react';
 
-interface SolidTagProps {
-    text: string;
-}
+import { SolidTagProps } from '@/types/types';
 
 export const SolidTag: React.FC<SolidTagProps> = ({ text }) => {
     return (

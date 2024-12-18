@@ -1,24 +1,12 @@
 import React, { useState } from 'react';
 
-interface TagProps {
-    text: string;
-    isClicked?: boolean;
-    isHovered?: boolean;
-    onClick?: () => void;
-}
+import { TEXT_TO_CLASS_MAP } from '@/consts/blog';
+import { FilterTagProps } from '@/types/types';
 
-const textToClassMap: { [key: string]: string } = {
-    "All": "text-foreground bg-primary",
-    "Projects": "text-foreground bg-[#21F38A]",
-    "Tutorials": "text-foreground bg-[#F3A221]",
-    "Reviews": "text-foreground bg-[#F321EF]",
-    "Web Dev": "text-foreground bg-[#F32125]",
-};
-
-export const Filter: React.FC<TagProps> = ({ text, isClicked, isHovered, onClick }) => {
+export const Filter: React.FC<FilterTagProps> = ({ text, isClicked, isHovered, onClick }) => {
     const [hover, setHover] = useState(false);
 
-    const buttonClass = textToClassMap[text];
+    const buttonClass = TEXT_TO_CLASS_MAP[text];
     const hoverClass = hover ? buttonClass : "";
     const clickedClass = isClicked ? buttonClass : "";
 

@@ -28,4 +28,10 @@ export const FILEFLO = [
     },
 ];
 
-export const TAGS = ['2023', 'Web Dev', 'Blockchain', 'Cryptography', 'Final Year Project'];
+export const TEXT_TO_CLASS_MAP: { [key: string]: string } = {
+    "All": "text-foreground bg-primary",
+    "Projects": "text-foreground bg-[#21F38A]",
+    "Tutorials": "text-foreground bg-[#F3A221]",
+    "Reviews": "text-foreground bg-[#F321EF]",
+    "Web Dev": "text-foreground bg-[#F32125]",
+};
