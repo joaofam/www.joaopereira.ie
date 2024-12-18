@@ -116,7 +116,7 @@ export default function BlogContent() {
                     className="cursor-default font-Nohemi text-4xl font-regular sm:text-6xl 2xl:text-6xl"
                 />
                 {/* User Query Section */}
-                <div className="flex grid grid-cols-4 gap-4">
+                <div className="flex grid grid-cols-4 gap-4 sticky top-0">
                     {/* Optional Tags */}
                     <div className="col-span-3 flex items-end">
                         <div className="flex flex-row flex-wrap space-x-4">

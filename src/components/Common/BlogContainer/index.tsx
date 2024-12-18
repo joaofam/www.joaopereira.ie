@@ -20,7 +20,7 @@ const BlogContainer: React.FC<BlogContainerProps> = ({
                         title="Metadata"
                         className="cursor-default px-2 font-bold lowercase"
                     />
-                    <div className="p-8 pt-20">
+                    <div className="p-8 pt-20 sticky top-0">
                         <div className="grid grid-cols-2 gap-2">
                             <div>Name:</div>
                             <div>{name}</div>
@@ -39,7 +39,7 @@ const BlogContainer: React.FC<BlogContainerProps> = ({
                                 <CustomLink
                                     href={gitLink}
                                     blank
-                                    className="text-xs text-primary"
+                                    className="text-xs"
                                 >
                                     Link
                                 </CustomLink>
