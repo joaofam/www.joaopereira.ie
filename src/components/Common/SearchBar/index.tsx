@@ -13,7 +13,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search for 
             <input
                 type="text"
                 placeholder={placeholder}
-                className="w-full p-2 border-1 border-foreground bg-white mt-2 hover:rounded-0 hover:border-1 hover:border-primary focus:border-primary"
+                className="w-full p-2 border-1 border-foreground bg-white bg-opacity-0 mt-2 hover:rounded-0 hover:border-1 hover:border-primary focus:border-primary"
                 onChange={onChange}
             />
         </div>
