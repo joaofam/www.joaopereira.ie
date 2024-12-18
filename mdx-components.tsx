@@ -23,15 +23,38 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 alt={props.alt ?? ''}
             />
         ),
-        // ul: ({ children }) => (
-        //     <ul className="list-disc list-inside">{children}</ul>
-        // ),
-        // ol: ({ children }) => (
-        //     <ol className="list-decimal list-inside">{children}</ol>
-        // ),
-        // li: ({ children }) => (
-        //     <li className="ml-4">{children}</li>
-        // ),
+        ul: ({ children }) => (
+            <ul className="list-disc list-inside">{children}</ul>
+        ),
+        ol: ({ children }) => (
+            <ol className="list-decimal list-inside">• {children}</ol>
+        ),
+        li: ({ children }) => (
+            <li className="ml-4">• {children}</li>
+        ),
+        table: ({ children }) => (
+            <table className="min-w-full w-full divide-y divide-gray-200">{children}</table>
+        ),
+        thead: ({ children }) => (
+            <thead className="bg-gray-200 bg-opacity-0">{children}</thead>
+        ),
+        tbody: ({ children }) => (
+            <tbody className="divide-y divide-gray-200">{children}</tbody>
+        ),
+        tr: ({ children }) => (
+            <tr className="border-b border-gray-200">{children}</tr>
+        ),
+        th: ({ children }) => (
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-primary">{children}</th>
+        ),
+        td: ({ children }) => (
+            <td className="px-6 py-4 whitespace-nowrap">{children}</td>
+        ),
+        a: ({ href, children }) => (
+            <a href={href} className="underline hover:underline">
+                <p>{children}</p>
+            </a>
+        ),
         ...components,
     };
 }
