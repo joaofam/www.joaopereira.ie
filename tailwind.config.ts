@@ -161,6 +161,7 @@ const config = {
     plugins: [
         require('tailwindcss-animate'),
         require('@designbycode/tailwindcss-text-stroke'),
+        require('@tailwindcss/typography'),
     ],
 } satisfies Config;
 

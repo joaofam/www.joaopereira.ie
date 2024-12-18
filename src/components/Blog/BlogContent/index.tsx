@@ -25,7 +25,7 @@ const Highlight: React.FC<{ text: string; highlight: string }> = ({ text, highli
     return (
         <>
             {parts.map((part, index) =>
-                regex.test(part) ? <mark key={index} className="bg-primary">{part}</mark> : part
+                regex.test(part) ? <mark key={index} className="text-primary bg-white">{part}</mark> : part
             )}
         </>
     );

@@ -34,6 +34,12 @@ function CustomNavLinks({
                 About
             </CustomLink>
             <CustomLink
+                href="/blog"
+                className={`${pathname === '/about' ? ' text-primary' : ''}`}
+            >
+                Blog
+            </CustomLink>
+            <CustomLink
                 onClick={toggleConsole}
                 className={`${isConsoleOpen ? ' text-primary' : ''}`}
             >

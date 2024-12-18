@@ -25,6 +25,16 @@ export interface AboutDetailItemProps {
     onMouseLeave: () => void;
 }
 
+export interface BlogContainerProps {
+    rightContent: ReactNode;
+    name: string;
+    date: string;
+    tags: string;
+    gitLink: string;
+    location: string;
+}
+
+
 export interface DetailProps {
     title: string;
     content: string;

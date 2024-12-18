@@ -4,6 +4,7 @@ interface TagProps {
     text: string;
     isClicked?: boolean;
     isHovered?: boolean;
+    onClick?: () => void;
 }
 
 const textToClassMap: { [key: string]: string } = {
@@ -14,7 +15,7 @@ const textToClassMap: { [key: string]: string } = {
     "Web Dev": "text-foreground bg-[#F32125]",
 };
 
-export const Filter: React.FC<TagProps> = ({ text, isClicked, isHovered }) => {
+export const Filter: React.FC<TagProps> = ({ text, isClicked, isHovered, onClick }) => {
     const [hover, setHover] = useState(false);
     const [pressed, setPressed] = useState(false);
     const buttonClass = textToClassMap[text];
@@ -23,6 +24,9 @@ export const Filter: React.FC<TagProps> = ({ text, isClicked, isHovered }) => {
 
     const handleClick = () => {
         setPressed(!pressed);
+        if (onClick) {
+            onClick();
+        }
     };
 
     return (

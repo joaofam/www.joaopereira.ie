@@ -6,7 +6,7 @@ interface SolidTagProps {
 
 export const SolidTag: React.FC<SolidTagProps> = ({ text }) => {
     return (
-        <span className="px-4 text-accent text-xs border border-1 border-accent">
+        <span className="px-4 text-foreground bg-gray-200 text-2xs border border-1 border-accent">
             {text}
         </span>
     );
