@@ -6,7 +6,6 @@ import { MDXProvider } from '@mdx-js/react';
 
 import FilefloMDXContent from '@/components/Blog/Projects/FilefloContent/index.mdx';
 import BlogContainer from '@/components/Common/BlogContainer/index';
-import Button from '@/components/Common/Button/index';
 
 export default function FilefloContent() {
     const rightContent = (
@@ -27,15 +26,8 @@ export default function FilefloContent() {
                 date="29.04.23"
                 tags="IPFS, Blockchain, Encryption"
                 gitLink="https://github.com/joaofam/fileflo"
-                location="/projects/fileflo"
+                location="/blog/fileflo"
             />
-            <div className="font-HK relative z-10 self-end pt-4 text-sm">
-                <Button
-                    text="Project Link"
-                    href="https://github.com/joaofam/fileflo"
-                    blank
-                />
-            </div>
         </div>
     );
 }

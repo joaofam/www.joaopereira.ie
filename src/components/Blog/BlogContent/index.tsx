@@ -5,11 +5,15 @@ import React, { useState } from 'react';
 import { Filter } from '@/components/Blog/Tag/Filter/index';
 import { SolidTag } from '@/components/Blog/Tag/Solid/index';
 import { SectionHeader } from '@/components/Common/FieldSet/SectionHeader/index';
+import { CustomLink } from '@/components/Common/Link';
 import { SearchBar } from '@/components/Common/SearchBar/index';
-import { BLOG_ITEMS } from '@/consts/blog';
+import { BLOG_FILTERS, BLOG_ITEMS } from '@/consts/blog';
 import { BlogItemProps } from '@/types/types';
 
-const Highlight: React.FC<{ text: string; highlight: string }> = ({ text, highlight }) => {
+const Highlight: React.FC<{ text: string; highlight: string }> = ({
+    text,
+    highlight,
+}) => {
     if (!highlight.trim()) {
         return <>{text}</>;
     }
@@ -18,7 +22,13 @@ const Highlight: React.FC<{ text: string; highlight: string }> = ({ text, highli
     return (
         <>
             {parts.map((part, index) =>
-                regex.test(part) ? <mark key={index} className="text-primary bg-white">{part}</mark> : part
+                regex.test(part) ? (
+                    <mark key={index} className="bg-white text-primary">
+                        {part}
+                    </mark>
+                ) : (
+                    part
+                )
             )}
         </>
     );
@@ -34,11 +44,13 @@ const BlogItem: React.FC<BlogItemProps> = ({
 }) => (
     <div className="pt-6">
         <div className="grid grid-cols-3">
-            <h2 className="col-span-2 text-4xl">
-                <Highlight text={title} highlight={searchTerm} />
-            </h2>
+            <CustomLink className="col-span-2 text-4xl" href={link} blank={false}>
+                <div className="col-span-2 text-4xl">
+                    <Highlight text={title} highlight={searchTerm} />
+                </div>
+            </CustomLink>
             {tags && (
-                <div className="self-end text-right space-x-2">
+                <div className="space-x-2 self-end text-right">
                     {tags.map(tag => (
                         <SolidTag key={tag} text={tag} />
                     ))}
@@ -46,28 +58,24 @@ const BlogItem: React.FC<BlogItemProps> = ({
             )}
         </div>
         {date && <p>{date}</p>}
-        <p className="text-xs">
+        <p className="text-xs pt-2">
             <Highlight text={description} highlight={searchTerm} />
         </p>
         <div className="mt-4 border-t border-accent"></div>
     </div>
 );
 
-const filters = ['All', 'Projects', 'Tutorials', 'Reviews', 'Web Dev'];
-
-
-
 export default function BlogContent() {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [activeFilters, setActiveFilters] = useState<string[]>(["All"]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [activeFilters, setActiveFilters] = useState<string[]>(['All']);
 
     // Handle filter clicks
     const handleFilterClick = (filter: string) => {
-        if (filter === "All") {
-            setActiveFilters(["All"]); // Reset to "All"
+        if (filter === 'All') {
+            setActiveFilters(['All']); // Reset to "All"
         } else {
             setActiveFilters(prevFilters => {
-                if (prevFilters.includes("All")) {
+                if (prevFilters.includes('All')) {
                     // Remove "All" if another filter is selected
                     return [filter];
                 }
@@ -82,11 +90,16 @@ export default function BlogContent() {
     // Filter blog items based on active filters and search term
     const filteredBlogItems = BLOG_ITEMS.filter(item => {
         // Check if the item's tags match the active filters or "All" is selected
-        const matchesFilter = activeFilters.includes("All") || item.tags?.some(tag => activeFilters.includes(tag));
+        const matchesFilter =
+            activeFilters.includes('All') ||
+            item.tags?.some(tag => activeFilters.includes(tag));
         // Check if the search term matches the title, description, or tags
-        const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        const matchesSearch =
+            item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            (item.tags?.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())));
+            item.tags?.some(tag =>
+                tag.toLowerCase().includes(searchTerm.toLowerCase())
+            );
         return matchesFilter && matchesSearch;
     });
 
@@ -103,7 +116,7 @@ export default function BlogContent() {
                     {/* Optional Tags */}
                     <div className="col-span-3 flex items-end">
                         <div className="flex flex-row space-x-4">
-                            {filters.map(filter => (
+                            {BLOG_FILTERS.map(filter => (
                                 <Filter
                                     key={filter}
                                     text={filter}
@@ -116,7 +129,11 @@ export default function BlogContent() {
                     </div>
                     <div className="col-span-1 flex items-center">
                         {/* Search Bar */}
-                        <SearchBar placeholder="Search for item..." title="search bar" onChange={(e) => setSearchTerm(e.target.value)} />
+                        <SearchBar
+                            placeholder="Search for item..."
+                            title="search bar"
+                            onChange={e => setSearchTerm(e.target.value)}
+                        />
                     </div>
                 </div>
                 {/* Divider */}
@@ -130,6 +147,7 @@ export default function BlogContent() {
                             date={item.date}
                             tags={item.tags}
                             description={item.description}
+                            link={item.link}
                             searchTerm={searchTerm}
                         />
                     ))}
@@ -138,4 +156,3 @@ export default function BlogContent() {
         </div>
     );
 }
-
