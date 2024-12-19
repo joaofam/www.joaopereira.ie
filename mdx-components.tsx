@@ -1,6 +1,8 @@
 import type { MDXComponents } from 'mdx/types';
 import Image, { ImageProps } from 'next/image';
 
+import Pre from '@/components/Markdown/Pre/index';
+
 // Function to generate an id from the header text
 const generateId = (text: string, level: string) => `${text.toLowerCase().replace(/\s+/g, '-')}-${level}`;
 
@@ -58,6 +60,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 <p>{children}</p>
             </a>
         ),
-        ...components,
+        pre: (props) => (
+            <pre {...props} className="border-zinc-500 rounded-lg border-2 p-4" />
+          ),
+                  ...components,
     };
 }

@@ -37,7 +37,7 @@ const BlogContainer: React.FC<BlogContainerProps> = ({
             {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.1, // Trigger when 10% of the header is visible
+                threshold: 1.0, // Trigger when 10% of the header is visible
             }
         );
 
@@ -58,7 +58,7 @@ const BlogContainer: React.FC<BlogContainerProps> = ({
                         className="cursor-default px-2 font-bold lowercase"
                     />
                     <div className="p-8 pt-20 sticky top-0">
-                        <div className="grid grid-cols-2 gap-2">
+                        <div className="grid grid-cols-2 gap-1">
                             <div>Name:</div>
                             <div>{name}</div>
                             <div>Date:</div>
@@ -85,7 +85,6 @@ const BlogContainer: React.FC<BlogContainerProps> = ({
                             <div className="col-span-2 border-t border-accent mt-4" />
                             {/* Header Sidebar */}
                             <div className="col-span-2 mt-4">
-                                <div>Table of Contents:</div>
                                 <div className="space-y-1">
                                     {headerLinks.map(link => {
                                         let marginLeftClass = '';

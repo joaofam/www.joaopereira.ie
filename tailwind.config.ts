@@ -34,6 +34,9 @@ const config = {
             '14xl': '18rem',
             '15xl': '20rem',
         },
+        hljs: {
+            theme: "github-dark-dimmed",
+        },
         container: {
             center: true,
             padding: '2rem',
@@ -162,7 +165,13 @@ const config = {
         require('tailwindcss-animate'),
         require('@designbycode/tailwindcss-text-stroke'),
         require('@tailwindcss/typography'),
+        require('tailwind-highlightjs'),
     ],
+    safelist: [
+        {
+            pattern:  /hljs+/,
+        }
+    ]
 } satisfies Config;
 
 export default config;
