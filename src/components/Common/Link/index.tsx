@@ -13,6 +13,7 @@ export const CustomLink: React.FC<LinkProps> = ({
     white = false,
     blank = false,
     onClick,
+    size = 'sm',
 }) => {
     const [isHovered, setIsHovered] = useState(false);
     const pathname = usePathname();
@@ -40,7 +41,7 @@ export const CustomLink: React.FC<LinkProps> = ({
 
     const commonProps = {
         href: href ?? '#',
-        className: `inline-flex items-center uppercase tracking-wide text-2xs sm:text-xs md:text-sm 2xl:text-sm ${className} ${isActive ? ' text-primary' : ''} group relative overflow-hidden`,
+        className: `inline-flex items-center uppercase tracking-wide text-${size} ${className} ${isActive ? ' text-primary' : ''} group relative overflow-hidden`,
         onMouseEnter: () => setIsHovered(true),
         onMouseLeave: () => setIsHovered(false),
         onClick: handleClick,

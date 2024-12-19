@@ -61,26 +61,28 @@ const BlogContainer: React.FC<BlogContainerProps> = ({
                         <div className="grid grid-cols-2 gap-1">
                             <div>Name:</div>
                             <div>{name}</div>
-                            <div>Date:</div>
+                            <div>Date Created:</div>
                             <div>{date}</div>
                             <div>Location:</div>
                             <div>{location}</div>
+                            <div>Project Link:</div>
+                            <div>
+                                <CustomLink
+                                    size='xs'
+                                    href={gitLink}
+                                    blank
+                                    className="capitalize"
+                                >
+                                    Repo
+                                </CustomLink>
+                            </div>
                             <div>Tags:</div>
                             <div className="flex flex-wrap gap-2">
                                 {tags.split(', ').map((tag, index) => (
                                     <SolidTag key={index} text={tag} />
                                 ))}
                             </div>
-                            <div>Git Link:</div>
-                            <div>
-                                <CustomLink
-                                    href={gitLink}
-                                    blank
-                                    className="text-xs"
-                                >
-                                    Link
-                                </CustomLink>
-                            </div>
+                            
                             {/* Divider */}
                             <div className="col-span-2 border-t border-accent mt-4" />
                             {/* Header Sidebar */}

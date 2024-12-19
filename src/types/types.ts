@@ -78,6 +78,7 @@ export interface LinkProps {
     href?: string;
     className?: string;
     children: React.ReactNode;
+    size?: string;
     white?: boolean;
     blank?: boolean;
     onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
