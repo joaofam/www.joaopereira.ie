@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+
 import { animate } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { Link } from 'next-transition-router';
+
 import { LinkProps } from '@/types/types';
 
 export const CustomLink: React.FC<LinkProps> = ({

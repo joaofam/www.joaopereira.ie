@@ -37,7 +37,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         img: props => (
             <Image
-                sizes="100vw"
+                // sizes="100vw"
                 className="h-auto w-full"
                 {...(props as ImageProps)}
                 alt={props.alt ?? ''}
