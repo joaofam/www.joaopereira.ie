@@ -22,7 +22,7 @@ export const Filter: React.FC<FilterTagProps> = ({
     };
 
     return (
-        <div className="flex flex-wrap">
+        <div className="flex">
             <button
                 className={`rounded-sm border border-accent px-4 text-2xs text-accent transition-all duration-300 sm:text-sm ${hoverClass} ${clickedClass}`}
                 onMouseEnter={() => setHover(true)}

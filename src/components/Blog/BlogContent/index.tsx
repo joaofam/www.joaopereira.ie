@@ -41,32 +41,60 @@ const BlogItem: React.FC<BlogItemProps> = ({
     description,
     link,
     searchTerm,
-}) => (
-    <div className="pt-6">
-        <div className="grid grid-cols-3">
-            <CustomLink
-                className="col-span-2 text-4xl"
-                href={link}
-                blank={false}
-            >
-                <div className="col-span-2 text-4xl">
-                    <Highlight text={title} highlight={searchTerm} />
-                </div>
-            </CustomLink>
+}) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const maxLength = 100; // Maximum length of description before truncation
+
+    const handleExpandClick = () => {
+        setIsExpanded(!isExpanded);
+    };
+
+    const truncatedDescription = description.length > maxLength
+        ? description.substring(0, maxLength) + '...'
+        : description;
+
+    return (
+        <div className="pt-6">
+            <div className="grid grid-cols-3">
+                <CustomLink
+                    className="col-span-2 text-4xl"
+                    href={link}
+                    blank={false}
+                >
+                    <div className="col-span-2 text-2xl sm:text-4xl">
+                        <Highlight text={title} highlight={searchTerm} />
+                    </div>
+                </CustomLink>
+                {tags && (
+                    <div className="hidden sm:block space-x-2 self-end text-right">
+                        {tags.map(tag => (
+                            <SolidTag key={tag} text={tag} />
+                        ))}
+                    </div>
+                )}
+            </div>
+            {date && <p className='text-xs sm:text-sm'>{date}</p>}
             {tags && (
-                <div className="space-x-2 self-end text-right">
+                <div className="block sm:hidden flex flex-wrap gap-2 pt-2">
                     {tags.map(tag => (
                         <SolidTag key={tag} text={tag} />
                     ))}
                 </div>
             )}
+            <p className="pt-2 text-2xs sm:text-xs">
+                <Highlight text={isExpanded ? description : truncatedDescription} highlight={searchTerm} />
+                {description.length > maxLength && (
+                    <button
+                        className="text-accent cursor-pointer"
+                        onClick={handleExpandClick}
+                    >
+                        {isExpanded ? ' Show less' : ' Show more'}
+                    </button>
+                )}
+            </p>
         </div>
-        {date && <p>{date}</p>}
-        <p className="pt-2 text-xs">
-            <Highlight text={description} highlight={searchTerm} />
-        </p>
-    </div>
-);
+    );
+};
 
 export default function BlogContent() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -115,10 +143,10 @@ export default function BlogContent() {
                     className="cursor-default font-Nohemi text-4xl font-regular sm:text-6xl 2xl:text-6xl"
                 />
                 {/* User Query Section */}
-                <div className="flex grid grid-cols-4 gap-4 sticky top-0">
+                <div className="flex flex-col sm:grid sm:grid-cols-4 gap-4 sticky top-0">
                     {/* Optional Tags */}
-                    <div className="col-span-3 flex items-end">
-                        <div className="flex flex-row flex-wrap space-x-4">
+                    <div className="w-full sm:col-span-3 flex items-end">
+                        <div className="flex flex-row flex-wrap gap-2 w-full">
                             {BLOG_FILTERS.map(filter => (
                                 <Filter
                                     key={filter}
@@ -130,7 +158,7 @@ export default function BlogContent() {
                             ))}
                         </div>
                     </div>
-                    <div className="col-span-1 flex items-center">
+                    <div className="w-full sm:col-span-1 flex items-center">
                         {/* Search Bar */}
                         <SearchBar
                             placeholder="Search for item..."

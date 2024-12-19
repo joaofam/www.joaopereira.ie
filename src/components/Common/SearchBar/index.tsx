@@ -9,7 +9,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
     return (
         <div className="group relative w-full">
-            <label className="text-SpaceMono absolute -top-0.5 left-2 text-accent bg-white px-1 text-xs font-bold group-focus-within:text-primary">
+            <label className="text-SpaceMono absolute -top-0.5 left-2 text-accent bg-white px-1 text-2xs sm:text-xs font-bold group-focus-within:text-primary">
                 {title}
             </label>
             <input

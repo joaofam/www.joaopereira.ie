@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-
 import { animate } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { Link } from 'next-transition-router';
-
 import { LinkProps } from '@/types/types';
 
 export const CustomLink: React.FC<LinkProps> = ({
@@ -41,7 +39,7 @@ export const CustomLink: React.FC<LinkProps> = ({
 
     const commonProps = {
         href: href ?? '#',
-        className: `inline-flex items-center uppercase tracking-wide text-${size} ${className} ${isActive ? ' text-primary' : ''} group relative overflow-hidden`,
+        className: `inline-flex items-center uppercase tracking-wide lg:text-${size} ${className} ${isActive ? ' text-primary' : ''} group relative overflow-hidden`,
         onMouseEnter: () => setIsHovered(true),
         onMouseLeave: () => setIsHovered(false),
         onClick: handleClick,

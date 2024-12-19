@@ -77,12 +77,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 <p>{children}</p>
             </a>
         ),
-        // pre: props => (
-        //     <pre
-        //         {...props}
-        //         className="rounded-lg border-2 border-zinc-500 p-4"
-        //     />
-        // ),
         code: (props) => <code {...props} className="rounded-0" />,
         CodeBlock: (props) => <CodeBlock {...props} />,
         ...components,
