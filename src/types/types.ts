@@ -158,3 +158,8 @@ export interface ZoomableImageProps {
     alt: string;
     className?: string;
 }
+
+export interface CodeBlockProps {
+    name: string;
+    children: React.ReactNode;
+}

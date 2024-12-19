@@ -68,43 +68,34 @@ collaboration among teams and groups.
 <br />
 
 ### Tailscale
-```jsx
-'use client';
+<br />
+<br />
+<CodeBlock name="docker-compose.yml">
+```yml
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    volumes:
+     - data:/data
+     - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.entrypoints=https"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.local.joaopereira.ie`)"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+    networks:
+      - proxy
 
-import Scramble from '@/components/Common/Scramble';
+networks:
+  proxy:
+    external: true
 
-export default function NotFound() {
-    return (
-        <div className="flex h-screen items-center justify-center text-2xl text-foreground">
-            <div className="relative border border-foreground p-8">
-                <span classN>
-                    Page Not Found
-                </span>
-                <div className="flex items-center uppercase">
-                    <p>Status Code: </p>
-                    <p>
-                        [
-                        <Scramble
-                            className="text-[#F33A21]"
-                            loop
-                            shouldScramble
-                        >
-                            404
-                        </Scramble>
-                        ]
-                    </p>
-                </div>
-            </div>
-        </div>
-    );
-}
+volumes:
+  data:
 ```
-
-<br />
-<br />
-
-### Portainer
-
+</CodeBlock>
 <br />
 <br />
 
