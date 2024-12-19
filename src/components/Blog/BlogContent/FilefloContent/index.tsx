@@ -19,7 +19,7 @@ export default function FilefloContent() {
     );
 
     return (
-        <div className="relative flex flex-col items-center justify-center font-SpaceMono text-2xs tracking-wide text-foreground sm:text-xs 2xl:pt-24">
+        <div className="relative flex flex-col font-baskervville items-center justify-center font-SpaceMono text-2xs tracking-wide text-foreground sm:text-xs 2xl:pt-24">
             <BlogContainer
                 rightContent={rightContent}
                 name="Fileflo"

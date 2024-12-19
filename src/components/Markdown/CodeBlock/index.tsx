@@ -8,7 +8,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ name, children }) => {
             <div className="flex justify-between items-center border-b border-[#3b3b3b] bg-white p-2">
                 <h3 className="text-foreground">{name}</h3>
             </div>
-            <div className="p-4">{children}</div>
+            <div className="p-4 overflow-x-auto">{children}</div>
         </div>
     );
 };

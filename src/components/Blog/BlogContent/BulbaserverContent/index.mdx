@@ -78,8 +78,8 @@ services:
     container_name: portainer
     restart: unless-stopped
     volumes:
-     - data:/data
-     - /var/run/docker.sock:/var/run/docker.sock
+      - data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.portainer.entrypoints=https"
@@ -103,39 +103,399 @@ volumes:
 
 <br />
 <br />
+<CodeBlock name="traefik.yml">
+```yml
+api:
+  dashboard: true
+
+    # accessLog: {}
+log:
+  level: DEBUG
+
+entryPoints:
+  http:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: "https"
+          scheme: "https"
+          permanent: true
+  https:
+    address: ":443"
+    http:
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: "joaopereira.ie"
+            sans: "*.joaopereira.ie"
+          - main: "local.joaopereira.ie"
+            sans: "*.local.joaopereira.ie"
+
+certificatesResolvers:
+  cloudflare:
+    acme:
+      storage: "acme.json"
+      dnsChallenge:
+        provider: "cloudflare"
+        delayBeforeCheck: 60
+        disablePropagationCheck: true
+        resolvers:
+          - "1.1.1.1:53"
+
+providers:
+  docker:
+    watch: true
+    network: "proxy"
+    exposedbydefault: false
+    endpoint: "unix:///var/run/docker.sock"
+  file:
+    filename: "traefik_dynamic.yml"
+```
+</CodeBlock>
+<br />
+<br />
+<CodeBlock name="docker-compose.yml">
+```yml
+services:
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - proxy
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      CF_API_EMAIL: ${CF_API_EMAIL}
+      CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/traefik.yml:ro
+      - ./traefik_dynamic.yml:/traefik_dynamic.yml:ro
+      - ./acme.json:/acme.json
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.entrypoints=https"
+      - "traefik.http.routers.api.rule=Host(`traefik.local.joaopereira.ie`)"
+      - "traefik.http.routers.api.service=api@internal"
+      - "traefik.http.routers.api.middlewares=apiSimpleAuth"
+      - "traefik.http.middlewares.apiSimpleAuth.basicauth.users=joao:$$2y$$05$$tnx54vryqlt5joajBVi3J.pNjfDOq2N2dIsfzrnuGZXKS65Q8efP6"
+
+networks:
+  proxy:
+    external: true
+```
+</CodeBlock>
+<br />
+<br />
 
 ### Nextcloud
 
 <br />
 <br />
+<br />
+<CodeBlock name="docker-compose.yml">
+```yml
+services:
+  nextcloud:
+    image: nextcloud:latest
+    container_name: nextcloud
+    restart: unless-stopped
+    depends_on:
+      - db
+      - redis
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Dublin
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_HOST=nextcloud-db
+      - APACHE_DISABLE_REWRITE_IP=1
+      - NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.local.joaopereira.ie,nextcloud.joaopereira.ie
+      - TRUSTED_PROXIES=traefik
+      - OVERWRITEPROTOCOL=https
+      - REDIS_HOST=nextcloud-redis
+    volumes:
+      - /mnt/drive/config/nextcloud:/var/www/html
+      - /mnt/drive/data/nextcloud:/var/www/html/data
+    networks:
+      - internal
+      - proxy
+    labels:
+      # Enable Traefik for Nextcloud
+      - "traefik.enable=true"
+      
+      # HTTP Routers
+      - "traefik.http.routers.nextcloud.entrypoints=https"
+      - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.joaopereira.ie`) || Host(`nextcloud.local.joaopereira.ie`)"
+      - "traefik.http.routers.nextcloud.tls=true"
+      - "traefik.http.routers.nextcloud.tls.certresolver=cloudflare"
 
-### Jellyfin
+      # Service configuration
+      - "traefik.http.services.nextcloud.loadbalancer.server.port=80"
 
+      # Middleware for redirecting well-known CalDAV/CardDAV requests
+      - "traefik.http.middlewares.nextcloud-dav.redirectregex.regex=^https://(.*)/.well-known/(card|cal)dav"
+      - "traefik.http.middlewares.nextcloud-dav.redirectregex.replacement=https://$$1/remote.php/dav/"
+      - "traefik.http.middlewares.nextcloud-dav.redirectregex.permanent=true"
+
+      # Security headers middleware
+      - "traefik.http.middlewares.nextcloud-headers.headers.referrerPolicy=no-referrer"
+      - "traefik.http.middlewares.nextcloud-headers.headers.stsSeconds=31536000"
+      - "traefik.http.middlewares.nextcloud-headers.headers.forceSTSHeader=true"
+      - "traefik.http.middlewares.nextcloud-headers.headers.stsPreload=true"
+      - "traefik.http.middlewares.nextcloud-headers.headers.stsIncludeSubdomains=true"
+      - "traefik.http.middlewares.nextcloud-headers.headers.browserXssFilter=true"
+      - "traefik.http.middlewares.nextcloud-headers.headers.customRequestHeaders.X-Forwarded-Proto=https"
+
+      # Link middleware to router
+      - "traefik.http.routers.nextcloud.middlewares=nextcloud-dav,nextcloud-headers"
+
+  db:
+    image: mariadb:10.5
+    container_name: nextcloud-db
+    restart: unless-stopped
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+    networks:
+      - internal
+
+  redis:
+    image: redis:alpine
+    container_name: nextcloud-redis
+    restart: unless-stopped
+    volumes:
+      - redis:/data
+    networks:
+      - internal
+
+volumes:
+  db:
+    driver: local
+  redis:
+    driver: local
+
+networks:
+  internal:
+  proxy:
+    external: true
+```
+</CodeBlock>
 <br />
 <br />
 
-### Transmission with OpenVPN
+### ARR Stack
+<br />
+My entire arr stack is managed in a single docker-compose file inside a folder called **media-srv**. 
+This allows me to easily manage and update all my services in one place.
+<br />
 
+#### Jellyfin
+
+<br />
+<CodeBlock name="docker-compose.yml">
+```yml
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Dublin
+      - UMASK=002
+    volumes:
+      - /srv/jellyfin/config:/config
+      - /srv/data/media/:/data/media/
+    restart: unless-stopped
+    networks:
+      - proxy
+    devices: 
+      - /dev/dri:/dev/dri
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jellyfin.entrypoints=https"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.joaopereira.ie`) || Host(`jellyfin.local.joaopereira.ie`)"
+      - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
+```
+</CodeBlock>
 <br />
 <br />
 
-### Jellyseer
+#### Transmission with OpenVPN
 
 <br />
 <br />
+<CodeBlock name="docker-compose.yml">
+```yml
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    volumes:
+     - data:/data
+     - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.entrypoints=https"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.local.joaopereira.ie`)"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+    networks:
+      - proxy
 
-### Sonarr
+networks:
+  proxy:
+    external: true
 
+volumes:
+  data:
+```
+</CodeBlock>
 <br />
 <br />
 
-### Radarr
+#### Jellyseer
 
 <br />
 <br />
+<CodeBlock name="docker-compose.yml">
+```yml
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    volumes:
+     - data:/data
+     - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.entrypoints=https"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.local.joaopereira.ie`)"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+    networks:
+      - proxy
 
-### Prowlarr
+networks:
+  proxy:
+    external: true
 
+volumes:
+  data:
+```
+</CodeBlock>
+<br />
+<br />
+
+#### Sonarr
+
+<br />
+<br />
+<CodeBlock name="docker-compose.yml">
+```yml
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    volumes:
+     - data:/data
+     - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.entrypoints=https"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.local.joaopereira.ie`)"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  data:
+```
+</CodeBlock>
+<br />
+<br />
+
+#### Radarr
+
+<br />
+<br />
+<CodeBlock name="docker-compose.yml">
+```yml
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    volumes:
+     - data:/data
+     - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.entrypoints=https"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.local.joaopereira.ie`)"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  data:
+```
+</CodeBlock>
+<br />
+<br />
+
+#### Prowlarr
+
+<br />
+<br />
+<CodeBlock name="docker-compose.yml">
+```yml
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    volumes:
+     - data:/data
+     - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.entrypoints=https"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.local.joaopereira.ie`)"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  data:
+```
+</CodeBlock>
 <br />
 <br />
 
@@ -143,13 +503,167 @@ volumes:
 
 <br />
 <br />
+<CodeBlock name="docker-compose.yml">
+```yml
+name: immich
+
+services:
+  immich-server:
+    container_name: immich_server
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
+    volumes:
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
+    ports:
+      - '2283:2283'
+    depends_on:
+      - redis
+      - database
+    restart: always
+    healthcheck:
+      disable: false
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.immich.entrypoints=https"
+      - "traefik.http.routers.immich.rule=Host(`immich.joaopereira.ie`)"
+      - "traefik.http.services.immich.loadbalancer.server.port=2283"
+      - "traefik.http.routers.immich.tls=true"
+      - "traefik.http.routers.immich.tls.certresolver=cloudflare"
+
+  immich-machine-learning:
+    container_name: immich_machine_learning
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
+    volumes:
+      - model-cache:/cache
+    env_file:
+      - .env
+    restart: always
+    healthcheck:
+      disable: false
+
+  redis:
+    container_name: immich_redis
+    image: docker.io/redis:6.2-alpine@sha256:eaba718fecd1196d88533de7ba49bf903ad33664a92debb24660a922ecd9cac8
+    healthcheck:
+      test: redis-cli ping || exit 1
+    restart: always
+
+  database:
+    container_name: immich_postgres
+    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_DATABASE_NAME}
+      POSTGRES_INITDB_ARGS: '--data-checksums'
+    volumes:
+      - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
+    healthcheck:
+      test: >-
+        pg_isready --dbname="$${POSTGRES_DB}" --username="$${POSTGRES_USER}" || exit 1;
+        Chksum="$$(psql --dbname="$${POSTGRES_DB}" --username="$${POSTGRES_USER}" --tuples-only --no-align
+        --command='SELECT COALESCE(SUM(checksum_failures), 0) FROM pg_stat_database')";
+        echo "checksum failure count is $$Chksum";
+        [ "$$Chksum" = '0' ] || exit 1
+      interval: 5m
+      start_interval: 30s
+      start_period: 5m
+    command: >-
+      postgres
+      -c shared_preload_libraries=vectors.so
+      -c 'search_path="$user", public, vectors'
+      -c logging_collector=on
+      -c max_wal_size=2GB
+      -c shared_buffers=512MB
+      -c wal_compression=on
+    restart: always
+
+volumes:
+  model-cache:
+
+networks:
+  default:
+    name: immich
+  proxy:
+    external: true
+```
+</CodeBlock>
+<br />
+<br />
 
 ### Homepage
 
 <br />
 <br />
+<CodeBlock name="docker-compose.yml">
+```yml
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    volumes:
+      - /srv/homepage/config:/app/config
+      - /srv/homepage/config/icons:/app/public/icons
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 4000:3000
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.homepage.entrypoints=https"
+      - "traefik.http.routers.homepage.rule=Host(`homepage.local.joaopereira.ie`)"
+      - "traefik.http.services.homepage.loadbalancer.server.port=3000"
+    networks:
+      - proxy
+      - internal
+
+networks:
+  proxy:
+    external: true
+  internal:
+    driver: bridge
+```
+</CodeBlock>
+<br />
+<br />
+
+### Linkding
+<br />
+<br />
+<CodeBlock name="docker-compose.yml">
+```yml
+services:
+  linkding:
+    image: sissbruecker/linkding:latest
+    container_name: linkding
+    environment:
+      - TZ=Europe/Dublin
+      - LD_HOST_PORT=9090
+    volumes:
+      - /srv/linkding/data:/etc/linkding/data
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.linkding.entrypoints=https"
+      - "traefik.http.routers.linkding.rule=Host(`linkding.local.joaopereira.ie`)"
+      - "traefik.http.services.linkding.loadbalancer.server.port=9090"
+    restart: unless-stopped
+
+networks:
+  proxy:
+    external: true
+```
+</CodeBlock>
+<br />
+<br />
 
 ---
+
+<br />
+<br />
 
 ## Docker Services
 <br />

@@ -11,8 +11,8 @@ const Sidebar: React.FC<{
     gitLink: string;
     tags: string;
     headerLinks: { id: string; text: string }[];
-    activeHeader: string | null;
-}> = ({ name, date, location, gitLink, tags, headerLinks, activeHeader }) => {
+    activeHeaders: string[];
+}> = ({ name, date, location, gitLink, tags, headerLinks, activeHeaders }) => {
     return (
         <div className="relative col-span-2 flex h-full w-full items-start justify-center border border-foreground">
             <Legend
@@ -60,7 +60,7 @@ const Sidebar: React.FC<{
                                     marginLeftClass = 'ml-6';
                                 }
 
-                                const isActive = activeHeader === link.id;
+                                const isActive = activeHeaders.includes(link.id);
 
                                 return (
                                     <div
@@ -110,7 +110,7 @@ const BlogContainer: React.FC<BlogContainerProps> = ({
     gitLink,
     location,
 }) => {
-    const { headerLinks, activeHeader } = useHeaderObserver(rightContent);
+    const { headerLinks, activeHeaders } = useHeaderObserver(rightContent);
 
     return (
         <div className="flex h-full w-full cursor-default flex-col items-center justify-center font-SpaceMono text-2xs text-foreground sm:text-xs 2xl:text-sm">
@@ -122,7 +122,7 @@ const BlogContainer: React.FC<BlogContainerProps> = ({
                     gitLink={gitLink}
                     tags={tags}
                     headerLinks={headerLinks}
-                    activeHeader={activeHeader}
+                    activeHeaders={activeHeaders}
                 />
                 <RightContent rightContent={rightContent} />
             </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const useHeaderObserver = (dependency: any) => {
     const [headerLinks, setHeaderLinks] = useState<{ id: string; text: string }[]>([]);
-    const [activeHeader, setActiveHeader] = useState<string | null>(null);
+    const [activeHeaders, setActiveHeaders] = useState<string[]>([]);
 
     useEffect(() => {
         const headers = document.querySelectorAll('h1, h2, h3, h4');
@@ -16,16 +16,15 @@ const useHeaderObserver = (dependency: any) => {
 
         const observer = new IntersectionObserver(
             entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setActiveHeader(entry.target.id);
-                    }
-                });
+                const visibleHeaders = entries
+                    .filter(entry => entry.isIntersecting)
+                    .map(entry => entry.target.id);
+                setActiveHeaders(visibleHeaders);
             },
             {
                 root: null,
                 rootMargin: '0px',
-                threshold: 1.0,
+                threshold: 1,
             }
         );
 
@@ -36,7 +35,7 @@ const useHeaderObserver = (dependency: any) => {
         };
     }, [dependency]);
 
-    return { headerLinks, activeHeader };
+    return { headerLinks, activeHeaders };
 };
 
 export default useHeaderObserver;

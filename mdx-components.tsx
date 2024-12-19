@@ -31,7 +31,15 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 {children}
             </h3>
         ),
-        p: ({ children }) => <p className="text-base leading-6">{children}</p>,
+        h4: ({ children }) => (
+            <h4
+                id={generateId(children as string, 'h4')}
+                className="text-xl text-yellow-500"
+            >
+                {children}
+            </h4>
+        ),
+        p: ({ children }) => <p className="font-baskervville text-base leading-6">{children}</p>,
         strong: ({ children }) => (
             <strong className="font-regular text-primary">{children}</strong>
         ),
@@ -70,7 +78,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             </th>
         ),
         td: ({ children }) => (
-            <td className="whitespace-nowrap px-6 py-4">{children}</td>
+            <td className="whitespace-normal break-words px-6 py-4">{children}</td>
         ),
         a: ({ href, children }) => (
             <a href={href} className="underline hover:underline">
