@@ -14,7 +14,7 @@ const Sidebar: React.FC<{
     activeHeaders: string[];
 }> = ({ name, date, location, gitLink, tags, headerLinks, activeHeaders }) => {
     return (
-        <div className="relative col-span-2 flex h-full w-full items-start justify-center border border-foreground">
+        <div className="relative col-span-2 hidden xl:flex h-full w-full items-start justify-center border border-foreground">
             <Legend
                 title="Metadata"
                 className="cursor-default px-2 font-bold lowercase"

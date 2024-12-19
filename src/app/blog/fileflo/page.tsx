@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 export default function Fileflo() {
     return (
         <div className="relative">
-            <div className="flex w-full items-center justify-center px-2 py-36 sm:px-4 md:px-6 lg:px-8 xl:px-16 2xl:h-[100vh] 2xl:px-32">
+            <div className="flex w-full items-center justify-center px-2 py-36 sm:px-4 md:px-6 lg:px-8 xl:px-16 2xl:px-32">
                 <FilefloContent />
             </div>
         </div>
