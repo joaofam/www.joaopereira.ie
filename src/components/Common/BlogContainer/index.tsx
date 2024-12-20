@@ -15,17 +15,24 @@ const BlogContainer: React.FC<BlogContainerProps> = ({
 
     return (
         <div className="flex h-full w-full cursor-default flex-col items-center justify-center font-SpaceMono text-2xs text-foreground sm:text-xs 2xl:text-sm">
-            <div className="grid h-full w-full grid-cols-1 items-start gap-8 xl:grid-cols-6">
-                <Sidebar
-                    name={name}
-                    date={date}
-                    location={location}
-                    gitLink={gitLink}
-                    tags={tags}
-                    headerLinks={headerLinks}
-                    activeHeaders={activeHeaders}
-                />
-                <RightContent rightContent={rightContent} />
+            <div className="flex h-full w-full gap-8">
+                {/* Sidebar: 1/3 of the width */}
+                <div className="hidden xl:w-1/3 xl:flex">
+                    <Sidebar
+                        name={name}
+                        date={date}
+                        location={location}
+                        gitLink={gitLink}
+                        tags={tags}
+                        headerLinks={headerLinks}
+                        activeHeaders={activeHeaders}
+                    />
+                </div>
+
+                {/* RightContent: 2/3 of the width */}
+                <div className="w-full xl:w-2/3 max-w-full">
+                    <RightContent rightContent={rightContent} />
+                </div>
             </div>
         </div>
     );

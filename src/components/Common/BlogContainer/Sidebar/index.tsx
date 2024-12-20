@@ -12,7 +12,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     headerLinks,
     activeHeaders,
 }) => (
-    <div className="relative col-span-2 hidden h-full w-full items-start justify-center border border-foreground xl:flex">
+    <div className="relative hidden h-full w-full items-start justify-center border border-foreground xl:flex">
         <Legend
             title="Metadata"
             className="cursor-default px-2 font-bold lowercase"
@@ -27,10 +27,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
             />
 
             {/* Divider */}
-            <div className="col-span-2 mt-4 border-t border-accent" />
+            <div className="mt-4 border-t border-accent" />
 
             {/* Header Navigation */}
-            <div className="col-span-2 mt-4">
+            <div className="mt-4">
                 <HeaderNavigation
                     headerLinks={headerLinks}
                     activeHeaders={activeHeaders}
