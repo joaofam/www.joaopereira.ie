@@ -2,99 +2,12 @@
 
 import React, { useState } from 'react';
 
+import { BlogItem } from '@/components/Blog/BlogItem/index';
 import { Filter } from '@/components/Blog/Tag/Filter/index';
-import { SolidTag } from '@/components/Blog/Tag/Solid/index';
 import { SectionHeader } from '@/components/Common/FieldSet/SectionHeader/index';
-import { CustomLink } from '@/components/Common/Link';
 import { SearchBar } from '@/components/Common/SearchBar/index';
 import { BLOG_FILTERS, BLOG_ITEMS } from '@/consts/blog';
-import { BlogItemProps } from '@/types/types';
-
-const Highlight: React.FC<{ text: string; highlight: string }> = ({
-    text,
-    highlight,
-}) => {
-    if (!highlight.trim()) {
-        return <>{text}</>;
-    }
-    const regex = new RegExp(`(${highlight})`, 'gi');
-    const parts = text.split(regex);
-    return (
-        <>
-            {parts.map((part, index) =>
-                regex.test(part) ? (
-                    <mark key={index} className="bg-white text-primary">
-                        {part}
-                    </mark>
-                ) : (
-                    part
-                )
-            )}
-        </>
-    );
-};
-
-const BlogItem: React.FC<BlogItemProps> = ({
-    title,
-    date,
-    tags,
-    description,
-    link,
-    searchTerm,
-}) => {
-    const [isExpanded, setIsExpanded] = useState(false);
-    const maxLength = 100; // Maximum length of description before truncation
-
-    const handleExpandClick = () => {
-        setIsExpanded(!isExpanded);
-    };
-
-    const truncatedDescription = description.length > maxLength
-        ? description.substring(0, maxLength) + '...'
-        : description;
-
-    return (
-        <div className="pt-6">
-            <div className="grid grid-cols-3">
-                <CustomLink
-                    className="col-span-2 text-4xl"
-                    href={link}
-                    blank={false}
-                >
-                    <div className="col-span-2 text-2xl sm:text-4xl">
-                        <Highlight text={title} highlight={searchTerm} />
-                    </div>
-                </CustomLink>
-                {tags && (
-                    <div className="hidden sm:block space-x-2 self-end text-right">
-                        {tags.map(tag => (
-                            <SolidTag key={tag} text={tag} />
-                        ))}
-                    </div>
-                )}
-            </div>
-            {date && <p className='text-xs sm:text-sm'>{date}</p>}
-            {tags && (
-                <div className="block sm:hidden flex flex-wrap gap-2 pt-2">
-                    {tags.map(tag => (
-                        <SolidTag key={tag} text={tag} />
-                    ))}
-                </div>
-            )}
-            <p className="pt-2 text-2xs sm:text-xs">
-                <Highlight text={isExpanded ? description : truncatedDescription} highlight={searchTerm} />
-                {description.length > maxLength && (
-                    <button
-                        className="text-accent cursor-pointer"
-                        onClick={handleExpandClick}
-                    >
-                        {isExpanded ? ' Show less' : ' Show more'}
-                    </button>
-                )}
-            </p>
-        </div>
-    );
-};
+import filterBlogItems from '@/utils/filter-blog-items';
 
 export default function BlogContent() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -118,22 +31,8 @@ export default function BlogContent() {
         }
     };
 
-    // Filter blog items based on active filters and search term
-    const filteredBlogItems = BLOG_ITEMS.filter(item => {
-        // Check if the item's tags match the active filters or "All" is selected
-        const matchesFilter =
-            activeFilters.includes('All') ||
-            item.tags?.some(tag => activeFilters.includes(tag));
-        // Check if the search term matches the title, description, or tags
-        const matchesSearch =
-            item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.tags?.some(tag =>
-                tag.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-        return matchesFilter && matchesSearch;
-    });
-
+    const filteredBlogItems = filterBlogItems(BLOG_ITEMS, activeFilters, searchTerm);
+    
     return (
         <div className="relative flex w-full items-center justify-center font-SpaceMono tracking-tight text-foreground">
             <div className="relative w-full">
