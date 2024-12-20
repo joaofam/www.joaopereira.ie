@@ -1,24 +1,5 @@
 import { ReactNode } from 'react';
 
-export interface ButtonProps {
-    text: string;
-    href?: string;
-    blank?: boolean;
-}
-
-export interface CustomNavLinksProps {
-    isConsoleOpen: boolean;
-    toggleConsole: () => void;
-}
-
-export interface DetailItemProps {
-    detail: DetailProps;
-    index: number;
-    hoveredIndex: number | null;
-    onMouseEnter: (index: number) => void;
-    onMouseLeave: () => void;
-}
-
 export interface AboutDetailItemProps {
     index: number;
     onMouseEnter: (index: number) => void;
@@ -34,6 +15,10 @@ export interface BlogContainerProps {
     location: string;
 }
 
+export interface BlogContainerProps extends Omit<SidebarProps, 'headerLinks' | 'activeHeaders'> {
+    rightContent: React.ReactNode;
+}
+
 export interface BlogItemProps {
     title: string;
     date?: string;
@@ -41,6 +26,44 @@ export interface BlogItemProps {
     description: string;
     link?: string;
     searchTerm: string;
+}
+
+export interface BlogItemType {
+    title: string;
+    description: string;
+    tags?: string[];
+    date: string;
+    link: string;
+}
+
+export interface ButtonProps {
+    text: string;
+    href?: string;
+    blank?: boolean;
+}
+
+export interface CodeBlockProps {
+    name: string;
+    children: React.ReactNode;
+}
+
+export interface ColumnData {
+    default?: string;
+    hover?: string;
+    description?: string;
+}
+
+export interface CustomNavLinksProps {
+    isConsoleOpen: boolean;
+    toggleConsole: () => void;
+}
+
+export interface DetailItemProps {
+    detail: DetailProps;
+    index: number;
+    hoveredIndex: number | null;
+    onMouseEnter: (index: number) => void;
+    onMouseLeave: () => void;
 }
 
 export interface DetailProps {
@@ -69,6 +92,16 @@ export interface FilterTagProps {
     onClick?: () => void;
 }
 
+export interface HeaderLink {
+    id: string;
+    text: string;
+}
+
+export interface HeaderNavigationProps {
+    headerLinks: HeaderLink[];
+    activeHeaders: string[];
+}
+
 export interface LegendProps {
     title: string;
     className?: string;
@@ -84,6 +117,14 @@ export interface LinkProps {
     onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
+export interface MetadataSectionProps {
+    name: string;
+    date: string;
+    location: string;
+    gitLink: string;
+    tags: string;
+}
+
 export interface MobileMenuProps {
     isOpen: boolean;
     onClose: () => void;
@@ -91,6 +132,19 @@ export interface MobileMenuProps {
 
 export interface MobileNavProps {
     onClick: () => void;
+}
+
+export interface Pixel {
+    id: string;
+    x: number;
+    y: number;
+    size: number;
+    isWhite: boolean;
+    changeTime: number;
+}
+
+export interface RightContentProps {
+    rightContent: React.ReactNode;
 }
 
 export interface ScrambleProps {
@@ -119,6 +173,16 @@ export interface ShutterContainerProps {
     titleColumn?: TitleData[];
 }
 
+export interface SidebarProps {
+    name: string;
+    date: string;
+    location: string;
+    gitLink: string;
+    tags: string;
+    headerLinks: HeaderLink[];
+    activeHeaders: string[];
+}
+
 export interface SmoothScrollingProps {
     children: ReactNode;
 }
@@ -134,21 +198,6 @@ export interface TagProps {
     shouldHover?: boolean;
 }
 
-export interface ColumnData {
-    default?: string;
-    hover?: string;
-    description?: string;
-}
-
-export interface Pixel {
-    id: string;
-    x: number;
-    y: number;
-    size: number;
-    isWhite: boolean;
-    changeTime: number;
-}
-
 export interface TitleData {
     default?: string;
     hover?: string;
@@ -158,54 +207,4 @@ export interface ZoomableImageProps {
     src: string;
     alt: string;
     className?: string;
-}
-
-export interface CodeBlockProps {
-    name: string;
-    children: React.ReactNode;
-}
-
-export interface BlogItemType {
-    title: string;
-    description: string;
-    tags?: string[];
-    date: string;
-    link: string;
-}
-
-export interface HeaderLink {
-    id: string;
-    text: string;
-}
-
-export interface SidebarProps {
-    name: string;
-    date: string;
-    location: string;
-    gitLink: string;
-    tags: string;
-    headerLinks: HeaderLink[];
-    activeHeaders: string[];
-}
-
-export interface BlogContainerProps extends Omit<SidebarProps, 'headerLinks' | 'activeHeaders'> {
-    rightContent: React.ReactNode;
-}
-
-export interface MetadataSectionProps {
-    name: string;
-    date: string;
-    location: string;
-    gitLink: string;
-    tags: string;
-}
-
-export interface HeaderNavigationProps {
-    headerLinks: HeaderLink[];
-    activeHeaders: string[];
-}
-
-
-export interface RightContentProps {
-    rightContent: React.ReactNode;
 }
