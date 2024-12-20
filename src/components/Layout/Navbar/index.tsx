@@ -9,6 +9,7 @@ import { CustomLink } from '@/components/Common/Link/index';
 import Scramble from '@/components/Common/Scramble/index';
 import Console from '@/components/Console/index';
 import { Time } from '@/components/Layout/Navbar/time';
+import { MENU_ITEMS } from '@/consts/layout';
 import { useNavbar } from '@/hooks/useNavbar';
 import {
     CustomNavLinksProps,
@@ -94,19 +95,6 @@ const MenuItem = ({
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
     const pathname = usePathname();
 
-    const menuItems = [
-        { href: '/', label: 'Home', index: 0 },
-        { href: '/about', label: 'About', index: 1 },
-        { href: '/blog', label: 'Blog', index: 2 },
-        {
-            href: 'https://github.com/joaofam',
-            label: 'GitHub',
-            index: 3,
-            blank: true,
-        },
-        { href: '/resume.pdf', label: 'Resume', index: 4, blank: true },
-    ];
-
     return (
         <AnimatePresence>
             {isOpen && (
@@ -144,7 +132,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                             },
                         }}
                     >
-                        {menuItems.map(item => (
+                        {MENU_ITEMS.map(item => (
                             <MenuItem
                                 key={item.href}
                                 href={item.href}

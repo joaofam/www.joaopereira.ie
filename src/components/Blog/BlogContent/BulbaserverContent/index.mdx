@@ -48,53 +48,108 @@ Graphics 4600
 ---
 
 # Setup
-
-<br />
 <br />
 
 ## Docker
-
-<br />
-<br />
-
-### Install Docker
-
-<br />
-<br />
-
-### Install Docker Compose
-
-<br />
 <br />
 
 ### Docker Services
 
 <br />
 Below is a list of services running on my server.
-<br />| Service Name | Description |
-|------------------------|---------------------------------------| |
-[Traefik](https://traefik.io) | Reverse proxy and load balancer | |
-[IPFS](https://ipfs.io) | InterPlanetary File System node | |
-[Tailscale](https://tailscale.com) | Mesh VPN | |
-[Portainer](https://www.portainer.io) | Docker management UI | |
-[Nextcloud](https://nextcloud.com) | File sharing and collaboration platform| |
-[Jellyfin](https://jellyfin.org) | Media server | | [Transmission with
-OpenVPN](https://github.com/haugene/docker-transmission-openvpn) | BitTorrent
-client with VPN support | |
-[Jellyseer](https://github.com/Fallenbagel/jellyseerr) | Media request
-management | | [Sonarr](https://sonarr.tv) | TV show management | |
-[Radarr](https://radarr.video) | Movie management | |
-[Prowlarr](https://prowlarr.com) | Indexer manager | |
-[Immich](https://github.com/immich-app/immich) | Self-hosted photo and video
-backup | | [Homepage](https://github.com/benphelps/homepage) | Personal
-dashboard |
+<br />
+| Service Name | Description |
+|--------------|---------------------------------------|
+| [Traefik](https://traefik.io) | Reverse proxy and load balancer |
+| [IPFS](https://ipfs.io) | InterPlanetary File System node |
+| [Tailscale](https://tailscale.com) | Mesh VPN |
+| [Portainer](https://www.portainer.io) | Docker management UI |
+| [Nextcloud](https://nextcloud.com) | File sharing and collaboration platform |
+| [Jellyfin](https://jellyfin.org) | Media server |
+| [Transmission with OpenVPN](https://github.com/haugene/docker-transmission-openvpn) | BitTorrent client with VPN support |
+| [Jellyseer](https://github.com/Fallenbagel/jellyseerr) | Media request management |
+| [Sonarr](https://sonarr.tv) | TV show management |
+| [Radarr](https://radarr.video) | Movie management |
+| [Prowlarr](https://prowlarr.com) | Indexer manager |
+| [Immich](https://github.com/immich-app/immich) | Self-hosted photo and video backup |
+| [Homepage](https://github.com/benphelps/homepage) | Personal dashboard |
+
+<br />
+<br />
+
+### Install Docker and Docker Compose
+
+#### Linux
+<br />
+1 Update the apt package index and install packages to allow apt to use a repository over HTTPS:
+<br />
+<CodeBlock name="command line">
+```sh
+sudo apt-get update
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+```
+</CodeBlock>
+<br />
+2 Add Docker’s official GPG key:
+<br />
+<CodeBlock name="command line">
+```sh
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
+</CodeBlock>
+<br />
+3 Set up the stable repository:
+<br />
+<CodeBlock name="command line">
+    ```sh
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    ```
+</CodeBlock>
+<br />
+4 Install Docker Engine:
+<br />
+<CodeBlock name="command line">
+    ```sh
+    sudo apt-get update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io
+    ```
+</CodeBlock>
+<br />
+5 Install Docker Compose:
+<br />
+<CodeBlock name="command line">
+    ```sh
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    ```
+</CodeBlock>
+<br />
+
+#### macOS
+<br />
+1 Install Docker Desktop for Mac:
+- Download Docker Desktop for Mac from [Docker's official website](https://www.docker.com/products/docker-desktop).
+- Open the downloaded file and drag the Docker icon to the Applications folder.
+- Open Docker from the Applications folder.
+<br />
+2 Verify Docker Compose installation:
+<br />
+<CodeBlock name="command line">
+    ```sh
+    docker-compose --version
+    ```
+</CodeBlock>
 
 <br />
 <br />
 
 ### Tailscale
-
-<br />
 <br />
 <CodeBlock name="docker-compose.yml">
 ```yml

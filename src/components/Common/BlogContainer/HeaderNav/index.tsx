@@ -12,7 +12,7 @@ export const HeaderNavigation: React.FC<HeaderNavigationProps> = ({
     };
 
     return (
-        <div className="space-y-1">
+        <div className="space-y-1  sticky top-0">
             {headerLinks.map(link => (
                 <div key={link.id} className={getMarginClass(link.id)}>
                     <a
