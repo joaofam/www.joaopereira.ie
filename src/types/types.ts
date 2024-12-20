@@ -164,3 +164,48 @@ export interface CodeBlockProps {
     name: string;
     children: React.ReactNode;
 }
+
+export interface BlogItemType {
+    title: string;
+    description: string;
+    tags?: string[];
+    date: string;
+    link: string;
+}
+
+export interface HeaderLink {
+    id: string;
+    text: string;
+}
+
+export interface SidebarProps {
+    name: string;
+    date: string;
+    location: string;
+    gitLink: string;
+    tags: string;
+    headerLinks: HeaderLink[];
+    activeHeaders: string[];
+}
+
+export interface BlogContainerProps extends Omit<SidebarProps, 'headerLinks' | 'activeHeaders'> {
+    rightContent: React.ReactNode;
+}
+
+export interface MetadataSectionProps {
+    name: string;
+    date: string;
+    location: string;
+    gitLink: string;
+    tags: string;
+}
+
+export interface HeaderNavigationProps {
+    headerLinks: HeaderLink[];
+    activeHeaders: string[];
+}
+
+
+export interface RightContentProps {
+    rightContent: React.ReactNode;
+}
