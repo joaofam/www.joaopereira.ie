@@ -15,7 +15,8 @@ export interface BlogContainerProps {
     location: string;
 }
 
-export interface BlogContainerProps extends Omit<SidebarProps, 'headerLinks' | 'activeHeaders'> {
+export interface BlogContainerProps
+    extends Omit<SidebarProps, 'headerLinks' | 'activeHeaders'> {
     rightContent: React.ReactNode;
 }
 

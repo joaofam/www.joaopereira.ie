@@ -22,9 +22,10 @@ export const BlogItem: React.FC<BlogItemProps> = ({
         setIsExpanded(!isExpanded);
     };
 
-    const truncatedDescription = description.length > maxLength
-        ? description.substring(0, maxLength) + '...'
-        : description;
+    const truncatedDescription =
+        description.length > maxLength
+            ? description.substring(0, maxLength) + '...'
+            : description;
 
     return (
         <div className="pt-6">
@@ -39,26 +40,29 @@ export const BlogItem: React.FC<BlogItemProps> = ({
                     </div>
                 </CustomLink>
                 {tags && (
-                    <div className="hidden sm:block space-x-2 self-end text-right">
+                    <div className="hidden space-x-2 self-end text-right sm:block">
                         {tags.map(tag => (
                             <SolidTag key={tag} text={tag} />
                         ))}
                     </div>
                 )}
             </div>
-            {date && <p className='text-xs sm:text-sm'>{date}</p>}
+            {date && <p className="text-xs sm:text-sm">{date}</p>}
             {tags && (
-                <div className="block sm:hidden flex flex-wrap gap-2 pt-2">
+                <div className="block flex flex-wrap gap-2 pt-2 sm:hidden">
                     {tags.map(tag => (
                         <SolidTag key={tag} text={tag} />
                     ))}
                 </div>
             )}
             <p className="pt-2 text-2xs sm:text-xs">
-                <Highlight text={isExpanded ? description : truncatedDescription} highlight={searchTerm} />
+                <Highlight
+                    text={isExpanded ? description : truncatedDescription}
+                    highlight={searchTerm}
+                />
                 {description.length > maxLength && (
                     <button
-                        className="text-accent cursor-pointer"
+                        className="cursor-pointer text-accent"
                         onClick={handleExpandClick}
                     >
                         {isExpanded ? ' Show less' : ' Show more'}

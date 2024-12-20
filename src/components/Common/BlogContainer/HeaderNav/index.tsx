@@ -2,7 +2,7 @@ import { HeaderNavigationProps } from '@/types/types';
 
 export const HeaderNavigation: React.FC<HeaderNavigationProps> = ({
     headerLinks,
-    activeHeaders
+    activeHeaders,
 }) => {
     const getMarginClass = (id: string) => {
         if (id.endsWith('-h2')) return 'ml-2';
@@ -14,17 +14,17 @@ export const HeaderNavigation: React.FC<HeaderNavigationProps> = ({
     return (
         <div className="space-y-1">
             {headerLinks.map(link => (
-                <div
-                    key={link.id}
-                    className={getMarginClass(link.id)}
-                >
+                <div key={link.id} className={getMarginClass(link.id)}>
                     <a
                         href={`#${link.id}`}
                         className={`no-underline hover:text-primary ${
-                            activeHeaders.includes(link.id) ? 'text-primary' : ''
+                            activeHeaders.includes(link.id)
+                                ? 'text-primary'
+                                : ''
                         }`}
                     >
-                        [{activeHeaders.includes(link.id) ? 'x' : ''}] {link.text}
+                        [{activeHeaders.includes(link.id) ? 'x' : ''}]{' '}
+                        {link.text}
                     </a>
                 </div>
             ))}

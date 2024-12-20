@@ -35,7 +35,7 @@ const config = {
             '15xl': '20rem',
         },
         hljs: {
-            theme: "github-dark-dimmed",
+            theme: 'github-dark-dimmed',
         },
         container: {
             center: true,
@@ -169,9 +169,9 @@ const config = {
     ],
     safelist: [
         {
-            pattern:  /hljs+/,
-        }
-    ]
+            pattern: /hljs+/,
+        },
+    ],
 } satisfies Config;
 
 export default config;

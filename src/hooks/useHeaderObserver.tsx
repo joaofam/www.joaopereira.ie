@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
 const useHeaderObserver = (dependency: any) => {
-    const [headerLinks, setHeaderLinks] = useState<{ id: string; text: string }[]>([]);
+    const [headerLinks, setHeaderLinks] = useState<
+        { id: string; text: string }[]
+    >([]);
     const [activeHeaders, setActiveHeaders] = useState<string[]>([]);
 
     useEffect(() => {

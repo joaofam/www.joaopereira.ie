@@ -1,6 +1,10 @@
 import { BlogItemType } from '@/types/types';
 
-const filterBlogItems = (items: BlogItemType[], activeFilters: string[], searchTerm: string) => {
+const filterBlogItems = (
+    items: BlogItemType[],
+    activeFilters: string[],
+    searchTerm: string
+) => {
     return items.filter(item => {
         const matchesFilter =
             activeFilters.includes('All') ||

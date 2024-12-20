@@ -31,8 +31,12 @@ export default function BlogContent() {
         }
     };
 
-    const filteredBlogItems = filterBlogItems(BLOG_ITEMS, activeFilters, searchTerm);
-    
+    const filteredBlogItems = filterBlogItems(
+        BLOG_ITEMS,
+        activeFilters,
+        searchTerm
+    );
+
     return (
         <div className="relative flex w-full items-center justify-center font-SpaceMono tracking-tight text-foreground">
             <div className="relative w-full">
@@ -42,10 +46,10 @@ export default function BlogContent() {
                     className="cursor-default font-Nohemi text-4xl font-regular sm:text-6xl 2xl:text-6xl"
                 />
                 {/* User Query Section */}
-                <div className="flex flex-col sm:grid sm:grid-cols-4 gap-4">
+                <div className="flex flex-col gap-4 sm:grid sm:grid-cols-4">
                     {/* Optional Tags */}
-                    <div className="w-full sm:col-span-3 flex items-end">
-                        <div className="flex flex-row flex-wrap gap-2 w-full">
+                    <div className="flex w-full items-end sm:col-span-3">
+                        <div className="flex w-full flex-row flex-wrap gap-2">
                             {BLOG_FILTERS.map(filter => (
                                 <Filter
                                     key={filter}
@@ -57,7 +61,7 @@ export default function BlogContent() {
                             ))}
                         </div>
                     </div>
-                    <div className="w-full sm:col-span-1 flex items-center">
+                    <div className="flex w-full items-center sm:col-span-1">
                         {/* Search Bar */}
                         <SearchBar
                             placeholder="Search for item..."

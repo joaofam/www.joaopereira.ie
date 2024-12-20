@@ -34,12 +34,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         h4: ({ children }) => (
             <h4
                 id={generateId(children as string, 'h4')}
-                className="text-xl text-yellow-500"
+                className="text-yellow-500 text-xl"
             >
                 {children}
             </h4>
         ),
-        p: ({ children }) => <p className="font-baskervville text-base leading-6">{children}</p>,
+        p: ({ children }) => (
+            <p className="font-baskervville text-base leading-6">{children}</p>
+        ),
         strong: ({ children }) => (
             <strong className="font-regular text-primary">{children}</strong>
         ),
@@ -78,15 +80,17 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             </th>
         ),
         td: ({ children }) => (
-            <td className="whitespace-normal break-words px-6 py-4">{children}</td>
+            <td className="whitespace-normal break-words px-6 py-4">
+                {children}
+            </td>
         ),
         a: ({ href, children }) => (
             <a href={href} className="underline hover:underline">
                 <p>{children}</p>
             </a>
         ),
-        code: (props) => <code {...props} className="rounded-0" />,
-        CodeBlock: (props) => <CodeBlock {...props} />,
+        code: props => <code {...props} className="rounded-0" />,
+        CodeBlock: props => <CodeBlock {...props} />,
         ...components,
     };
 }

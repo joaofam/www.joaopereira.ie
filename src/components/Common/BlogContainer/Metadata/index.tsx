@@ -7,7 +7,7 @@ export const MetadataSection: React.FC<MetadataSectionProps> = ({
     date,
     location,
     gitLink,
-    tags
+    tags,
 }) => (
     <div className="grid grid-cols-2 gap-1">
         <div>Name:</div>
@@ -18,12 +18,7 @@ export const MetadataSection: React.FC<MetadataSectionProps> = ({
         <div>{location}</div>
         <div>Project Link:</div>
         <div>
-            <CustomLink
-                size="xs"
-                href={gitLink}
-                blank
-                className="capitalize"
-            >
+            <CustomLink size="xs" href={gitLink} blank className="capitalize">
                 Repo
             </CustomLink>
         </div>

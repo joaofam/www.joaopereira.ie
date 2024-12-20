@@ -10,9 +10,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
     gitLink,
     tags,
     headerLinks,
-    activeHeaders
+    activeHeaders,
 }) => (
-    <div className="relative col-span-2 hidden xl:flex h-full w-full items-start justify-center border border-foreground">
+    <div className="relative col-span-2 hidden h-full w-full items-start justify-center border border-foreground xl:flex">
         <Legend
             title="Metadata"
             className="cursor-default px-2 font-bold lowercase"
@@ -25,10 +25,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 gitLink={gitLink}
                 tags={tags}
             />
-            
+
             {/* Divider */}
             <div className="col-span-2 mt-4 border-t border-accent" />
-            
+
             {/* Header Navigation */}
             <div className="col-span-2 mt-4">
                 <HeaderNavigation
