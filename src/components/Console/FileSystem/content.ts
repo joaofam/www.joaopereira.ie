@@ -34,8 +34,17 @@ export const experienceContent = `
 # Experience Information
 My current experience throughout the years.
 
+## Rapid7 - *Software Engineer*
+January 2025 - Present
+---
+- Developed and maintained *PTC* customizations for products using *Java*, *JavaScript*, *SQL*, and *REST APIs* to create applications and customextensions.
+- Utilized *Next.js* to build a large-scale dashboard site with over **122 pages**, improving data visualization and user experience.
+- Created internal *CLI tooling* using *Python* to streamline development processes and increase team productivity.
+- Collaborated with cross-functional teams to integrate custom solutions with existing PTC products.
+
+
 ## Concurrent Engineering - *Associate Applications Developer*
-October 2023 - Present
+October 2023 - November 2024
 ---
 - Developed and maintained *PTC* customizations for products using *Java*, *JavaScript*, *SQL*, and *REST APIs* to create applications and customextensions.
 - Utilized *Next.js* to build a large-scale dashboard site with over **122 pages**, improving data visualization and user experience.

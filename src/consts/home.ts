@@ -29,6 +29,18 @@ export const EXPERIENCES = [
     {
         columns: [
             {
+                default: 'Rapid7',
+                hover: 'Software Engineer',
+            },
+            {
+                default: '01.25 - Present',
+                hover: 'Java Python AWS TS',
+            },
+        ],
+    },
+    {
+        columns: [
+            {
                 default: 'Concurrent Engineering',
                 hover: 'Associate Applications Developer',
             },
